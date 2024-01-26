@@ -1,0 +1,14 @@
+{
+    "name": "com.cekuma.unity-runetime-node-editor",
+    "displayName": "Unity Runtime Node Editor",
+    "version": "1.0.0",
+    "unity": "2021.3",
+    "description": "",
+    "documentationUrl": "https://github.com/cemuka/UnityRuntimeNodeEditor",
+    "keywords": [],
+    "author": "cekuma",
+    "dependencies": {
+        "com.unity.textmeshpro": "3.0.6"
+    },
+    "license": "MIT"
+  }
