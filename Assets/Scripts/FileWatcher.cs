@@ -14,7 +14,8 @@ namespace Cgw
             var watcher = new FileSystemWatcher()
             {
                 Path = p_path,
-                NotifyFilter = NotifyFilters.LastWrite
+                NotifyFilter = NotifyFilters.LastWrite,
+                IncludeSubdirectories = true
             };
 
             watcher.Changed += OnChanged;

@@ -22,7 +22,7 @@ namespace Cgw.Assets
                 throw new Exception("Project root already set. It cant be updated");
             }
             m_projectRoot = Path.GetFullPath(p_path);
-            m_fileWatcher = new FileWatcher(p_path, (asset) => m_updatedFiles.Enqueue(asset));
+            m_fileWatcher = new FileWatcher(m_projectRoot, (asset) => m_updatedFiles.Enqueue(asset));
         }
 
         public static void RegisterLoader<T>(IAssetLoader p_loader) where T : Asset
