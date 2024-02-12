@@ -1,0 +1,12 @@
+{
+    "name": "com.nlua.nlua",
+    "displayName": "NLua",
+    "version": "1.6.0",
+    "unity": "2021.3",
+    "description": "Bridge between Lua world and the .NET",
+    "documentationUrl": "https://github.com/NLua/NLua",
+    "keywords": [],
+    "author": "Vinicius Jarina",
+    "dependencies": {},
+    "license": "MIT"
+  }

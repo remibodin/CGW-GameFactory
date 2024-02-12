@@ -14,6 +14,18 @@
         "com.unity.textmeshpro": "3.0.6"
       }
     },
+    "com.nlua.keralua": {
+      "version": "file:KeraLua",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.nlua.nlua": {
+      "version": "file:NLua",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 1,
