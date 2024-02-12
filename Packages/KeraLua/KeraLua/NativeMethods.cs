@@ -9,23 +9,11 @@ namespace KeraLua
 
 	static class NativeMethods
 	{
-	
-#if MONOTOUCH
-		const string LIBNAME = "__Internal";
-#else
-#if DEBUGLUA
-		const string LIBNAME = "lua52d";
+
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+		const string LIBNAME = "lua52.dylib";
 #else
 		const string LIBNAME = "lua52";
-#endif
-
-#if USE_DYNAMIC_DLL_REGISTER
-		static NativeMethods ()
-		{
-			DynamicLibraryPath.RegisterPathForDll (LIBNAME);
-		}
-#endif
-
 #endif
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gc")]
