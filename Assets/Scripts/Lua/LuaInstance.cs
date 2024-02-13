@@ -1,12 +1,14 @@
 using UnityEngine;
 
 using NLua;
+using System.Collections.Generic;
 
 namespace Cgw.Scripting
 {
     public class LuaInstance
     {
         private Lua m_environment;
+        private Dictionary<string, LuaFunction> m_functions = new Dictionary<string, LuaFunction>();
 
         public object this[string key]
         {
@@ -61,34 +63,46 @@ namespace Cgw.Scripting
 
         public object[] Call(string function, params object[] args)
         {
-            object[] result = new System.Object[0];
+            object[] result = new object[0];
             if (m_environment == null)
             {
                 return result;
             }
-            
-            LuaFunction lf = m_environment.GetFunction(function);
-            if (lf == null)
+
+            LuaFunction luaFunction = null;
+            if (m_functions.ContainsKey(function))
             {
-                return result;
+                luaFunction = m_functions[function];
             }
+            else
+            {
+                luaFunction = m_environment.GetFunction(function);
+                if (luaFunction == null)
+                {
+                    return result;
+                }
+
+                m_functions[function] = luaFunction;
+            }
+
             try
             {
                 // Note: calling a function that does not
                 // exist does not throw an exception.
                 if (args != null)
                 {
-                    result = lf.Call(args);
+                    result = luaFunction.Call(args);
                 }
                 else
                 {
-                    result = lf.Call();
+                    result = luaFunction.Call();
                 }
             }
             catch (NLua.Exceptions.LuaException e)
             {
                 Debug.LogError(FormatException(e));
             }
+
             return result;
         }
 
@@ -100,6 +114,7 @@ namespace Cgw.Scripting
         private void InitEnvironment()
         {
             m_environment?.Close();
+            m_functions?.Clear();
             m_environment = new Lua();
             m_environment.LoadCLRPackage();
         }
