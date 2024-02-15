@@ -1,52 +1,29 @@
 using UnityEngine;
 
 using Cgw.Assets;
+using Cgw.Graphics;
 
 namespace Cgw.Scripting
 {
-    public class LuaBehaviour : MonoBehaviour
+    public class LuaBehaviour : AssetBehaviour<LuaScript>
     {
-        private LuaScript m_script;
-        private LuaInstance m_instance;
-
         public LuaScript Script
         {
-            get { return m_script; }
-            set
-            {
-                if (value == null)
-                {
-                    Debug.LogError("LuaScript cant be null");
-                    return;
-                }
-                if (m_script == value)
-                {
-                    return;
-                }
-                InitScript(value);
-                InitTable();
-            }
+            get { return Asset; }
+            set { Asset = value; }
         }
 
-        private void InitScript(LuaScript p_script)
+        private LuaInstance m_instance;
+
+        protected override void AssetUpdated()
         {
-            if (m_script != null)
-            {
-                m_script.OnUpdated -= ScriptUpdated;
-            }
-            m_script = p_script;
-            m_script.OnUpdated += ScriptUpdated;
-            m_instance = m_script.CreateInstance();
+            m_instance = Script.CreateInstance();
+            InitTable();
         }
 
         private void InitTable()
         {
             m_instance["transform"] = transform;
-        }
-
-        private void ScriptUpdated(Asset p_newScript)
-        {
-            Script = p_newScript as LuaScript;
         }
 
         private void Update()

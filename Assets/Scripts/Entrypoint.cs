@@ -5,6 +5,7 @@ using UnityEngine;
 using Cgw.Assets;
 using Cgw.Assets.Loaders;
 using Cgw.Scripting;
+using Cgw.Graphics;
 
 namespace Cgw
 {
@@ -19,6 +20,7 @@ namespace Cgw
 
             // Register loaders
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
+            ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
             //
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());

@@ -2,6 +2,7 @@ using UnityEngine;
 
 using Cgw.Assets;
 using Cgw.Scripting;
+using Cgw.Graphics;
 
 namespace Cgw.Test
 {
@@ -9,9 +10,11 @@ namespace Cgw.Test
     {
         private void Start()
         {
-            var script = ResourcesManager.Get<LuaScript>("Scripts/Rotate");
-            var behaviour = gameObject.AddComponent<LuaBehaviour>();
-            behaviour.Script = script;
+            var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
+            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Rotate");
+
+            var spriteBehaviour = gameObject.AddComponent<SpriteBehaviour>();
+            spriteBehaviour.Sprite = ResourcesManager.Get<SpriteAsset>("Sprites/Star");
         }
     }
 }

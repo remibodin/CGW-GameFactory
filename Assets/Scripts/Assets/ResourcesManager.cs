@@ -41,6 +41,10 @@ namespace Cgw.Assets
             if (!m_resources.ContainsKey(p_identifier))
             {
                 var path = GetMetadataPath(p_identifier);
+                if (!File.Exists(path))
+                {
+                    UnityEngine.Debug.LogError($"File not found {path}");
+                }
                 m_resources[p_identifier] = m_loaders[typeof(T)].Load(path);
             }
             return (T)m_resources[p_identifier];
