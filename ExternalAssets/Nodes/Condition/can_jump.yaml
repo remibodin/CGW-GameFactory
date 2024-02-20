@@ -1,0 +1,10 @@
+name: "CanJump"
+description: "Can we jump ?"
+params:
+  - "Can Jump ?"
+
+template: |
+  if can_jump = true then
+    ${corpus_then}
+  else
+    ${corpus_else}

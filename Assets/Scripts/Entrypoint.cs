@@ -7,6 +7,8 @@ using Cgw.Assets.Loaders;
 using Cgw.Scripting;
 using Cgw.Graphics;
 using Cgw.Audio;
+using System.Resources;
+using Assets.Nodes;
 
 namespace Cgw
 {
@@ -28,6 +30,10 @@ namespace Cgw
             ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
             ResourcesManager.RegisterLoader<GameObjectAsset>(new GameObjectLoader());
             ResourcesManager.RegisterLoader<Configuration>(new YamlFileLoader<Configuration>());
+            ResourcesManager.RegisterLoader<NodeCollection>(new NodeCollectionLoader());
+            ResourcesManager.RegisterLoader<EntrypointAsset>(new EntrypointAssetLoader());
+            ResourcesManager.RegisterLoader<ConditionAsset>(new ConditionAssetLoader());
+            ResourcesManager.RegisterLoader<InOutFlowAsset>(new InOutFlowAssetLoader());
             //
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());

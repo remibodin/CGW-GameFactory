@@ -1,0 +1,8 @@
+entry_point_nodes:
+  - "on_update"
+
+in_out_flow_nodes:
+  - "jump"
+
+condition_nodes:
+  - "can_jump"
