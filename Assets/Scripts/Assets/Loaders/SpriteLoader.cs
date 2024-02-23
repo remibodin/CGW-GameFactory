@@ -9,7 +9,7 @@ namespace Cgw.Assets.Loaders
 {
     public class SpriteLoader : AssetFileLoader<SpriteAsset>
     {
-        private string[] m_extentions = new string[] { "png" };
+        private string[] m_extentions = new string[] { "png", "jpg" };
 
         public override IEnumerable<string> Extentions => m_extentions;
 
@@ -21,7 +21,7 @@ namespace Cgw.Assets.Loaders
             texture.wrapMode = TextureWrapMode.Clamp;
             texture.LoadImage(bImage);
 
-            var sprite = UnityEngine.Sprite.Create(
+            var sprite = Sprite.Create(
                 texture,
                 new Rect(0.0f, 0.0f, texture.width, texture.height),
                 new Vector2(0.5f, 0.5f),

@@ -22,7 +22,10 @@ namespace Cgw.Assets
                     m_asset.OnUpdated -= OnUpdated;
                 }
                 m_asset = value;
-                m_asset.OnUpdated += OnUpdated;
+                if (m_asset != null)
+                {
+                    m_asset.OnUpdated += OnUpdated;
+                }
                 AssetUpdated();
             }
         }

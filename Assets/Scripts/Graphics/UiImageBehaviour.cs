@@ -15,7 +15,7 @@ namespace Cgw.Graphics
 
         protected override void AssetUpdated()
         {
-            m_renderer.sprite = Asset.Sprite;
+            m_renderer.sprite = Asset?.Sprite;
         }
     }
 }

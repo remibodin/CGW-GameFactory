@@ -38,6 +38,10 @@ namespace Cgw.Assets
 
         public static T Get<T>(string p_identifier) where T : Asset
         {
+            if (string.IsNullOrEmpty(p_identifier))
+            {
+                return null;
+            }
             p_identifier = NormalizeIdentifierSeparator(p_identifier);
             if (!m_resources.ContainsKey(p_identifier))
             {
@@ -53,6 +57,10 @@ namespace Cgw.Assets
 
         private static string NormalizeIdentifierSeparator(string p_identifier)
         {
+            if (string.IsNullOrEmpty(p_identifier))
+            {
+                return p_identifier;
+            }
             return p_identifier.Replace('\\', '/');
         }
 
