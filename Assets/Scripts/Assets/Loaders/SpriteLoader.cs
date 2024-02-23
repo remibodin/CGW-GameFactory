@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -6,13 +7,15 @@ using Cgw.Graphics;
 
 namespace Cgw.Assets.Loaders
 {
-    public class SpriteLoader : AssetLoader<SpriteAsset>
+    public class SpriteLoader : AssetFileLoader<SpriteAsset>
     {
-        public override SpriteAsset LoadAsset(string p_path, SpriteAsset p_data)
-        {
-            var imagePath = Path.ChangeExtension(p_path, "png");
-            var bImage = File.ReadAllBytes(imagePath);
+        private string[] m_extentions = new string[] { "png" };
 
+        public override IEnumerable<string> Extentions => m_extentions;
+
+        public override SpriteAsset LoadAsset(string p_metadataPath, string p_path, SpriteAsset p_data)
+        {
+            var bImage = File.ReadAllBytes(p_path);
             var texture = new Texture2D(2, 2);
             texture.filterMode = FilterMode.Point;
             texture.wrapMode = TextureWrapMode.Clamp;
