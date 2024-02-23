@@ -32,9 +32,10 @@ namespace Cgw.Audio
 
             Source.clip = Asset.AudioClip;
             Source.volume = Asset.Volume;
+            Source.pitch = Asset.Pitch;
             Source.loop = Asset.Loop;
 
-            if (isPlaying)
+            if (isPlaying || Asset.AutoStart)
             {
                 Source.Play();
             }
