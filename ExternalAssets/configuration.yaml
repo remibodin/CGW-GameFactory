@@ -1,0 +1,10 @@
+# menu
+
+logo: "Sprites/Menu/logo01"
+background_color: "#000018"
+
+# logo: "Sprites/Menu/logo02"
+# background_color: "#07001F"
+
+loop_sfx: "Sounds/Menu/menu_loop"
+select_button_sfx: "Sounds/Menu/Pop"

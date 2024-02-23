@@ -23,6 +23,7 @@ namespace Cgw
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
             ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
             ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
+            ResourcesManager.RegisterLoader<Configuration>(new YamlFileLoader<Configuration>());
             //
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
