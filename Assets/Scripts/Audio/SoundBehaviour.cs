@@ -7,11 +7,11 @@ namespace Cgw.Audio
 {
     public class SoundBehaviour : AssetBehaviour<SoundAsset>
     {
-        private AudioSource m_source;
+        public AudioSource Source { get; private set; }
 
         private void Awake()
         {
-            m_source = gameObject.GetOrAddComponent<AudioSource>();
+            Source = gameObject.GetOrAddComponent<AudioSource>();
         }
 
         protected override void AssetUpdated()
@@ -23,16 +23,21 @@ namespace Cgw.Audio
         {
             yield return new WaitUntil(() => Asset.LoadingCoroutine == null);
 
-            if (m_source.isPlaying)
+            var isPlaying = Source.isPlaying;
+
+            if (isPlaying)
             {
-                m_source.Stop();
+                Source.Stop();
             }
 
-            m_source.clip = Asset.AudioClip;
-            m_source.volume = Asset.Volume;
+            Source.clip = Asset.AudioClip;
+            Source.volume = Asset.Volume;
+            Source.loop = Asset.Loop;
 
-            m_source.loop = true;
-            m_source.Play();
+            if (isPlaying)
+            {
+                Source.Play();
+            }
         }
     }
 }

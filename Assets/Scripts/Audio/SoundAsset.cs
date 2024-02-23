@@ -14,6 +14,9 @@ namespace Cgw.Audio
         public AudioClip AudioClip;
 
         [YamlMember(Alias = "volume")]
-        public float Volume;
+        public float Volume = 1;
+
+        [YamlMember(Alias = "loop")]
+        public bool Loop = false;
     }
 }
