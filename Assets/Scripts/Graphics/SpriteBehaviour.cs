@@ -16,11 +16,7 @@ namespace Cgw.Graphics
 
         private void Awake()
         {
-            if (!TryGetComponent<SpriteRenderer>(out m_renderer))
-            {
-                m_renderer = gameObject.AddComponent<SpriteRenderer>();
-            }
-
+            m_renderer = gameObject.GetOrAddComponent<SpriteRenderer>();
             m_renderer.drawMode = SpriteDrawMode.Sliced;
         }
 

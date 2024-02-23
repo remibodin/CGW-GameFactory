@@ -38,6 +38,7 @@ namespace Cgw.Assets
 
         public static T Get<T>(string p_identifier) where T : Asset
         {
+            p_identifier = NormalizeIdentifierSeparator(p_identifier);
             if (!m_resources.ContainsKey(p_identifier))
             {
                 var path = GetMetadataPath(p_identifier);
@@ -50,6 +51,11 @@ namespace Cgw.Assets
             return (T)m_resources[p_identifier];
         }
 
+        private static string NormalizeIdentifierSeparator(string p_identifier)
+        {
+            return p_identifier.Replace('\\', '/');
+        }
+
         private static string GetMetadataPath(string p_identifier)
         {
             var fullPath = Path.Combine(m_projectRoot, p_identifier) + ".yaml";
@@ -60,7 +66,8 @@ namespace Cgw.Assets
         {
             var relativePath = Path.GetRelativePath(m_projectRoot, p_fullPath);
             var indexOfExtention = relativePath.LastIndexOf('.');
-            return relativePath.Substring(0, indexOfExtention);
+            var identifier = relativePath.Substring(0, indexOfExtention);
+            return NormalizeIdentifierSeparator(identifier);
         }
 
         public static void Sync()

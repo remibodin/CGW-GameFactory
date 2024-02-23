@@ -10,6 +10,6 @@ namespace Cgw.Graphics
         [YamlIgnore]
         public Texture2D Texture;
         [YamlIgnore]
-        public UnityEngine.Sprite Sprite;
+        public Sprite Sprite;
     }
 }

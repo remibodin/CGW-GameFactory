@@ -6,6 +6,7 @@ using Cgw.Assets;
 using Cgw.Assets.Loaders;
 using Cgw.Scripting;
 using Cgw.Graphics;
+using Cgw.Audio;
 
 namespace Cgw
 {
@@ -21,6 +22,7 @@ namespace Cgw
             // Register loaders
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
             ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
+            ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
             //
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
