@@ -80,6 +80,10 @@ namespace Cgw.Assets
 
         private static void OnFileUpdated(string p_path)
         {
+            if (!File.Exists(p_path)) // could be a SubDirectory
+            {
+                return;
+            }
             var identifier = GetIdentifier(p_path);
             if (!m_resources.ContainsKey(identifier))
             {
