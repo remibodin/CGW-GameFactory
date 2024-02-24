@@ -17,6 +17,8 @@ namespace Cgw
         {
             CoroutineRunner.Initialize();
 
+            GameObject.Instantiate( Resources.Load("Fade") );
+
             ResourcesManager.SetProjectRoot("ExternalAssets");
 
             // Register loaders

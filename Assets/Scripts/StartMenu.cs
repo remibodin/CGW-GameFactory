@@ -56,13 +56,13 @@ namespace Cgw
 
         private void UpdateConfiguration()
         {
-            if (ColorUtility.TryParseHtmlString(m_configuration.BackgroundColor, out var color))
+            if (ColorUtility.TryParseHtmlString(m_configuration.MenuBackgroundColor, out var color))
             {
                 m_background.color = color;
             }
-            m_loopSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.LoopButtonSfxIdentifier);
-            m_selectedSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.SelectButtonSfxIdentifier);
-            m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.LogoIdentifier);
+            m_loopSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuLoopButtonSfxIdentifier);
+            m_selectedSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuSelectButtonSfxIdentifier);
+            m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
 
             m_logo.enabled = m_logoBehaviour.Asset != null;
         }

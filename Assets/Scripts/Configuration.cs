@@ -7,13 +7,19 @@ namespace Cgw
     public class Configuration : Asset
     {
         // StartMenu
-        [YamlMember(Alias = "logo")]
-        public string LogoIdentifier;
-        [YamlMember(Alias = "background_color")]
-        public string BackgroundColor = "000000";
-        [YamlMember(Alias = "loop_sfx")]
-        public string LoopButtonSfxIdentifier;
-        [YamlMember(Alias = "select_button_sfx")]
-        public string SelectButtonSfxIdentifier;
+        [YamlMember(Alias = "menu_logo")]
+        public string MenuLogoIdentifier;
+        [YamlMember(Alias = "menu_background_color")]
+        public string MenuBackgroundColor = "#000000";
+        [YamlMember(Alias = "menu_loop_sfx")]
+        public string MenuLoopButtonSfxIdentifier;
+        [YamlMember(Alias = "menu_select_button_sfx")]
+        public string MenuSelectButtonSfxIdentifier;
+
+        // Fade
+        [YamlMember(Alias = "fade_color")]
+        public string FadeColor = "#000000";
+        [YamlMember(Alias = "fade_speed")]
+        public float FadeSpeed = 3;
     }
 }

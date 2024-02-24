@@ -1,10 +1,9 @@
 # menu
+menu_logo: "Sprites/Menu/logo01"
+menu_background_color: "#000018"
+menu_loop_sfx: "Sounds/Menu/menu_loop"
+menu_select_button_sfx: "Sounds/Menu/Pop"
 
-logo: "Sprites/Menu/logo01"
-background_color: "#000018"
-
-# logo: "Sprites/Menu/logo02"
-# background_color: "#07001F"
-
-loop_sfx: "Sounds/Menu/menu_loop"
-select_button_sfx: "Sounds/Menu/Pop"
+# fade
+fade_color: "#000018"
+fade_speed: 3
