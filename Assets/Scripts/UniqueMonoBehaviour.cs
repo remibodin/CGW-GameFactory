@@ -6,7 +6,7 @@ namespace Cgw
     where T : MonoBehaviour
     {
         private static T m_instance = null;
-        protected static T Instance => m_instance;
+        public static T Instance => m_instance;
 
         protected virtual void Awake()
         {
