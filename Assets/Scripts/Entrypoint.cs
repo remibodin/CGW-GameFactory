@@ -17,7 +17,8 @@ namespace Cgw
         {
             CoroutineRunner.Initialize();
 
-            GameObject.Instantiate( Resources.Load("Fade") );
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
 
             ResourcesManager.SetProjectRoot("ExternalAssets");
 
