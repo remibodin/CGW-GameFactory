@@ -42,8 +42,12 @@ namespace Cgw
             Application.logMessageReceivedThreaded -= HandleLog;
         }
 
-        private void HandleLog(string p_logString, string stackTrace, LogType p_type)
+        private void HandleLog(string p_logString, string p_stackTrace, LogType p_type)
         {
+            if (p_type == LogType.Error)
+            {
+                p_logString += "\n" + p_stackTrace;
+            }
             m_output.text += FormatLogString(p_logString, p_type);
         }
 
@@ -118,7 +122,7 @@ namespace Cgw
                 return;
             }
             m_canvas.enabled = p_value;
-            if (m_canvas.enabled)
+            if (m_canvas.enabled && EventSystem.current != null)
             {
                 EventSystem.current.SetSelectedGameObject(m_input.gameObject);
             }
