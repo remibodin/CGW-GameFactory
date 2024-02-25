@@ -14,6 +14,7 @@ namespace Cgw.Assets
         private static string m_projectRoot;
         private static FileWatcher m_fileWatcher;
         private static ConcurrentQueue<string> m_updatedFiles = new ConcurrentQueue<string>();
+        private static HashSet<string> m_updatedFilesInCurrentFrame = new HashSet<string>();
 
         public static void SetProjectRoot(string p_path)
         {
@@ -74,14 +75,24 @@ namespace Cgw.Assets
         {
             var relativePath = Path.GetRelativePath(m_projectRoot, p_fullPath);
             var indexOfExtention = relativePath.LastIndexOf('.');
-            var identifier = relativePath.Substring(0, indexOfExtention);
+            var identifier = relativePath;
+            if (indexOfExtention > 0)
+            {
+                identifier = relativePath.Substring(0, indexOfExtention);
+            }
             return NormalizeIdentifierSeparator(identifier);
         }
 
         public static void Sync()
         {
-            while(m_updatedFiles.TryDequeue(out var path))
+            m_updatedFilesInCurrentFrame.Clear();
+            while (m_updatedFiles.TryDequeue(out var path))
             {
+                if (m_updatedFilesInCurrentFrame.Contains(path))
+                {
+                    continue;
+                }
+                m_updatedFilesInCurrentFrame.Add(path);
                 OnFileUpdated(path);
             }
         }
@@ -104,7 +115,7 @@ namespace Cgw.Assets
             var newAsset = loader.Load(metadataPath);
             m_resources[identifier] = newAsset;
             oldAsset.Updated(newAsset);
-            oldAsset.Unload();
+            oldAsset.Dispose();
         }
     }
 }
