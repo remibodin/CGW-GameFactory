@@ -15,6 +15,7 @@ namespace Assets.Nodes
         {
             var condition = GetComponent<Condition>();
             condition.SetHeader(ConditionAsset.Name);
+            condition.name = ConditionAsset.Name;
             condition.Template = ConditionAsset.Template;
             condition.Params = ConditionAsset.Params;
         }

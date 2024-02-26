@@ -13,6 +13,7 @@ namespace Assets.Nodes
         protected override void AssetUpdated()
         {
             var entrypoint = GetComponent<Entrypoint>();
+            entrypoint.name = EntrypointAsset.Name;
             entrypoint.SetHeader(EntrypointAsset.Name);
             entrypoint.Template = EntrypointAsset.Template;
         }
