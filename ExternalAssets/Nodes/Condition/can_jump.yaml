@@ -8,3 +8,4 @@ template: |
     ${corpus_then}
   else
     ${corpus_else}
+  end
