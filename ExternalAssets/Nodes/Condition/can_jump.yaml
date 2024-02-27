@@ -5,7 +5,7 @@ params:
 
 template: |
   if can_jump = true then
-    ${corpus_then}
+    {0}
   else
-    ${corpus_else}
+    {1}
   end

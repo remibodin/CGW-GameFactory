@@ -1,6 +1,10 @@
+using Cgw;
 using Cgw.Assets;
+using Cgw.Test;
+using RuntimeNodeEditor;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Nodes
@@ -13,16 +17,19 @@ namespace Assets.Nodes
         public Dictionary<string, ConditionAssetBehaviour> ConditionNodes = new();
         public Dictionary<string, InOutFlowAssetBehaviour> InOutFlowNodes = new();
 
-        public GameObject EntrypointPrefab;
-        public GameObject ConditionPrefab;
-        public GameObject InOutFlowPrefab;
+        public string EntrypointPrefabPath;
+        public string ConditionPrefabPath;
+        public string InOutFlowPrefabPath;
 
-        public GameObject GraphHolder;
+        private GameObject m_GraphHolder;
+        private NodeGraph m_NodeGraph;
+        private static NodeLoader m_Instance;
 
-        public void Awake()
+        private void Start()
         {
+            m_Instance = this;
+            m_NodeGraph = GetComponent<GraphNodes>().Graph;
             NodeCollection = ResourcesManager.Get<NodeCollection>("Nodes/node_collection");
-            UpdateNodes();
         }
 
         protected override void AssetUpdated()
@@ -32,9 +39,17 @@ namespace Assets.Nodes
 
         private void UpdateNodes()
         {
+            m_NodeGraph = GetComponent<GraphNodes>().Graph;
             UpdateEntrypoints();
             UpdateConditions();
             UpdateInOutFlows();
+
+        }
+
+        [TermCommand]
+        public static void ReloadNodes(string p_args)
+        {
+            m_Instance.UpdateNodes();
         }
 
         private void UpdateEntrypoints()
@@ -43,8 +58,7 @@ namespace Assets.Nodes
             {
                 if (!EntrypointNodes.ContainsKey(identifier))
                 {
-                    GameObject newEntrypoint = Instantiate(EntrypointPrefab, Vector3.zero, Quaternion.identity);
-                    newEntrypoint.transform.SetParent(GraphHolder.transform);
+                    GameObject newEntrypoint = m_NodeGraph.Create(EntrypointPrefabPath, Vector2.zero);
                     EntrypointNodes[identifier] = newEntrypoint.GetComponent<EntrypointAssetBehaviour>();
                 }
 
@@ -67,8 +81,7 @@ namespace Assets.Nodes
             {
                 if (!ConditionNodes.ContainsKey(identifier))
                 {
-                    GameObject newCondition = Instantiate(ConditionPrefab, Vector3.zero, Quaternion.identity);
-                    newCondition.transform.SetParent(GraphHolder.transform);
+                    GameObject newCondition = m_NodeGraph.Create(ConditionPrefabPath, Vector2.zero);
                     ConditionNodes[identifier] = newCondition.GetComponent<ConditionAssetBehaviour>();
                 }
 
@@ -91,8 +104,7 @@ namespace Assets.Nodes
             {
                 if (!InOutFlowNodes.ContainsKey(identifier))
                 {
-                    GameObject newInOutFlow = Instantiate(InOutFlowPrefab, Vector3.zero, Quaternion.identity);
-                    newInOutFlow.transform.SetParent(GraphHolder.transform);
+                    GameObject newInOutFlow = m_NodeGraph.Create(InOutFlowPrefabPath, Vector2.zero);
                     InOutFlowNodes[identifier] = newInOutFlow.GetComponent<InOutFlowAssetBehaviour>();
                 }
 

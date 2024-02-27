@@ -3,5 +3,5 @@ description: "Called every frame"
 
 template: >
     function OnUpdate()
-        ${corpus}
+        {0}
     end

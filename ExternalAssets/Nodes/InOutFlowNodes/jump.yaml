@@ -1,2 +1,5 @@
 name: "Jump"
 description: "Makes us jump"
+
+template: |
+    do the jump

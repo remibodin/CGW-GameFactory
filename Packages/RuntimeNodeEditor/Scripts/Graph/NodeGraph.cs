@@ -72,13 +72,14 @@ namespace RuntimeNodeEditor
             Create(prefabPath, pos);
         }
 
-        public void Create(string prefabPath, Vector2 pos)
+        public GameObject Create(string prefabPath, Vector2 pos)
         {
             var node            = Utility.CreateNodePrefab<Node>(prefabPath, nodeContainer);
             node.Init(_signalSystem, _signalSystem, pos, NewId(), prefabPath);
             node.Setup();
             nodes.Add(node);
             HandleSocketRegister(node);
+            return node.gameObject;
         }
 
         public void Delete(Node node)
