@@ -40,12 +40,16 @@ namespace Cgw.Assets.Loaders
                 audioType = AudioType.UNKNOWN;
             }
 
+            #if  UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            p_filePath = $"file://{p_filePath}";
+            #endif
+
             using (UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(p_filePath, audioType))
             {
                 yield return request.SendWebRequest();
                 if (request.result == UnityWebRequest.Result.ConnectionError)
                 {
-                    Debug.Log(request.error);
+                    Debug.LogError(request.error);
                 }
                 else
                 {
