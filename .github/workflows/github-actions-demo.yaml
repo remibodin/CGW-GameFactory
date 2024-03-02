@@ -21,19 +21,42 @@ jobs:
           restore-keys: |
             Library-
 
-      - name: Build project
+      - name: Build StandaloneWindows64
         uses: game-ci/unity-builder@v4
-        id: buildStep
+        id: buildStep-win
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneWindows64
+          buildPath: build/StandaloneWindows64
           buildName: CGW
           versioning: Semantic
 
-      - uses: actions/upload-artifact@v3
+      - name: Build StandaloneOSX
+        uses: game-ci/unity-builder@v4
+        id: buildStep-osx
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          name: CGW-${{ steps.buildStep.outputs.buildVersion }}
-          path: build
+          targetPlatform: StandaloneOSX
+          buildPath: build/StandaloneOSX
+          buildName: CGW
+          versioning: Semantic
+
+      - uses: actions/upload-artifact@v4
+        name: Upload StandaloneWindows64
+        id: uploadStep-win
+        with:
+          name: CGW-Win-${{ steps.buildStep.outputs.buildVersion }}
+          path: build/StandaloneWindows64
+
+      - uses: actions/upload-artifact@v4
+        name: Upload StandaloneOSX
+        id: uploadStep-osx
+        with:
+          name: CGW-Osx-${{ steps.buildStep.outputs.buildVersion }}
+          path: build/StandaloneOSX
