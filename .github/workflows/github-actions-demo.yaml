@@ -23,7 +23,7 @@ jobs:
 
       - name: Build StandaloneWindows64
         uses: game-ci/unity-builder@v4
-        id: buildStep-win
+        id: buildStep
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         name: Upload StandaloneWindows64
-        id: uploadStep-win
+        id: uploadStep
         with:
           name: CGW-Win-${{ steps.buildStep.outputs.buildVersion }}
           path: build
@@ -57,7 +57,7 @@ jobs:
 
       - name: Build StandaloneOSX
         uses: game-ci/unity-builder@v4
-        id: buildStep-osx
+        id: buildStep
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -69,7 +69,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         name: Upload StandaloneOSX
-        id: uploadStep-osx
+        id: uploadStep
         with:
           name: CGW-Osx-${{ steps.buildStep.outputs.buildVersion }}
           path: build
