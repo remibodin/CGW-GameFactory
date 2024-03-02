@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Unity builds
+run-name: ${{ github.actor }} start a build 🚀
 on:
   push:
     branches:
@@ -40,7 +40,7 @@ jobs:
           name: CGW-Win-${{ steps.buildStep.outputs.buildVersion }}
           path: |
             build
-            !build/*_DoNotShip
+            !build/**/*_DoNotShip
 
   build-osx:
     runs-on: ubuntu-latest
