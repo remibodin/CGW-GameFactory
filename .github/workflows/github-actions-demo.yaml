@@ -38,7 +38,9 @@ jobs:
         id: uploadStep
         with:
           name: CGW-Win-${{ steps.buildStep.outputs.buildVersion }}
-          path: build
+          path: |
+            build
+            !build/*_DoNotShip
 
   build-osx:
     runs-on: ubuntu-latest
