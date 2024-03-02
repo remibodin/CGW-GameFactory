@@ -22,6 +22,8 @@ namespace Cgw
 
         private void Start()
         {
+            m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
+
             m_configuration = ResourcesManager.Get<Configuration>("configuration");
             if (m_configuration == null)
             {
@@ -35,8 +37,6 @@ namespace Cgw
 
             m_logoBehaviour = m_logo.gameObject.AddComponent<UiImageBehaviour>();
             m_logo.preserveAspect = true;
-
-            m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
 
             UpdateConfiguration();
         }
