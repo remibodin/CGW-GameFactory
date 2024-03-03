@@ -22,23 +22,28 @@ namespace Cgw
 
         private void Start()
         {
+            m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
+
+            m_configuration = ResourcesManager.Get<Configuration>("configuration");
+            if (m_configuration == null)
+            {
+                this.enabled = false;
+                return;
+            }
+            m_configuration.OnUpdated += OnConfigurationUpdated;
+
             m_selectedSound = new GameObject("[Sound] Selected").AddComponent<SoundBehaviour>();
             m_loopSound = new GameObject("[Sound] Loop").AddComponent<SoundBehaviour>();
 
             m_logoBehaviour = m_logo.gameObject.AddComponent<UiImageBehaviour>();
             m_logo.preserveAspect = true;
 
-            m_configuration = ResourcesManager.Get<Configuration>("configuration");
-            m_configuration.OnUpdated += OnConfigurationUpdated;
-
-            m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
-
             UpdateConfiguration();
         }
 
         public void PlaySelectedSound()
         {
-            m_selectedSound.Source.Play();
+            m_selectedSound?.Source.Play();
         }
 
         private void ExitBtn_OnClick()

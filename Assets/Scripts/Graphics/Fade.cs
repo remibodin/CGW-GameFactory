@@ -21,6 +21,12 @@ namespace Cgw.Graphics
         private void Start()
         {
             m_configuration = ResourcesManager.Get<Configuration>("configuration");
+            if (m_configuration == null)
+            {
+                SetAlphaValue(0);
+                this.enabled = false;
+                return;
+            }
             m_configuration.OnUpdated += OnConfigurationUpdated;
             UpdateConfiguration();
         }
