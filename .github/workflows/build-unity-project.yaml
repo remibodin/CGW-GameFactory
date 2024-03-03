@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - features/github-actions # For testing. Should be remove after merge in main
 jobs:
   build-windows:
     runs-on: ubuntu-latest
