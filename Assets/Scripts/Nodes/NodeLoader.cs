@@ -4,6 +4,7 @@ using Cgw.Test;
 using RuntimeNodeEditor;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,10 +17,14 @@ namespace Assets.Nodes
         public Dictionary<string, EntrypointAssetBehaviour> EntrypointNodes = new();
         public Dictionary<string, ConditionAssetBehaviour> ConditionNodes = new();
         public Dictionary<string, InOutFlowAssetBehaviour> InOutFlowNodes = new();
+        public Dictionary<string, Getter> GetterNodes = new();
+        public Dictionary<string, Setter> SetterNodes = new();
 
         public string EntrypointPrefabPath;
         public string ConditionPrefabPath;
         public string InOutFlowPrefabPath;
+        public string GetterPrefabPath;
+        public string SetterPrefabPath;
 
         private GameObject m_GraphHolder;
         private NodeGraph m_NodeGraph;
@@ -37,13 +42,23 @@ namespace Assets.Nodes
             UpdateNodes();
         }
 
+        public void GenerateMethodes(StringBuilder output)
+        {
+            foreach (var entrypoint in EntrypointNodes)
+            {
+                var entry = entrypoint.Value.GetComponent<Entrypoint>();
+                entry.GenerateLua(output);
+                output.AppendLine("");
+            }
+        }
+
         private void UpdateNodes()
         {
             m_NodeGraph = GetComponent<GraphNodes>().Graph;
             UpdateEntrypoints();
             UpdateConditions();
             UpdateInOutFlows();
-
+            UpdateBlackboardNodes();
         }
 
         [TermCommand]
@@ -117,6 +132,44 @@ namespace Assets.Nodes
                 if (!NodeCollection.m_InOutFlowNodeIdentifiers.Contains(pair.Key))
                 {
                     DestroyImmediate(pair.Value.gameObject);
+                }
+            }
+        }
+
+        private void UpdateBlackboardNodes()
+        {
+            var blackboard = GetComponent<Blackboard>();
+            if (blackboard != null)
+            {
+                foreach (var node in blackboard.Entries)
+                {
+                    if (!GetterNodes.ContainsKey(node.Name))
+                    {
+                        GameObject newGetter = m_NodeGraph.Create(GetterPrefabPath, Vector2.zero);
+                        GetterNodes[node.Name] = newGetter.GetComponent<Getter>();
+                    }
+
+                    if (!SetterNodes.ContainsKey(node.Name))
+                    {
+                        GameObject newSetter = m_NodeGraph.Create(SetterPrefabPath, Vector2.zero);
+                        SetterNodes[node.Name] = newSetter.GetComponent<Setter>();
+                    }
+                }
+
+                foreach (var pair in GetterNodes)
+                {
+                    if (!blackboard.Entries.Any(entry => entry.Name == pair.Key))
+                    {
+                        DestroyImmediate(pair.Value.gameObject);
+                    }
+                }
+
+                foreach (var pair in SetterNodes)
+                {
+                    if (!blackboard.Entries.Any(entry => entry.Name == pair.Key))
+                    {
+                        DestroyImmediate(pair.Value.gameObject);
+                    }
                 }
             }
         }

@@ -14,8 +14,8 @@ namespace Assets.Nodes
         [YamlMember(Alias = "params")]
         public string[] Params;
 
-        [YamlMember(Alias = "return")]
-        public string Return;
+        [YamlMember(Alias = "result")]
+        public string Result;
 
         [YamlMember(Alias = "template")]
         public string Template;

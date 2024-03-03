@@ -1,4 +1,5 @@
 ﻿using RuntimeNodeEditor;
+using System.Linq;
 using System.Text;
 
 namespace Assets.Nodes
@@ -12,6 +13,8 @@ namespace Assets.Nodes
 
         public SocketOutput FlowOutThenSocket;
         public SocketOutput FlowOutElseSocket;
+
+        public SocketInput ParamSocket1;
 
         public override void GenerateLua(StringBuilder output)
         {
@@ -31,7 +34,9 @@ namespace Assets.Nodes
                 nextNodeElse.GenerateLua(corpusElse);
             }
 
-            output.AppendLine(string.Format(template, corpusThen, corpusElse));
+            string input1 = "false";
+            GetParam(ParamSocket1, ref input1);
+            output.AppendLine(string.Format(template, corpusThen, corpusElse, input1));
         }
 
         public override LuaGraphNode GetPrevNode()
@@ -54,6 +59,12 @@ namespace Assets.Nodes
             Register(FlowInSocket);
             Register(FlowOutThenSocket);
             Register(FlowOutElseSocket);
+
+            Register(ParamSocket1);
+            if (Params.Length == 0)
+            {
+                ParamSocket1.enabled = false;
+            }
 
             OnConnectionEvent += Condition_OnConnectionEvent;
         }

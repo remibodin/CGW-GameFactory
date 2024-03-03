@@ -695,10 +695,9 @@ MonoBehaviour:
   Template: 
   Params: []
   FlowInSocket: {fileID: 2535720783968611772}
-  FlowOutSocket: {fileID: 6319081999605039022}
-  PinInSocket: {fileID: 255861326121882644}
   FlowOutThenSocket: {fileID: 6319081999605039022}
   FlowOutElseSocket: {fileID: 8913915331534148200}
+  ParamSocket1: {fileID: 255861326121882644}
 --- !u!114 &6171214537859262862
 MonoBehaviour:
   m_ObjectHideFlags: 0

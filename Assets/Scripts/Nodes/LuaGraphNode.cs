@@ -25,5 +25,42 @@ namespace Assets.Nodes
             return null;
         }
 
+        public void GetParam(SocketInput socketInput, ref string value)
+        {
+            var connection = socketInput.Connections[0]; // assumes single connection
+            if (connection != null)
+            {
+                var prevSocket = connection.output;
+                if (prevSocket != null)
+                {
+                    var getter = prevSocket.OwnerNode?.GetComponent<Getter>();
+                    if (getter != null)
+                    {
+                        StringBuilder output = new();
+                        getter.GenerateLua(output);
+                        value = output.ToString();
+                    }
+                }
+            }
+        }
+
+        public void GetResult(SocketOutput socketOutput, ref string result)
+        {
+            var connection = socketOutput.connection;
+            if (connection != null)
+            {
+                var nextSocket = connection.input;
+                if (nextSocket != null)
+                {
+                    var setter = nextSocket.OwnerNode?.GetComponent<Setter>();
+                    if (setter != null)
+                    {
+                        StringBuilder output = new();
+                        setter.GenerateLua(output);
+                        result = output.ToString();
+                    }
+                }
+            }
+        }
     }
 }

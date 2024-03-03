@@ -4,7 +4,7 @@ params:
   - "Can Jump ?"
 
 template: |
-  if can_jump = true then
+  if {2} = true then
     {0}
   else
     {1}

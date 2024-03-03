@@ -17,6 +17,7 @@ namespace Assets.Nodes
             inOutFlowNode.SetHeader(InOutFlowAsset.Name);
             inOutFlowNode.Template = InOutFlowAsset.Template;
             inOutFlowNode.Params = InOutFlowAsset.Params;
+            inOutFlowNode.Result = InOutFlowAsset.Result;
         }
     }
 }

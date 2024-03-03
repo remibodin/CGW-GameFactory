@@ -1,0 +1,11 @@
+name: "Add"
+description: "Adds two values"
+
+params:
+  - "lhs"
+  - "rhs"
+
+result: "result"
+
+template: |
+  {0} = {1} + {2}
