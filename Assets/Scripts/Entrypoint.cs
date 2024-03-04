@@ -7,6 +7,7 @@ using Cgw.Assets.Loaders;
 using Cgw.Scripting;
 using Cgw.Graphics;
 using Cgw.Audio;
+using Cgw.Localization;
 
 namespace Cgw
 {
@@ -19,16 +20,20 @@ namespace Cgw
 
             ResourcesManager.SetProjectRoot("ExternalAssets");
 
-            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
-            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
-
             // Register loaders
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
             ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
             ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
             ResourcesManager.RegisterLoader<GameObjectAsset>(new GameObjectLoader());
             ResourcesManager.RegisterLoader<Configuration>(new YamlFileLoader<Configuration>());
+            ResourcesManager.RegisterLoader<CSVFileAsset>(new CSVFileLoader());
             //
+
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
+
+            LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
+            LocalizationManager.Instance.SetLangageId(2);
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
         }

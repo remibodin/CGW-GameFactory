@@ -1,3 +1,5 @@
+localization: "Configurations/Localization"
+
 # menu
 menu_logo: "Sprites/Menu/logo01"
 menu_background_color: "#000018"
