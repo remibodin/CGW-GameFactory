@@ -13,6 +13,8 @@ namespace Cgw.Localization
         private CSVFileAsset m_csvAsset;
         private int m_currentLangageId = 1; // 0 is the index of keys col
 
+        public int Count =>  m_csvAsset.Data[0].Count - 1;
+
         public void SetResourceIdentifier(string p_identifier)
         {
             if  (m_csvAsset != null)
@@ -29,16 +31,24 @@ namespace Cgw.Localization
 
         public void SetLangageId(int p_id)
         {
-            m_currentLangageId = p_id;
+            m_currentLangageId = p_id + 1;
+            onLangageUpdated?.Invoke();
         }
 
-        public string Get(string p_key)
+        public string Get(string p_key) 
+        {
+            return Get(p_key, m_currentLangageId);
+        }
+
+        public string Get(string p_key, int p_colId)
         {
             foreach (var row in m_csvAsset.Data)
             {
-                if (row[0] == p_key)
+                if (row[0] == p_key &&
+                    p_colId < row.Count &&
+                    !string.IsNullOrEmpty(row[p_colId]))
                 {
-                    return row[m_currentLangageId];
+                    return row[p_colId];
                 }
             }
             return $"#{p_key}";

@@ -33,7 +33,6 @@ namespace Cgw
             GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
 
             LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
-            LocalizationManager.Instance.SetLangageId(2);
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
         }
