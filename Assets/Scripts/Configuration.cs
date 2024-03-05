@@ -6,6 +6,9 @@ namespace Cgw
 {
     public class Configuration : Asset
     {
+        [YamlMember(Alias = "localization")]
+        public string LocalizationFileIdentifier;
+
         // StartMenu
         [YamlMember(Alias = "menu_logo")]
         public string MenuLogoIdentifier;
