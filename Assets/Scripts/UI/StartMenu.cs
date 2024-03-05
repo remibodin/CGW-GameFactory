@@ -8,7 +8,7 @@ using Cgw.Assets;
 using Cgw.Graphics;
 using Cgw.Localization;
 
-namespace Cgw
+namespace Cgw.UI
 {
     public class StartMenu : MonoBehaviour
     {

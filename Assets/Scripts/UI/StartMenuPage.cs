@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Cgw
+namespace Cgw.UI
 {
     public class StartMenuPage : MonoBehaviour
     {
@@ -11,14 +11,12 @@ namespace Cgw
         {
             m_group.alpha = 1;
             m_group.interactable = true;
-            // m_group.blockRaycasts = true;
         }
 
         public void Hide()
         {
             m_group.alpha = 0;
             m_group.interactable = false;
-            // m_group.blockRaycasts = false;
         }
     }
 }
