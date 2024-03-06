@@ -2,6 +2,7 @@ using UnityEngine;
 
 using Cgw.Assets;
 using Cgw.Graphics;
+using System;
 
 namespace Cgw.Scripting
 {
@@ -13,12 +14,18 @@ namespace Cgw.Scripting
             set { Asset = value; }
         }
 
+        public event Action<LuaInstance> OnAssetUpdated;
+
         private LuaInstance m_instance;
 
         protected override void AssetUpdated()
         {
             m_instance = Script.CreateInstance();
             InitTable();
+            if (OnAssetUpdated != null)
+            {
+                OnAssetUpdated(m_instance);
+            }
         }
 
         private void InitTable()
@@ -29,6 +36,19 @@ namespace Cgw.Scripting
         private void Update()
         {
             m_instance.Call("Update");
+        }
+
+        private void Start()
+        {
+            m_instance.Call("Start");
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.GetComponent<Collider>().CompareTag("PLAYER"))
+            {
+                m_instance.Call("CollisionWithPlayer");
+            }
         }
     }
 }
