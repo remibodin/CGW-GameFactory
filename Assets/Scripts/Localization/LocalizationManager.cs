@@ -29,6 +29,22 @@ namespace Cgw.Localization
             onLangageUpdated?.Invoke();
         }
 
+        public void SetLangage(string p_langage)
+        {
+            var firstRow = m_csvAsset.Data[0];
+            var cell_id = 0;
+            foreach (var cell in firstRow)
+            {
+                if (cell.ToLower() == p_langage.ToLower())
+                {
+                    SetLangageId(cell_id - 1);
+                    return;
+                }
+                cell_id++;
+            }
+            UnityEngine.Debug.LogWarning($"{p_langage} not found in localization file");
+        }
+
         public void SetLangageId(int p_id)
         {
             m_currentLangageId = p_id + 1;
