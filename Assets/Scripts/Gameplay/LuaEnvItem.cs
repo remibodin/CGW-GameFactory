@@ -9,7 +9,7 @@ namespace Cgw.Gameplay
     {
         public string ObjectName = "";
 
-        public LuaEnvItem()
+        protected virtual void Awake()
         {
             Register();
         }

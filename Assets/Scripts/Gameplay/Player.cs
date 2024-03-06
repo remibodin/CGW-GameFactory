@@ -1,10 +1,12 @@
-using Cgw.Assets;
-using Cgw.Scripting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.Mathematics;
 using UnityEngine;
+
+using Cgw.Assets;
+using Cgw.Scripting;
 
 namespace Cgw.Gameplay
 {
@@ -19,17 +21,13 @@ namespace Cgw.Gameplay
 
         public ContactFilter2D TerrainContactFilter;
 
-        public Player() : base()
-        {
-        }
-
         private void Start()
         {
             m_Collider = GetComponent<Collider2D>();
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
-            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerControler");
+            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
         }
 
         private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)

@@ -1,21 +1,16 @@
-using NLua;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
+
 using UnityEngine;
+
+using NLua;
 
 namespace Cgw.Scripting
 {
-    public class LuaEnvironment : MonoBehaviour
+    public class LuaEnvironment 
     {
-        private static LuaEnvironment Instance;
-
-        private Lua m_Environment = new();
-
-        public LuaEnvironment()
-        {
-            Instance = this;
-        }
+        public static readonly LuaEnvironment Instance = new();
+        private Lua m_Environment = new Lua();
 
         public static Lua GetEnvironment()
         {

@@ -59,8 +59,6 @@ namespace Cgw
             var playerPrefab = Resources.Load("Player");
             var playerObject = GameObject.Instantiate(playerPrefab) as GameObject;
 
-            playerObject.AddComponent<LuaBehaviour>().Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
-
             var spawnPoint = GameObject.FindWithTag("Respawn");
             playerObject.transform.position = spawnPoint.transform.position;
         }
