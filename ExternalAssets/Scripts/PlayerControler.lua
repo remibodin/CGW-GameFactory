@@ -1,13 +1,13 @@
 import 'UnityEngine'
 
 local Life = 3;
-local Speed = 1.0;
-local AirSpeed = 0.8;
+local Speed = 3.0;
+local AirSpeed = 3.5;
 local AttackRange = 1.5;
 local AttackPower = 1.0;
 local JumpTime = 0.2;
 local AttackTime = 1.0;
-local JumpForce = 100.0;
+local JumpForce = 300.0;
 
 function Update()
     if (Input.GetKeyDown("space") and this.OnGround) then
