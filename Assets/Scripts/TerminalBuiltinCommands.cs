@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Cgw.Assets;
 using Cgw.Localization;
+using Cgw.Scripting;
 
 namespace Cgw
 {
@@ -35,6 +39,30 @@ namespace Cgw
         public static void SetLang(string p_args)
         {
             LocalizationManager.Instance.SetLangage(p_args);
+        }
+
+        [TermCommand]
+        public static void R(string p_args)
+        {
+            SceneManager.LoadScene("Empty");
+
+            CoroutineRunner.StartCoroutine(CO_InitScene());
+        }
+
+        public static IEnumerator CO_InitScene()
+        {
+            yield return null;
+
+            var scenePrefab = Resources.Load("Levels/Level-Test");
+            var sceneObject = GameObject.Instantiate(scenePrefab);
+
+            var playerPrefab = Resources.Load("Player");
+            var playerObject = GameObject.Instantiate(playerPrefab) as GameObject;
+
+            playerObject.AddComponent<LuaBehaviour>().Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
+
+            var spawnPoint = GameObject.FindWithTag("Respawn");
+            playerObject.transform.position = spawnPoint.transform.position;
         }
     }
 }
