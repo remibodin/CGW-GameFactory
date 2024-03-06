@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Blend Tree
-  m_Speed: 1.5
+  m_Speed: 1.8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7284318783813990387}
@@ -230,19 +230,19 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8076178845120002721}
-    m_Position: {x: 0, y: 480, z: 0}
+    m_Position: {x: 20, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7594381981103682659}
     m_Position: {x: 20, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -765072793365844384}
-    m_Position: {x: 300, y: 470, z: 0}
+    m_Position: {x: 320, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3570976707316083453}
-    m_Position: {x: 300, y: 200, z: 0}
+    m_Position: {x: 320, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4444818227088405785}
-    m_Position: {x: 10, y: 340, z: 0}
+    m_Position: {x: 20, y: 340, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
