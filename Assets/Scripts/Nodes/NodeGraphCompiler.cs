@@ -1,4 +1,5 @@
 using RuntimeNodeEditor;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -13,13 +14,23 @@ namespace Assets.Nodes
         {
             m_Blackboard = GetComponent<Blackboard>();
             m_Nodes = GetComponent<NodeLoader>();
+            m_Nodes.OnNodesUpdated += Nodes_OnNodesUpdated;
         }
 
-        public void GenerateScript()
+        private void Nodes_OnNodesUpdated(IEnumerable<Entrypoint> entrypoints)
+        {
+            GenerateScript(entrypoints);
+        }
+
+        public void GenerateScript(IEnumerable<Entrypoint> entrypoints)
         {
             StringBuilder output = new("");
             m_Blackboard.GenerateBlackboardHeader(output);
-            m_Nodes.GenerateMethodes(output);
+            foreach (var entrypoint in entrypoints)
+            {
+                entrypoint.GenerateLua(output);
+                output.AppendLine("");
+            }
             Debug.Log(output.ToString());
         }
     }

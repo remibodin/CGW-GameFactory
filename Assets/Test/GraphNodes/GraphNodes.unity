@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 414857273}
   - component: {fileID: 414857272}
   - component: {fileID: 414857274}
+  - component: {fileID: 414857275}
+  - component: {fileID: 414857276}
   m_Layer: 0
   m_Name: GraphNodes
   m_TagString: Untagged
@@ -186,6 +188,36 @@ MonoBehaviour:
   EntrypointPrefabPath: Nodes/EntryPoint
   ConditionPrefabPath: Nodes/Condition
   InOutFlowPrefabPath: Nodes/Function
+  GetterPrefabPath: Nodes/Getter
+  SetterPrefabPath: Nodes/Setter
+--- !u!114 &414857275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414857271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5cd2bfd7d3dc9b43ada7f88e5eaeff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &414857276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414857271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88748436480daa9489aec547a8fe8196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entries:
+  - Name: jump_force
+    DefaultValue: 2
+    CurrentValue: 
 --- !u!1 &486808694
 GameObject:
   m_ObjectHideFlags: 0

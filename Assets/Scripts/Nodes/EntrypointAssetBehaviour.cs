@@ -16,6 +16,7 @@ namespace Assets.Nodes
             entrypoint.name = EntrypointAsset.Name;
             entrypoint.SetHeader(EntrypointAsset.Name);
             entrypoint.Template = EntrypointAsset.Template;
+            entrypoint.Setup();
         }
     }
 }

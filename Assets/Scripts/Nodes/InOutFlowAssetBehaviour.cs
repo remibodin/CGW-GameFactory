@@ -1,4 +1,5 @@
 ﻿using Cgw.Assets;
+using UnityEditor;
 
 namespace Assets.Nodes
 {
@@ -13,11 +14,14 @@ namespace Assets.Nodes
         protected override void AssetUpdated()
         {
             var inOutFlowNode = GetComponent<InOutFlowNode>();
+
             inOutFlowNode.name = InOutFlowAsset.Name;
             inOutFlowNode.SetHeader(InOutFlowAsset.Name);
             inOutFlowNode.Template = InOutFlowAsset.Template;
             inOutFlowNode.Params = InOutFlowAsset.Params;
             inOutFlowNode.Result = InOutFlowAsset.Result;
+
+            inOutFlowNode.Setup();
         }
     }
 }

@@ -376,6 +376,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a289d0680b34a7a987e88a449cfd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &431314964007371535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3282725749757292789, guid: c8512a3b6a3b1cd428c85be055e193f2, type: 3}
+  m_PrefabInstance: {fileID: 2914606321929548794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5314146859891579329 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7047402689129327163, guid: c8512a3b6a3b1cd428c85be055e193f2, type: 3}
@@ -698,6 +709,7 @@ MonoBehaviour:
   FlowOutThenSocket: {fileID: 6319081999605039022}
   FlowOutElseSocket: {fileID: 8913915331534148200}
   ParamSocket1: {fileID: 255861326121882644}
+  ParamSocket1Label: {fileID: 431314964007371535}
 --- !u!114 &6171214537859262862
 MonoBehaviour:
   m_ObjectHideFlags: 0

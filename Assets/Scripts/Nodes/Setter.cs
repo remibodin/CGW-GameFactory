@@ -34,6 +34,31 @@ namespace Assets.Nodes
             Register(PinInSocket);
 
             headerText.text = BlackboardEntry.Name;
+            OnConnectionEvent += Setter_OnConnectionEvent;
+        }
+
+        private void Setter_OnConnectionEvent(SocketInput arg1, IOutput arg2)
+        {
+            var connection = arg1.Connections[0]; // Assumes single connection
+            if (connection != null)
+            {
+                LuaGraphNode prevNode = connection.output.OwnerNode as LuaGraphNode;
+                Entrypoint entrypoint = prevNode as Entrypoint;
+
+                if (prevNode != null)
+                {
+                    while (entrypoint == null)
+                    {
+                        prevNode = prevNode.GetPrevNode();
+                        if (prevNode == null)
+                        {
+                            return;
+                        }
+                        entrypoint = prevNode as Entrypoint;
+                    }
+                    entrypoint.NotifyLoader();
+                }
+            }
         }
     }
 }

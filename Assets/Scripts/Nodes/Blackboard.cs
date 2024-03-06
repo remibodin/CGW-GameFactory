@@ -22,7 +22,10 @@ namespace Assets.Nodes
                 return;
             foreach (BlackboardEntry e in Entries)
             {
-                e.CurrentValue ??= e.DefaultValue;
+                if (string.IsNullOrEmpty(e.CurrentValue))
+                {
+                    e.CurrentValue = e.DefaultValue;
+                }
             }
         }
 

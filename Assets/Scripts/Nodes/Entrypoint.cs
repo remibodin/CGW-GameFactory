@@ -9,6 +9,7 @@ namespace Assets.Nodes
     public class Entrypoint : LuaGraphNode
     {
         public SocketOutput FlowOutSocket;
+        public NodeLoader Loader;
 
         public override void GenerateLua(StringBuilder output)
         {
@@ -22,7 +23,6 @@ namespace Assets.Nodes
             }
 
             output.AppendLine(string.Format(template, corpus));
-            Debug.Log(output.ToString());
         }
 
         public override LuaGraphNode GetPrevNode()
@@ -38,10 +38,17 @@ namespace Assets.Nodes
             OnConnectionEvent += Entrypoint_OnConnectionEvent;
         }
 
+        public void NotifyLoader()
+        {
+            if (Loader != null)
+            {
+                Loader.UpdateNodes();
+            }
+        }
+
         private void Entrypoint_OnConnectionEvent(SocketInput arg1, IOutput arg2)
         {
-            StringBuilder output = new("");
-            GenerateLua(output);
+            NotifyLoader();
         }
     }
 }

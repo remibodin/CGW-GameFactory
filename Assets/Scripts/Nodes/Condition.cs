@@ -1,6 +1,7 @@
 ﻿using RuntimeNodeEditor;
 using System.Linq;
 using System.Text;
+using TMPro;
 
 namespace Assets.Nodes
 {
@@ -15,6 +16,7 @@ namespace Assets.Nodes
         public SocketOutput FlowOutElseSocket;
 
         public SocketInput ParamSocket1;
+        public TMP_Text ParamSocket1Label;
 
         public override void GenerateLua(StringBuilder output)
         {
@@ -60,10 +62,15 @@ namespace Assets.Nodes
             Register(FlowOutThenSocket);
             Register(FlowOutElseSocket);
 
-            Register(ParamSocket1);
-            if (Params.Length == 0)
+            if (Params.Length != 0)
             {
-                ParamSocket1.enabled = false;
+                Register(ParamSocket1);
+                ParamSocket1.gameObject.SetActive(true);    
+                ParamSocket1Label.text = Params[0];
+            }
+            else
+            {
+                ParamSocket1.gameObject.SetActive(false);
             }
 
             OnConnectionEvent += Condition_OnConnectionEvent;
@@ -74,18 +81,20 @@ namespace Assets.Nodes
             LuaGraphNode prevNode = GetPrevNode();
             Entrypoint entrypoint = prevNode as Entrypoint;
 
-            while (entrypoint == null)
+            if (prevNode != null)
             {
-                prevNode = prevNode.GetPrevNode();
-                if (prevNode == null)
+                while (entrypoint != null)
                 {
-                    return;
+                    prevNode = prevNode.GetPrevNode();
+                    if (prevNode == null)
+                    {
+                        return;
+                    }
+                    entrypoint = prevNode as Entrypoint;
                 }
-                entrypoint = prevNode as Entrypoint;
-            }
 
-            StringBuilder output = new("");
-            entrypoint.GenerateLua(output);
+                entrypoint.NotifyLoader();
+            }
         }
     }
 }

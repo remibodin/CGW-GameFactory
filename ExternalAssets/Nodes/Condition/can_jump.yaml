@@ -1,7 +1,7 @@
 name: "CanJump"
 description: "Can we jump ?"
 params:
-  - "Can Jump ?"
+  - "can_jump"
 
 template: |
   if {2} = true then

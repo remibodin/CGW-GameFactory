@@ -2,6 +2,7 @@ using Cgw;
 using Cgw.Assets;
 using Cgw.Test;
 using RuntimeNodeEditor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,10 @@ namespace Assets.Nodes
         public string GetterPrefabPath;
         public string SetterPrefabPath;
 
-        private GameObject m_GraphHolder;
         private NodeGraph m_NodeGraph;
         private static NodeLoader m_Instance;
+
+        public event Action<IEnumerable<Entrypoint>> OnNodesUpdated;
 
         private void Start()
         {
@@ -42,7 +44,7 @@ namespace Assets.Nodes
             UpdateNodes();
         }
 
-        public void GenerateMethodes(StringBuilder output)
+        public void GenerateMethods(StringBuilder output)
         {
             foreach (var entrypoint in EntrypointNodes)
             {
@@ -52,13 +54,14 @@ namespace Assets.Nodes
             }
         }
 
-        private void UpdateNodes()
+        public void UpdateNodes()
         {
             m_NodeGraph = GetComponent<GraphNodes>().Graph;
             UpdateEntrypoints();
             UpdateConditions();
             UpdateInOutFlows();
             UpdateBlackboardNodes();
+            OnNodesUpdated(EntrypointNodes.Values.Select(x => x.gameObject.GetComponent<Entrypoint>()));
         }
 
         [TermCommand]
@@ -75,6 +78,7 @@ namespace Assets.Nodes
                 {
                     GameObject newEntrypoint = m_NodeGraph.Create(EntrypointPrefabPath, Vector2.zero);
                     EntrypointNodes[identifier] = newEntrypoint.GetComponent<EntrypointAssetBehaviour>();
+                    newEntrypoint.GetComponent<Entrypoint>().Loader = this;
                 }
 
                 EntrypointAssetBehaviour entrypoint = EntrypointNodes[identifier];
@@ -141,18 +145,24 @@ namespace Assets.Nodes
             var blackboard = GetComponent<Blackboard>();
             if (blackboard != null)
             {
-                foreach (var node in blackboard.Entries)
+                foreach (var entry in blackboard.Entries)
                 {
-                    if (!GetterNodes.ContainsKey(node.Name))
+                    if (!GetterNodes.ContainsKey(entry.Name))
                     {
                         GameObject newGetter = m_NodeGraph.Create(GetterPrefabPath, Vector2.zero);
-                        GetterNodes[node.Name] = newGetter.GetComponent<Getter>();
+                        var getter = newGetter.GetComponent<Getter>();
+                        getter.headerText.text = entry.Name;
+                        getter.BlackboardEntry = entry;
+                        GetterNodes[entry.Name] = getter;
                     }
 
-                    if (!SetterNodes.ContainsKey(node.Name))
+                    if (!SetterNodes.ContainsKey(entry.Name))
                     {
                         GameObject newSetter = m_NodeGraph.Create(SetterPrefabPath, Vector2.zero);
-                        SetterNodes[node.Name] = newSetter.GetComponent<Setter>();
+                        var setter = newSetter.GetComponent<Setter>();
+                        setter.headerText.text = entry.Name;
+                        setter.BlackboardEntry = entry;
+                        SetterNodes[entry.Name] = setter;
                     }
                 }
 

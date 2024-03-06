@@ -1,5 +1,8 @@
 ﻿using RuntimeNodeEditor;
+using System.Diagnostics;
 using System.Text;
+using TMPro;
+using UnityEngine;
 
 namespace Assets.Nodes
 {
@@ -13,9 +16,12 @@ namespace Assets.Nodes
         public SocketOutput FlowOutSocket;
 
         public SocketInput ParamSocket1;
+        public TMP_Text ParamSocket1Label;
         public SocketInput ParamSocket2;
+        public TMP_Text ParamSocket2Label;
 
         public SocketOutput ResultSocket;
+        public TMP_Text ResultSocketLabel;
 
         public override void GenerateLua(StringBuilder output)
         {
@@ -53,31 +59,44 @@ namespace Assets.Nodes
         public override void Setup()
         {
             base.Setup();
+
             Register(FlowInSocket);
             Register(FlowOutSocket);
 
-            Register(ParamSocket1);
-            Register(ParamSocket2);
-
-            Register(ResultSocket);
-
             // TODO on peut sûrement faire mieux
-            switch (Params.Length)
+            if (Params != null)
             {
-                case 0:
-                    ParamSocket1.enabled = false;
-                    ParamSocket2.enabled = false;
-                    break;
-                case 1:
-                    ParamSocket2.enabled = false;
-                    break;
-                default:
-                    break;
+                switch (Params.Length)
+                {
+                    case 0:
+                        ParamSocket1.gameObject.SetActive(false);
+                        ParamSocket2.gameObject.SetActive(false);
+                        break;
+                    case 1:
+                        Register(ParamSocket1);
+                        ParamSocket1Label.text = Params[0];
+                        ParamSocket2.gameObject.SetActive(false);
+                        break;
+                    default:
+                        Register(ParamSocket1);
+                        ParamSocket1.gameObject.SetActive(true);
+                        ParamSocket1Label.text = Params[0];
+                        Register(ParamSocket2);
+                        ParamSocket2.gameObject.SetActive(true);
+                        ParamSocket2Label.text = Params[1];
+                        break;
+                }
             }
 
-            if (Result == null)
+            if (Result != null)
             {
-                ResultSocket.enabled = false;
+                Register(ResultSocket);
+                ResultSocket.gameObject.SetActive(true);
+                ResultSocketLabel.text = Result;
+            }
+            else
+            {
+                ResultSocket.gameObject.SetActive(false);
             }
 
             OnConnectionEvent += InOutFlowNode_OnConnectionEvent;
@@ -88,18 +107,19 @@ namespace Assets.Nodes
             LuaGraphNode prevNode = GetPrevNode();
             Entrypoint entrypoint = prevNode as Entrypoint;
 
-            while (entrypoint == null)
+            if (prevNode  != null)
             {
-                prevNode = prevNode.GetPrevNode();
-                if (prevNode == null)
+                while (entrypoint == null)
                 {
-                    return;
+                    prevNode = prevNode.GetPrevNode();
+                    if (prevNode == null)
+                    {
+                        return;
+                    }
+                    entrypoint = prevNode as Entrypoint;
                 }
-                entrypoint = prevNode as Entrypoint;
+                entrypoint.NotifyLoader();
             }
-
-            StringBuilder output = new("");
-            entrypoint.GenerateLua(output);
         }
     }
 }

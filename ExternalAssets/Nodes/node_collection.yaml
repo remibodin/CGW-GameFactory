@@ -3,6 +3,7 @@ entry_point_nodes:
 
 in_out_flow_nodes:
   - "jump"
+  - "add"
 
 condition_nodes:
   - "can_jump"

@@ -18,6 +18,7 @@ namespace Assets.Nodes
             condition.name = ConditionAsset.Name;
             condition.Template = ConditionAsset.Template;
             condition.Params = ConditionAsset.Params;
+            condition.Setup();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Cgw.Assets;
 using RuntimeNodeEditor;
+using System.Diagnostics;
 using System.Text;
 
 namespace Assets.Nodes
@@ -27,18 +28,22 @@ namespace Assets.Nodes
 
         public void GetParam(SocketInput socketInput, ref string value)
         {
-            var connection = socketInput.Connections[0]; // assumes single connection
-            if (connection != null)
+            var connections = socketInput.Connections;
+            if (connections != null && connections.Count > 0)
             {
-                var prevSocket = connection.output;
-                if (prevSocket != null)
+                var connection = connections[0]; // assumes single connection
+                if (connection != null)
                 {
-                    var getter = prevSocket.OwnerNode?.GetComponent<Getter>();
-                    if (getter != null)
+                    var prevSocket = connection.output;
+                    if (prevSocket != null)
                     {
-                        StringBuilder output = new();
-                        getter.GenerateLua(output);
-                        value = output.ToString();
+                        var getter = prevSocket.OwnerNode.GetComponent<Getter>();
+                        if (getter != null)
+                        {
+                            StringBuilder output = new();
+                            getter.GenerateLua(output);
+                            value = output.ToString();
+                        }
                     }
                 }
             }
