@@ -7,7 +7,7 @@ local AttackRange = 1.5;
 local AttackPower = 1.0;
 local JumpTime = 0.2;
 local AttackTime = 1.0;
-local JumpForce = 300.0;
+local JumpForce = 8.0;
 
 function Update()
     if (Input.GetKeyDown("space") and this.OnGround) then
