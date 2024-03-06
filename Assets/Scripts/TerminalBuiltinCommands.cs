@@ -62,5 +62,27 @@ namespace Cgw
             var spawnPoint = GameObject.FindWithTag("Respawn");
             playerObject.transform.position = spawnPoint.transform.position;
         }
+
+        [TermCommand]
+        public static void LoadLevel(string p_args)
+        {
+            SceneManager.LoadScene("Empty");
+
+            CoroutineRunner.StartCoroutine(CO_InitLevel(p_args));
+        }
+
+        public static IEnumerator CO_InitLevel(string p_args)
+        {
+            yield return null;
+
+            var LD = ResourcesManager.Get<GameObjectAsset>($"Levels/{p_args}");
+            var sceneObject = GameObject.Instantiate(LD.GameObject);
+
+            var playerPrefab = Resources.Load("Player");
+            var playerObject = GameObject.Instantiate(playerPrefab) as GameObject;
+
+            var spawnPoint = GameObject.FindWithTag("Respawn");
+            playerObject.transform.position = spawnPoint.transform.position;
+        }
     }
 }
