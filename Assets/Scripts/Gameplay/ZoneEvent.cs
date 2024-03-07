@@ -5,19 +5,26 @@ using UnityEngine;
 
 public class ZoneEvent : MonoBehaviour
 {
-    public bool OneTime = true;
+    public bool Activated = false;
     public EventAction EventAction;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (EventAction != null)
+        if (EventAction != null && !Activated)
         {
             EventAction.OnActivate();
+            Activated = true;
         }
+    }
 
-        if (OneTime)
+    private void Update()
+    {
+        if (Activated)
         {
-            gameObject.SetActive(false);
+            if (EventAction != null)
+            {
+                EventAction.OnUpdate();
+            }
         }
     }
 }
