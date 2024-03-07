@@ -15,7 +15,7 @@ namespace Cgw.Gameplay
         public ContactFilter2D TerrainContactFilter;
         
         public bool OnGround;
-        public bool OnSlope;
+        public string OnMaterial;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
@@ -51,11 +51,11 @@ namespace Cgw.Gameplay
             OnGround = m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0;
             if (OnGround)
             {
-                OnSlope = hits[0].collider.CompareTag("Slope");
+                OnMaterial = hits[0].collider.tag;
             }
             else
             {
-                OnSlope = false;
+                OnMaterial = "Air";
             }
 
             AttackCooldown -= Time.deltaTime;
