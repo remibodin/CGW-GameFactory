@@ -39,6 +39,13 @@ namespace Cgw.Audio
             return obj.AddComponent<AudioSource>();
         }
 
+        public AudioSource PlayRandom(string p_identifier)
+        {
+            var collection = ResourcesManager.Get<SoundAssetCollection>(p_identifier);
+            var id = UnityEngine.Random.Range(0, collection.SoundsIdentifier.Count);
+            return Play(collection.SoundsIdentifier[id]);
+        }
+
         public AudioSource Play(string p_identifier)
         {
             AudioSource source = null;

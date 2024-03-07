@@ -24,6 +24,7 @@ namespace Cgw
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
             ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
             ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
+            ResourcesManager.RegisterLoader<SoundAssetCollection>(new YamlFileLoader<SoundAssetCollection>());
             ResourcesManager.RegisterLoader<GameObjectAsset>(new GameObjectLoader());
             ResourcesManager.RegisterLoader<Configuration>(new YamlFileLoader<Configuration>());
             ResourcesManager.RegisterLoader<CSVFileAsset>(new CSVFileLoader());
