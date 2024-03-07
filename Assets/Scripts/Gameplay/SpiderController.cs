@@ -31,7 +31,10 @@ namespace Cgw.Gameplay
             if (collision.CompareTag("Enemy"))
             {
                 var enemy = collision.GetComponent<Enemy>();
-                enemy.OnCollisionWithSpider();
+                if (enemy != null)
+                {
+                    enemy.OnCollisionWithSpider();
+                }
             }
         }
     }
