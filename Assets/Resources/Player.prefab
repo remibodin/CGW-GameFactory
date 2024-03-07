@@ -134,10 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb77620cffe0e9d4e86d60e266ce6a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectName: Player
+  ObjectName: player
   OnGround: 0
   AttackCooldown: 0
   JumpCooldown: 0
+  Facing: {x: 1, y: 0, z: 0}
   TerrainContactFilter:
     useTriggers: 0
     useLayerMask: 0

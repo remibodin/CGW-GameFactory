@@ -14,9 +14,19 @@ namespace Cgw.Gameplay
             Register();
         }
 
+        protected virtual void OnDestroy()
+        {
+            Unregister();
+        }
+
         private void Register()
         {
-            LuaEnvironment.GetEnvironment()[ObjectName] = this;
+            LuaEnvironment.AddEnvItem(ObjectName, this);
+        }
+
+        private void Unregister()
+        {
+            LuaEnvironment.RemoveEnvItem(ObjectName);
         }
     }
 }

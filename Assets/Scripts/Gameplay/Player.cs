@@ -16,7 +16,7 @@ namespace Cgw.Gameplay
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
 
-        private Vector3 m_Facing = new(1.0f, 0.0f);
+        public Vector3 Facing = new(1.0f, 0.0f);
         private Collider2D m_Collider;
 
         public ContactFilter2D TerrainContactFilter;
@@ -55,15 +55,15 @@ namespace Cgw.Gameplay
 
         public void Move(float speed, float direction)
         {
-            m_Facing = (Vector2.right * direction).normalized;
+            Facing = (Vector2.right * direction).normalized;
 
-            Vector2 translation = speed * Time.deltaTime * m_Facing;
+            Vector2 translation = speed * Time.deltaTime * Facing;
             var hits = new RaycastHit2D[1];
 
-            if (m_Collider.Cast(m_Facing, TerrainContactFilter, hits, speed * Time.deltaTime) > 0)
+            if (m_Collider.Cast(Facing, TerrainContactFilter, hits, speed * Time.deltaTime) > 0)
             {
                 Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
-                translation = hits[0].distance * m_Facing;
+                translation = hits[0].distance * Facing;
             }
 
             transform.Translate(translation);
@@ -71,7 +71,7 @@ namespace Cgw.Gameplay
 
         public void Attack(float range, float power)
         {
-            var hits = Physics2D.LinecastAll(transform.position, transform.position + (m_Facing * range));
+            var hits = Physics2D.LinecastAll(transform.position, transform.position + (Facing * range));
             foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag("Enemy"))

@@ -30,6 +30,8 @@ namespace Cgw.Scripting
 
         private void InitTable()
         {
+            LuaEnvironment.InjectEnv(m_instance);
+
             m_instance["transform"] = transform;
         }
 
