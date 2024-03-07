@@ -17,3 +17,11 @@ function OnCollisionWithPlayer()
         this.AttackCooldown = AttackTimer
     end
 end
+
+function MushroomIA()
+    
+end
+
+function Update()
+    MushroomIA()
+end
