@@ -12,14 +12,16 @@ namespace Cgw.Gameplay
 {
     public class Player : LuaEnvItem
     {
+        public ContactFilter2D TerrainContactFilter;
+        
         public bool OnGround;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
-
+        public float DamageCooldown = 0.0f;
         public Vector3 Facing = new(1.0f, 0.0f);
-        private Collider2D m_Collider;
 
-        public ContactFilter2D TerrainContactFilter;
+        private Collider2D m_Collider;
+        private LuaInstance m_Instance;
 
         private void Start()
         {
@@ -32,7 +34,14 @@ namespace Cgw.Gameplay
 
         private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
         {
+            m_Instance = instance;
+
             instance["this"] = this;
+        }
+
+        public void TakeDamage(float power)
+        {
+            m_Instance.Call("TakeDamage", power);
         }
 
         private void Update()
@@ -45,6 +54,9 @@ namespace Cgw.Gameplay
 
             JumpCooldown -= Time.deltaTime;
             JumpCooldown = math.max(0.0f, JumpCooldown);
+
+            DamageCooldown -= Time.deltaTime;
+            DamageCooldown = math.max(0.0f, DamageCooldown);
         }
 
         public void Jump(float force)

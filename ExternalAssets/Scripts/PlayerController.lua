@@ -7,7 +7,18 @@ local AttackRange = 1.5;
 local AttackPower = 1.0;
 local JumpTime = 0.85;
 local AttackTime = 1.0;
+local DamageTime = 0.8;
 local JumpForce = 8.0;
+
+function TakeDamage(power)
+    if this.DamageCooldown == 0.0 then
+        Life = Life - power
+        this.DamageCooldown = DamageTime
+        if Life <= 0.0 then
+            this:Destroy()
+        end
+    end
+end
 
 function Update()
     if (Input.GetKeyDown("space") and this.OnGround) then
@@ -34,22 +45,6 @@ function Update()
             this:Move(AirSpeed, 1.0)
         end
     end
-
-    -- if (Input.GetKey("left")) then
-    --     if (this.OnGround and this.JumpCooldown == 0.0) then
-    --         this:Move(Speed, -1.0)
-    --     else if (this.OnGround == false) then
-    --         this:Move(AirSpeed, -1.0)
-    --     end
-    -- end
-
-    -- if (Input.GetKey("right")) then
-    --     if (this.OnGround and this.JumpCooldown == 0.0) then
-    --         this:Move(Speed, 1.0)
-    --     else if (this.OnGround == false) then
-    --         this:Move(AirSpeed, 1.0)
-    --     end
-    -- end
 
     if (Input.GetKeyDown("f")) then
         if (this.AttackCooldown == 0.0) then
