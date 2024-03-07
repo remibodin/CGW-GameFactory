@@ -35,6 +35,8 @@ namespace Cgw
             LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
+
+            AudioManager.Instance.Init();
         }
 
         // Sync assets every second
