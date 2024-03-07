@@ -15,6 +15,7 @@ namespace Cgw.Gameplay
         public ContactFilter2D TerrainContactFilter;
         
         public bool OnGround;
+        public bool OnSlope;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
@@ -48,6 +49,14 @@ namespace Cgw.Gameplay
         {
             var hits = new RaycastHit2D[1];
             OnGround = m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0;
+            if (OnGround)
+            {
+                OnSlope = hits[0].collider.CompareTag("Slope");
+            }
+            else
+            {
+                OnSlope = false;
+            }
 
             AttackCooldown -= Time.deltaTime;
             AttackCooldown = math.max(0.0f, AttackCooldown);

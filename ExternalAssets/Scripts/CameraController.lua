@@ -3,6 +3,7 @@ import 'UnityEngine'
 local CameraSpeed = 3.0;
 local CameraAheadDistance = 2.0;
 local CameraTurnLimit = 3.0;
+
 local CameraDirection = Vector3.zero;
 
 function Start()

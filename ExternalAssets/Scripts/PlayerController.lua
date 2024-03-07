@@ -29,7 +29,7 @@ function Update()
         end
     end
 
-    if (this.OnGround and this.JumpCooldown == 0.0) then
+    if (this.OnGround and this.JumpCooldown == 0.0 and not this.OnSlope) then
         if (Input.GetKey("left")) then
             this:Move(Speed, -1.0)
         end
