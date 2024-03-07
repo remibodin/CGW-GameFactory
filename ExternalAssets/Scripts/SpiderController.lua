@@ -1,6 +1,7 @@
 import 'UnityEngine'
 
 local Life = 3.0;
+local LifePerLaunch = 0.5;
 local FollowSpeed = 2.0;
 local FollowDistance = 0.5;
 local FollowHeight = 0.3
@@ -13,6 +14,12 @@ function Start()
         targetPosition = targetPosition + Vector3.right * FollowDistance
     end
     this.transform.position = targetPosition
+end
+
+function Launch()
+    if (Life > 0) then
+        Life = Life - LifePerLaunch
+    end
 end
 
 function Update()

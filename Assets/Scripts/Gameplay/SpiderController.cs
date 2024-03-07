@@ -25,5 +25,14 @@ namespace Cgw.Gameplay
         {
             transform.position = Vector3.Lerp(transform.position, destination, speed * Time.deltaTime);
         }
+
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                var enemy = collision.GetComponent<Enemy>();
+                enemy.OnCollisionWithSpider();
+            }
+        }
     }
 }

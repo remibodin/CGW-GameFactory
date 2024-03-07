@@ -64,5 +64,10 @@ namespace Cgw.Gameplay
         {
             m_Instance.Call("OnCollisionWithPlayer");
         }
+
+        public override void OnCollisionWithSpider()
+        {
+            m_Instance.Call("OnCollisionWithSpider");
+        }
     }
 }

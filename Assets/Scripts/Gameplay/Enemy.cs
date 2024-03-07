@@ -6,5 +6,6 @@ namespace Cgw.Gameplay
     {
         public abstract void Attacked(float power);
         public abstract void OnCollisionWithPlayer();
+        public abstract void OnCollisionWithSpider();
     }
 }
