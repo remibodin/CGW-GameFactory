@@ -45,6 +45,16 @@ namespace Cgw.Scripting
             m_instance.Call("Start");
         }
 
+        private void LateUpdate()
+        {
+            m_instance.Call("LateUpdate");
+        }
+
+        private void OnDestroy()
+        {
+            m_instance.Call("OnDestroy");
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.GetComponent<Collider>().CompareTag("PLAYER"))

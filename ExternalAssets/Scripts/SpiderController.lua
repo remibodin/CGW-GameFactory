@@ -1,5 +1,6 @@
 import 'UnityEngine'
 
+local Life = 3.0;
 local FollowSpeed = 2.0;
 local FollowDistance = 0.5;
 local FollowHeight = 0.3
