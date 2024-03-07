@@ -10,7 +10,7 @@ function Start()
     this:InitCameraPosition(player.transform.position, player.Facing, CameraAheadDistance)
 end
 
-function Update()
+function LateUpdate()
     if CameraDirection.x > 0 then
         if player.transform.position.x < this.transform.position.x - CameraTurnLimit then
             CameraDirection = player.Facing
