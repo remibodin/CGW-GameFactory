@@ -34,6 +34,10 @@ function MushroomIA()
     end
 end
 
+function OnCollisionWithDanger()
+    Object.Destroy(this.gameObject)
+end
+
 function Update()
     MushroomIA()
 end
