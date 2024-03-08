@@ -20,6 +20,7 @@ namespace Cgw.Gameplay
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
         public Vector3 Facing = new(1.0f, 0.0f);
+        public float MinSurfaceAngle = 0.8f;
 
         private Collider2D m_Collider;
         private LuaInstance m_Instance;
@@ -48,7 +49,16 @@ namespace Cgw.Gameplay
         private void Update()
         {
             var hits = new RaycastHit2D[1];
-            OnGround = m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0;
+            if (m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0)
+            {
+                var hitNormal = hits[0].normal;
+                OnGround = Mathf.Abs(hitNormal.y) > MinSurfaceAngle;
+            }
+            else
+            {
+                OnGround = false;
+            }
+
             if (OnGround)
             {
                 OnMaterial = hits[0].collider.tag;
