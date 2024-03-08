@@ -22,29 +22,39 @@ function TakeDamage(power)
 end
 
 function Update()
-    if (Input.GetKeyDown("space") and this.OnGround) then
-        if this.JumpCooldown == 0.0 then
-            this:Jump(JumpForce)
+    local jumpAxis = Input.GetAxis("Jump")
+    if (jumpAxis > 0 and this.OnGround) then
+        if (this.JumpCooldown == 0.0) then
+            this:Jump(JumpForce * jumpAxis)
             this.JumpCooldown = JumpTime
         end
     end
 
-    if (this.OnGround and this.JumpCooldown == 0.0 and not this.OnSlope) then
-        if (Input.GetKey("left")) then
-            this:Move(Speed, -1.0)
-        end
-        if (Input.GetKey("right")) then
-            this:Move(Speed, 1.0)
-        end
+    -- if (Input.GetKeyDown("space") and this.OnGround) then
+    --     if this.JumpCooldown == 0.0 then
+    --         this:Jump(JumpForce)
+    --         this.JumpCooldown = JumpTime
+    --     end
+    -- end
+
+    if (this.OnGround and this.JumpCooldown == 0.0 and this.OnMaterial ~= "Slope") then
+        this:Move(Speed, Input.GetAxis("Horizontal"))
+        -- if (Input.GetKey("left")) then
+        --     this:Move(Speed, -1.0)
+        -- end
+        -- if (Input.GetKey("right")) then
+        --     this:Move(Speed, 1.0)
+        -- end
     end
 
-    if (this.OnGround == false) then
-        if (Input.GetKey("left")) then
-            this:Move(AirSpeed, -1.0)
-        end
-        if (Input.GetKey("right")) then
-            this:Move(AirSpeed, 1.0)
-        end
+    if (not this.OnGround) then
+        this:Move(AirSpeed, Input.GetAxis("Horizontal"))
+        -- if (Input.GetKey("left")) then
+        --     this:Move(AirSpeed, -1.0)
+        -- end
+        -- if (Input.GetKey("right")) then
+        --     this:Move(AirSpeed, 1.0)
+        -- end
     end
 
     if (Input.GetKeyDown("f")) then
