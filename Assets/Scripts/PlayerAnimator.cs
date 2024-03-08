@@ -24,9 +24,21 @@ public class PlayerAnimator : MonoBehaviour
         m_animator.SetFloat("AbsH", Mathf.Abs(m_motion.x) * 100f);
         m_animator.SetFloat("V", m_motion.y * 100f);
 
-        if (m_motion.x != 0)
+        if (m_renderer != null)
         {
-            m_renderer.flipX = m_motion.x < 0;
+            if (m_motion.x != 0)
+            {
+                m_renderer.flipX = m_motion.x < 0;
+            }
+        }
+        else
+        {
+            if (m_motion.x != 0)
+            {
+                var scale = transform.localScale;
+                scale.x = m_motion.x < 0 ? - Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+                transform.localScale = scale;
+            }
         }
     }
 }
