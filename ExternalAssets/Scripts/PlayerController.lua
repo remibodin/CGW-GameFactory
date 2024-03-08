@@ -18,7 +18,7 @@ function TakeDamage(power)
         Life = Life - power
         this.DamageCooldown = DamageTime
         if Life <= 0.0 then
-            this:Destroy()
+            Object.Destroy(this.gameObject)
         end
     end
 end

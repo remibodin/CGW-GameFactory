@@ -119,5 +119,17 @@ namespace Cgw.Gameplay
                 }
             }
         }
+
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                var enemy = collision.collider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.OnCollisionWithPlayer();
+                }
+            }
+        }
     }
 }

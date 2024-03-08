@@ -12,7 +12,6 @@ namespace Cgw.Gameplay
     public class Mushroom : Enemy
     {
         public ContactFilter2D TerrainContactFilter;
-        public float AttackCooldown = 0.0f;
 
         private LuaInstance m_Instance;
         private Collider2D m_Collider;
@@ -29,13 +28,7 @@ namespace Cgw.Gameplay
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
-            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/Mushroom");
-        }
-
-        public void Update()
-        {
-            AttackCooldown -= Time.deltaTime;
-            AttackCooldown = math.max(0.0f, AttackCooldown);
+            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/MushroomController");
         }
 
         public void Move(float speed, float direction)
@@ -68,6 +61,11 @@ namespace Cgw.Gameplay
         public override void OnCollisionWithSpider()
         {
             m_Instance.Call("OnCollisionWithSpider");
+        }
+
+        public override void OnCollisionWithDanger()
+        {
+            m_Instance.Call("OnCollisionWithDanger");
         }
     }
 }

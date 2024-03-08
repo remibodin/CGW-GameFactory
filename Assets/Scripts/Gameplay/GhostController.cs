@@ -48,6 +48,11 @@ namespace Cgw.Gameplay
         {
             m_Instance.Call("OnCollisionWithSpider");
         }
+
+        public override void OnCollisionWithDanger()
+        {
+            m_Instance.Call("OnCollisionWithDanger");
+        }
     }
 
 }
