@@ -23,7 +23,9 @@ function MushroomIA()
     local distanceToPlayer = Vector3.Distance(player.transform.position, this.transform.position)
     if (not ChaseMode and distanceToPlayer < ChaseRange) then
         ChaseMode = true
-    elseif (ChaseMode) then
+    end
+    
+    if (ChaseMode) then
         local directionToPlayer = player.transform.position.x - this.transform.position.x
         if (directionToPlayer < 0) then
             directionToPlayer = -1.0
