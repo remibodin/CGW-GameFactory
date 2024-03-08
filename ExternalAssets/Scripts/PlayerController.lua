@@ -1,10 +1,10 @@
 import 'UnityEngine'
 
 local Life = 3;
-local Speed = 2.5;
-local AirSpeed = 2.5;
-local JumpTime = 0.25;
-local JumpForce = 9.0;
+local Speed = 0.75;
+local AirSpeed = 1.2;
+local JumpTime = 0.65;
+local JumpForce = 6.0;
 
 local AttackTime = 1.0;
 local DamageTime = 0.8;
@@ -47,11 +47,11 @@ function Update()
         end
     end
 
-    if (this.Motion.magnitude > 0 and this.OnGround) then
-        SinceLastFootStep = SinceLastFootStep + Time.deltaTime
-        if (SinceLastFootStep > 0.32) then
-            AudioManager:PlayRandom('Sounds/Collections/FootStep')
-            SinceLastFootStep = 0;
-        end
-    end
+    -- if (this.Motion.magnitude > 0 and this.OnGround) then
+    --     SinceLastFootStep = SinceLastFootStep + Time.deltaTime
+    --     if (SinceLastFootStep > 0.32) then
+    --         AudioManager:PlayRandom('Sounds/Collections/FootStep')
+    --         SinceLastFootStep = 0;
+    --     end
+    -- end
 end
