@@ -47,11 +47,11 @@ function Update()
         end
     end
 
-    if (this.Motion.magnitude > 0 and this.OnGround) then
-        SinceLastFootStep = SinceLastFootStep + Time.deltaTime
-        if (SinceLastFootStep > 0.32) then
-            AudioManager:PlayRandom('Sounds/Collections/FootStep')
-            SinceLastFootStep = 0;
-        end
-    end
+    -- if (this.Motion.magnitude > 0 and this.OnGround) then
+    --     SinceLastFootStep = SinceLastFootStep + Time.deltaTime
+    --     if (SinceLastFootStep > 0.32) then
+    --         AudioManager:PlayRandom('Sounds/Collections/FootStep')
+    --         SinceLastFootStep = 0;
+    --     end
+    -- end
 end
