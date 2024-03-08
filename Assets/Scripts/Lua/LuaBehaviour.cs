@@ -26,6 +26,7 @@ namespace Cgw.Scripting
             {
                 OnAssetUpdated(m_instance);
             }
+            m_instance.Call("Start");
         }
 
         private void InitTable()
