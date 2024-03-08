@@ -1,10 +1,10 @@
 import 'UnityEngine'
 
 local Life = 3;
-local Speed = 1.5;
+local Speed = 2.5;
 local AirSpeed = 2.5;
-local JumpTime = 0.85;
-local JumpForce = 8.0;
+local JumpTime = 0.25;
+local JumpForce = 9.0;
 
 local AttackTime = 1.0;
 local DamageTime = 0.8;
