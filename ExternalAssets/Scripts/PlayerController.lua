@@ -11,6 +11,8 @@ local DamageTime = 0.8;
 local AttackRange = 1.5;
 local AttackPower = 1.0;
 
+local SinceLastFootStep = 0;
+
 function TakeDamage(power)
     if this.DamageCooldown == 0.0 then
         Life = Life - power
@@ -51,6 +53,14 @@ function Update()
         if (this.AttackCooldown == 0.0) then
             this:Attack(AttackRange, AttackPower)
             this.AttackCooldown = AttackTime
+        end
+    end
+
+    if (this.Motion.magnitude > 0 and this.OnGround) then
+        SinceLastFootStep = SinceLastFootStep + Time.deltaTime
+        if (SinceLastFootStep > 0.32) then
+            AudioManager:PlayRandom('Sounds/Collections/FootStep')
+            SinceLastFootStep = 0;
         end
     end
 end

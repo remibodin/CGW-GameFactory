@@ -19,6 +19,7 @@ namespace Cgw.Gameplay
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
         public Vector3 Facing = new(1.0f, 0.0f);
+        public Vector2 Motion;
 
         private Collider2D m_Collider;
         private LuaInstance m_Instance;
@@ -46,6 +47,8 @@ namespace Cgw.Gameplay
 
         private void Update()
         {
+            Motion = Vector2.zero;
+
             var hits = new RaycastHit2D[1];
             OnGround = m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0;
 
@@ -79,6 +82,8 @@ namespace Cgw.Gameplay
             }
 
             transform.Translate(translation);
+
+            Motion += translation;
         }
 
         public void Attack(float range, float power)
