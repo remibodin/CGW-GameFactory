@@ -17,6 +17,11 @@ public class PlayerAnimator : MonoBehaviour
         m_player = GetComponent<Cgw.Gameplay.Player>();
     }
 
+    public void Attack()
+    {
+        m_animator.SetTrigger("Attack");
+    }
+
     void LateUpdate()
     {
         var currentPosition = transform.position;
