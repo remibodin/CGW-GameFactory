@@ -32,12 +32,15 @@ function Update()
         end
     end
 
-    if (this.OnGround and this.JumpCooldown == 0.0 and this.OnMaterial ~= "Slope") then
-        this:Move(Speed, Input.GetAxis("Horizontal"))
-    end
+    local horizontalAxis = Input.GetAxis("Horizontal")
+    if (Mathf.Abs(horizontalAxis) > 0.0) then
+        if (this.OnGround and this.JumpCooldown == 0.0 and this.OnMaterial ~= "Slope") then
+            this:Move(Speed, Input.GetAxis("Horizontal"))
+        end
 
-    if (not this.OnGround) then
-        this:Move(AirSpeed, Input.GetAxis("Horizontal"))
+        if (not this.OnGround) then
+            this:Move(AirSpeed, Input.GetAxis("Horizontal"))
+        end
     end
 
     if (Input.GetKeyDown("f")) then
@@ -45,6 +48,10 @@ function Update()
             this:Attack(AttackRange, AttackPower)
             this.AttackCooldown = AttackTime
         end
+    end
+
+    if (Input.GetKeyDown("g")) then
+        aragna:Launch()
     end
 
     if (this.Motion.magnitude > 0 and this.OnGround) then

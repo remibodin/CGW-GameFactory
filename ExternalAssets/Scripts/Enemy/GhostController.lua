@@ -1,7 +1,6 @@
 import 'UnityEngine'
 
 local Life = 3.0;
-local AttackPower = 1.0;
 local MaxOpacity = 1.0;
 local MinOpacity = 0.3;
 local MaxOpacityDistance = 3.0;
@@ -15,6 +14,8 @@ local ChargeDistance = 1.0;
 local ChargeTime = 3.0;
 local ExplosionDamage = 1.0;
 
+local IsSpiderTouched = false;
+
 function UpdateOpacity(distanceToPlayer)
     if (distanceToPlayer < MinOpacityDistance) then
         if (distanceToPlayer < MaxOpacityDistance) then
@@ -23,6 +24,11 @@ function UpdateOpacity(distanceToPlayer)
             this.Opacity = Mathf.InverseLerp(MinOpacityDistance, MaxOpacityDistance, distanceToPlayer)
         end
     end
+end
+
+function OnCollisionWithSpider()
+    IsSpiderTouched = true
+    this.SpiderTouchTimer = aragna.TouchTime
 end
 
 function GhostIA()
@@ -35,7 +41,11 @@ function GhostIA()
     if (ChaseMode and not ChargeMode) then
         if (distanceToPlayer > ChargeDistance) then
             ChargeMode = false
-            this:Move((player.transform.position - this.transform.position).normalized, ChaseSpeed)
+            local speed = ChaseSpeed
+            if (IsSpiderTouched) then
+                speed = ChaseSpeed * aragna.TouchSpeedMultiplier
+            end
+            this:Move((player.transform.position - this.transform.position).normalized, speed)
         else
             ChargeMode = true
             this.ChargeCountdown = ChargeTime
@@ -58,6 +68,9 @@ function Start()
 end
 
 function Update()
+    if (this.SpiderTouchTimer == 0.0) then
+        IsSpiderTouched = false
+    end
     GhostIA()
 end
 

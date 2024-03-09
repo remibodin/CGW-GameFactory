@@ -9,6 +9,7 @@ namespace Cgw.Gameplay
     {
         public float Opacity = 1.0f;
         public float ChargeCountdown = 0.0f;
+        public float SpiderTouchTimer = 0.0f;
 
         private Collider2D m_Collider;
         private LuaInstance m_Instance;
@@ -26,6 +27,9 @@ namespace Cgw.Gameplay
         {
             ChargeCountdown -= Time.deltaTime;
             ChargeCountdown = MathF.Max(ChargeCountdown, 0.0f);
+
+            SpiderTouchTimer -= Time.deltaTime;
+            SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
         }
 
         private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)

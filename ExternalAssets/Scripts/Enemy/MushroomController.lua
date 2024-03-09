@@ -7,6 +7,8 @@ local ChaseRange = 3.0;
 local ChaseSpeed = 2.0;
 local ChaseMode = false;
 
+local IsSpiderTouched = false;
+
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
@@ -32,7 +34,11 @@ function MushroomIA()
         else
             directionToPlayer = 1.0
         end
-        this:Move(directionToPlayer, ChaseSpeed)
+        local speed = ChaseSpeed
+        if (IsSpiderTouched) then
+            speed = ChaseSpeed * aragna.TouchSpeedMultiplier
+        end
+        this:Move(directionToPlayer, speed)
     end
 end
 
@@ -40,6 +46,14 @@ function OnCollisionWithDanger()
     Object.Destroy(this.gameObject)
 end
 
+function OnCollisionWithSpider()
+    IsSpiderTouched = true
+    this.SpiderTouchTimer = aragna.TouchTime
+end
+
 function Update()
+    if (this.SpiderTouchTimer == 0.0) then
+        IsSpiderTouched = false
+    end
     MushroomIA()
 end
