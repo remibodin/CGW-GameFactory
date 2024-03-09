@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4112536025990692244}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.03411452, w: 0.99941796}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2995605314842820663}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.91}
 --- !u!212 &2426961995443852271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995605314842820663}
-  - component: {fileID: 548869360038794679}
+  - component: {fileID: 7651946670523917}
   m_Layer: 0
   m_Name: TobogganTronc_02
-  m_TagString: Untagged
+  m_TagString: Slope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,8 +117,8 @@ Transform:
   - {fileID: 3392803677631509104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!61 &548869360038794679
-BoxCollider2D:
+--- !u!70 &7651946670523917
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -149,16 +149,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006524682, y: -0.009786911}
-  m_SpriteTilingProperty:
-    border: {x: 0.055999998, y: 0.101333335, z: 0.07266667, w: 1.2513334}
-    pivot: {x: 0.49325576, y: 0.20999826}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7796934, y: 0.45193112}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.003995062, y: 0.0033273099}
+  m_Size: {x: 1.8008662, y: 0.41532382}
+  m_Direction: 1
