@@ -8,7 +8,8 @@ namespace Cgw.Gameplay
     public class GhostController : Enemy
     {
         public float Opacity = 1.0f;
-        public float AttackCooldown = 0.0f;
+        public float ChargeCountdown = 0.0f;
+        public float SpiderTouchTimer = 0.0f;
 
         private Collider2D m_Collider;
         private LuaInstance m_Instance;
@@ -19,7 +20,16 @@ namespace Cgw.Gameplay
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
-            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/Ghost");
+            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/GhostController");
+        }
+
+        public void Update()
+        {
+            ChargeCountdown -= Time.deltaTime;
+            ChargeCountdown = MathF.Max(ChargeCountdown, 0.0f);
+
+            SpiderTouchTimer -= Time.deltaTime;
+            SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
         }
 
         private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
@@ -29,7 +39,7 @@ namespace Cgw.Gameplay
             instance["this"] = this;
         }
 
-        public void Move(Vector2 direction, float speed)
+        public void Move(Vector3 direction, float speed)
         {
             transform.Translate(speed * Time.deltaTime * direction);
         }

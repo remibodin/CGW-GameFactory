@@ -12,6 +12,7 @@ namespace Cgw.Gameplay
     public class Mushroom : Enemy
     {
         public ContactFilter2D TerrainContactFilter;
+        public float SpiderTouchTimer = 0.0f;
 
         private LuaInstance m_Instance;
         private Collider2D m_Collider;
@@ -29,6 +30,12 @@ namespace Cgw.Gameplay
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/MushroomController");
+        }
+
+        public void Update()
+        {
+            SpiderTouchTimer -= Time.deltaTime;
+            SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
         }
 
         public void Move(float speed, float direction)
