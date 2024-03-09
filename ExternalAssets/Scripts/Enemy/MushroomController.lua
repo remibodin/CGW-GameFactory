@@ -12,13 +12,15 @@ local IsSpiderTouched = false;
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
-        Object.Destroy(this.gameObject)
+        AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
+        Object.Destroy(this.gameObject, 0.8)
     end
 end
 
 function OnCollisionWithPlayer()
     player:TakeDamage(AttackPower)
-    Object.Destroy(this.gameObject)
+    AudioManager:Play("Sounds/CHAMPI_POP_B-12_1")
+    Object.Destroy(this.gameObject, 0.8)
 end
 
 function MushroomIA()

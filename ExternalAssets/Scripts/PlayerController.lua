@@ -5,6 +5,7 @@ local Speed = 2.5;
 local AirSpeed = 2.5;
 local JumpTime = 0.3;
 local JumpForce = 9.0;
+local LaunchTimer = 6.0;
 
 local AttackTime = 1.0;
 local DamageTime = 0.8;
@@ -46,12 +47,16 @@ function Update()
     if (Input.GetKeyDown("f")) then
         if (this.AttackCooldown == 0.0) then
             this:Attack(AttackRange, AttackPower)
+            AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
             this.AttackCooldown = AttackTime
         end
     end
 
     if (Input.GetKeyDown("g")) then
-        aragna:Launch()
+        if (this.LaunchCooldown == 0.0) then
+            aragna:Launch()
+            this.LaunchCooldown = LaunchTimer
+        end
     end
 
     if (this.Motion.magnitude > 0 and this.OnGround) then

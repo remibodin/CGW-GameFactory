@@ -5,7 +5,7 @@ local LifePerLaunch = 0.5;
 
 local FollowSpeed = 2.0;
 local FollowDistance = 0.5;
-local FollowHeight = 0.3;
+local FollowHeight = 0.8;
 
 local CanLaunch = true;
 local LaunchRange = 6.0;
@@ -32,8 +32,7 @@ end
 
 function Launch()
     if (CanLaunch and Life > 0) then
-        Debug.Log("Launch")
-        local enemy = this:CheckLaunch(player.transform.position, player.Facing, LaunchRange)
+        local enemy = this:CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange)
         if not enemy == nil then
             HasTarget = true
             Target = enemy
@@ -54,15 +53,15 @@ function Update()
     local targetPosition = player.transform.position + Vector3.up * FollowHeight
     if not HasTarget and Vector3.Distance(this.transform.position, targetPosition) > FollowDistance then
         if this.transform.position.x < targetPosition.x then
-            this:MoveFollow(targetPosition + Vector3.left * FollowDistance + Vector3.up, FollowSpeed)
+            this:MoveFollow(targetPosition + Vector3.left * FollowDistance, FollowSpeed)
         else
-            this:MoveFollow(targetPosition + Vector3.right * FollowDistance + Vector3.up, FollowSpeed)
+            this:MoveFollow(targetPosition + Vector3.right * FollowDistance, FollowSpeed)
         end
     elseif HasTarget then
         if (not Target == nil) then
-            this:MoveFollow(Target.transform.position, LaunchSpeed)
+            this:MoveTowards(Target.transform.position, LaunchSpeed)
         else
-            this:MoveFollow(TargetPoint, LaunchSpeed)
+            this:MoveTowards(TargetPoint, LaunchSpeed)
             if Vector3.Distance(TargetPoint, this.transform.position) < 0.1 then
                 HasTarget = false
             end

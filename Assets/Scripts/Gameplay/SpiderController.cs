@@ -34,6 +34,11 @@ namespace Cgw.Gameplay
             transform.position = Vector3.Lerp(transform.position, destination, speed * Time.deltaTime);
         }
 
+        public void MoveTowards(Vector3 destination, float speed)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+        }
+
         public Enemy CheckLaunch(Vector3 origin, Vector3 direction, float range)
         {
             RaycastHit2D[] hits = new RaycastHit2D[1];
