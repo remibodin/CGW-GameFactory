@@ -4,7 +4,7 @@ namespace Cgw
 {
     public class ParalaxLayer : MonoBehaviour
     {
-        [Range(-10, 10)]
+        [Range(-1, 1)]
         public float ParalaxRatio;
         private Vector3 m_initialPosition;
         private Camera m_camera;
@@ -19,7 +19,7 @@ namespace Cgw
         {
             var position = m_camera.transform.position;
             position.x = m_camera.transform.position.x * ParalaxRatio;
-            position.y = m_initialPosition.y;
+            position.y = 0;
             position.z = 0;
             transform.position = m_initialPosition + position;
         }
