@@ -8,7 +8,7 @@ local JumpForce = 9.0;
 
 local AttackTime = 1.0;
 local DamageTime = 0.8;
-local AttackRange = 1.5;
+local AttackRange = 2.5;
 local AttackPower = 1.0;
 
 local SinceLastFootStep = 0;

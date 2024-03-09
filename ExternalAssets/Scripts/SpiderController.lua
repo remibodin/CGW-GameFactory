@@ -54,9 +54,9 @@ function Update()
     local targetPosition = player.transform.position + Vector3.up * FollowHeight
     if not HasTarget and Vector3.Distance(this.transform.position, targetPosition) > FollowDistance then
         if this.transform.position.x < targetPosition.x then
-            this:MoveFollow(targetPosition + Vector3.left * FollowDistance, FollowSpeed)
+            this:MoveFollow(targetPosition + Vector3.left * FollowDistance + Vector3.up, FollowSpeed)
         else
-            this:MoveFollow(targetPosition + Vector3.right * FollowDistance, FollowSpeed)
+            this:MoveFollow(targetPosition + Vector3.right * FollowDistance + Vector3.up, FollowSpeed)
         end
     elseif HasTarget then
         if (not Target == nil) then
