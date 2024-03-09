@@ -9,6 +9,7 @@ TagManager:
   - Spider
   - Dirt
   - Wood
+  - Slope
   layers:
   - Default
   - TransparentFX
