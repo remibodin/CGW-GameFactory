@@ -25,7 +25,7 @@ end
 
 function Update()
     local jumpAxis = Input.GetAxis("Jump")
-    if (jumpAxis > 0 and this.OnGround) then
+    if (jumpAxis > 0 and (this.OnGround or this.OnMaterial == "Slope")) then
         if (this.JumpCooldown == 0.0) then
             this:Jump(JumpForce * jumpAxis)
             this.JumpCooldown = JumpTime
@@ -57,7 +57,11 @@ function Update()
     if (this.Motion.magnitude > 0 and this.OnGround) then
         SinceLastFootStep = SinceLastFootStep + Time.deltaTime
         if (SinceLastFootStep > 0.32) then
-            AudioManager:PlayRandom('Sounds/Collections/FootStep')
+            if (this.OnMaterial == "Dirt") then
+                AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
+            elseif (this.OnMaterial == "Wood") then
+
+            end
             SinceLastFootStep = 0;
         end
     end
