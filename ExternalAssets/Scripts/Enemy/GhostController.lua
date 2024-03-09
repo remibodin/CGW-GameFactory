@@ -77,6 +77,6 @@ end
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
-        this:Destroy()
+        Object.Destroy(this.gameObject)
     end
 end

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6734246225500387811}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Opacity: 1
-  AttackCooldown: 0
   ChargeCountdown: 0
+  SpiderTouchTimer: 0
