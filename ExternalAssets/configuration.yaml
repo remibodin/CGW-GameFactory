@@ -1,7 +1,7 @@
 localization: "Configurations/Localization"
 
 # menu
-menu_logo: "Sprites/Menu/logo01"
+menu_logo: "Sprites/Jaquette"
 menu_background_color: "#000018"
 menu_loop_sfx: "Sounds/Menu/menu_loop"
 menu_select_button_sfx: "Sounds/Menu/Pop"
