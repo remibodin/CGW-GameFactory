@@ -32,7 +32,7 @@ function OnCollisionWithSpider()
 end
 
 function GhostIA()
-    local distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position)
+    local distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position + Vector3.up)
     UpdateOpacity(distanceToPlayer)
     if (not ChaseMode and distanceToPlayer < ChaseDistance) then
         ChaseMode = true
@@ -45,7 +45,7 @@ function GhostIA()
             if (IsSpiderTouched) then
                 speed = ChaseSpeed * aragna.TouchSpeedMultiplier
             end
-            this:Move((player.transform.position - this.transform.position).normalized, speed)
+            this:Move(((player.transform.position + Vector3.up) - this.transform.position).normalized, speed)
         else
             ChargeMode = true
             this.ChargeCountdown = ChargeTime
@@ -77,6 +77,6 @@ end
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
-        Object.Destroy(this.gameObject)
+        Object.Destroy(this.gameObject, 0.8)
     end
 end

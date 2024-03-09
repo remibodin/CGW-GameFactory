@@ -19,6 +19,7 @@ namespace Cgw.Gameplay
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
+        public float LaunchCooldown = 0.0f;
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.8f;
         public Vector2 Motion;
@@ -79,6 +80,9 @@ namespace Cgw.Gameplay
 
             DamageCooldown -= Time.deltaTime;
             DamageCooldown = math.max(0.0f, DamageCooldown);
+
+            LaunchCooldown -= Time.deltaTime;
+            LaunchCooldown = math.max(0.0f, LaunchCooldown);
         }
 
         public void Jump(float force)
@@ -107,6 +111,12 @@ namespace Cgw.Gameplay
 
         public void Attack(float range, float power)
         {
+            var animator = GetComponent<PlayerAnimator>();
+            if (animator != null)
+            {
+                animator.Attack();
+            }
+
             var hits = Physics2D.LinecastAll(transform.position, transform.position + (Facing * range));
             foreach (var hit in hits)
             {
