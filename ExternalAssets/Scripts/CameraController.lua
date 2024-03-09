@@ -4,29 +4,11 @@ local CameraSpeed = 3.0;
 local CameraAheadDistance = 2.0;
 local CameraTurnLimit = 3.0;
 
-local CameraDirection = Vector3.zero;
-
-function Start()
-    CameraDirection = player.Facing
-    this:InitCameraPosition(player.transform.position, player.Facing, CameraAheadDistance)
-end
-
 function LateUpdate()
-    if CameraDirection.x > 0 then
-        if player.transform.position.x < this.transform.position.x - CameraTurnLimit then
-            CameraDirection = player.Facing
-            this:MoveCamera(CameraAheadDistance * CameraDirection.x, CameraSpeed)
-        elseif player.transform.position.x > this.transform.position.x - CameraAheadDistance then
-            this:MoveCamera(CameraAheadDistance * CameraDirection.x, CameraSpeed)
-        end
-    end
+    local direction = player.Facing.x;
 
-    if CameraDirection.x < 0 then
-        if player.transform.position.x > this.transform.position.x + CameraTurnLimit then
-            CameraDirection = player.Facing
-            this:MoveCamera(CameraAheadDistance * CameraDirection.x, CameraSpeed)
-        elseif player.transform.position.x < this.transform.position.x + CameraAheadDistance then
-            this:MoveCamera(CameraAheadDistance * CameraDirection.x, CameraSpeed)
-        end
-    end
+    local cameraPosition = player.transform.position
+    cameraPosition.z = camera.transform.position.z
+    cameraPosition.x = cameraPosition.x + 3 * direction
+    camera.transform.position = Vector3.Lerp(camera.transform.position, cameraPosition, Time.deltaTime * 2)
 end
