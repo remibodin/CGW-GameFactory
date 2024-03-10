@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using TMPro;
 
@@ -22,14 +23,13 @@ namespace Cgw.UI
         [SerializeField] private Button m_backBtn;
         [SerializeField] private TMP_Dropdown m_langDropDown;
 
-        private SoundBehaviour m_selectedSound;
-        private SoundBehaviour m_loopSound;
         private UiImageBehaviour m_logoBehaviour;
         private Configuration m_configuration;
 
         private void Start()
         {
             m_optionsBtn.onClick.AddListener(OptionsBtn_OnClick);
+            m_startBtn.onClick.AddListener(StartBtn_OnClick);
             m_backBtn.onClick.AddListener(BackBtn_OnClick);
             m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
 
@@ -54,18 +54,19 @@ namespace Cgw.UI
             }
             m_configuration.OnUpdated += OnConfigurationUpdated;
 
-            m_selectedSound = new GameObject("[Sound] Selected").AddComponent<SoundBehaviour>();
-            m_loopSound = new GameObject("[Sound] Loop").AddComponent<SoundBehaviour>();
-
             m_logoBehaviour = m_logo.gameObject.AddComponent<UiImageBehaviour>();
             m_logo.preserveAspect = true;
 
             UpdateConfiguration();
         }
 
-        public void PlaySelectedSound()
+        private void StartBtn_OnClick()
         {
-            m_selectedSound?.Source.Play();
+            Fade.Out(() =>
+            {
+                SceneManager.LoadScene("LDTestScene"); 
+                Fade.In();
+            });
         }
 
         private void ExitBtn_OnClick()
@@ -104,8 +105,6 @@ namespace Cgw.UI
             {
                 m_background.color = color;
             }
-            m_loopSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuLoopButtonSfxIdentifier);
-            m_selectedSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuSelectButtonSfxIdentifier);
             m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
 
             m_logo.enabled = m_logoBehaviour.Asset != null;

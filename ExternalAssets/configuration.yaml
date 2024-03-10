@@ -2,10 +2,10 @@ localization: "Configurations/Localization"
 
 # menu
 menu_logo: "Sprites/Jaquette"
-menu_background_color: "#000018"
+menu_background_color: "#000D00"
 menu_loop_sfx: "Sounds/Menu/menu_loop"
 menu_select_button_sfx: "Sounds/Menu/Pop"
 
 # fade
-fade_color: "#000018"
+fade_color: "#000D00"
 fade_speed: 3

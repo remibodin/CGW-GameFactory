@@ -9,6 +9,7 @@ function LateUpdate()
 
     local cameraPosition = player.transform.position
     cameraPosition.z = camera.transform.position.z
+    cameraPosition.y = player.transform.position.y + 1
     cameraPosition.x = cameraPosition.x + 3 * direction
     camera.transform.position = Vector3.Lerp(camera.transform.position, cameraPosition, Time.deltaTime * 2)
 end

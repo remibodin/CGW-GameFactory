@@ -7,12 +7,14 @@ namespace Cgw
         [Range(-1, 1)]
         public float ParalaxRatio;
         private Vector3 m_initialPosition;
+        private Vector3 m_initialCameraPosition;
         private Camera m_camera;
 
         private void Start()
         {
             m_camera = Camera.main;
             m_initialPosition = transform.position;
+            m_initialCameraPosition = m_camera.transform.position;
         }
 
         private void Update()
