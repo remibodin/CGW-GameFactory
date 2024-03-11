@@ -13,16 +13,18 @@ namespace Cgw.Gameplay
             m_Instance = instance;
         }
 
-        public void DelayAction(float delay, string action)
+        public void DelayAction(float delay, string action, params object[] args)
         {
-            StartCoroutine(DelayInternal(delay, action));
+            StartCoroutine(DelayInternal(delay, action, args));
         }
 
-        private IEnumerator DelayInternal(float delay, string action)
+        private IEnumerator DelayInternal(float delay, string action, object[] args)
         {
             yield return new WaitForSeconds(delay);
-            m_Instance.Call(action);
+            m_Instance.Call(action, args);
         }
+
+        
 
         public void AddForceImpulse(Vector3 force)
         {
