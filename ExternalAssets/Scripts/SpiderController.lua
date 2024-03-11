@@ -4,7 +4,7 @@ local Life = 3.0;
 local LifePerLaunch = 0.5;
 
 local FollowSpeed = 2.0;
-local FollowDistance = 0.5;
+local FollowDistance = 0.1;
 local FollowHeight = 0.8;
 
 local CanLaunch = true;
