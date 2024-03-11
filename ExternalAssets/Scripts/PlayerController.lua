@@ -24,6 +24,10 @@ function TakeDamage(power)
     end
 end
 
+function PlayAttackSound()
+    AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
+end
+
 function Update()
     local jumpAxis = Input.GetAxis("Jump")
     if (jumpAxis > 0 and (this.OnGround or this.OnMaterial == "Slope")) then
@@ -47,7 +51,7 @@ function Update()
     if (Input.GetKeyDown("f")) then
         if (this.AttackCooldown == 0.0) then
             this:Attack(AttackRange, AttackPower)
-            AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
+            this:DelayAction("PlayAttackSound", 0.32)
             this.AttackCooldown = AttackTime
         end
     end

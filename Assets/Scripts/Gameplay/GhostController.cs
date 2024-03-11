@@ -12,14 +12,13 @@ namespace Cgw.Gameplay
         public float SpiderTouchTimer = 0.0f;
 
         private Collider2D m_Collider;
-        private LuaInstance m_Instance;
 
         public void Start()
         {
             m_Collider = GetComponent<Collider2D>();
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
+            scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/GhostController");
         }
 
@@ -32,9 +31,9 @@ namespace Cgw.Gameplay
             SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
         }
 
-        private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
+        protected override void OnAssetUpdate(LuaInstance instance)
         {
-            m_Instance = instance;
+            base.OnAssetUpdate(instance);
 
             instance["this"] = this;
         }

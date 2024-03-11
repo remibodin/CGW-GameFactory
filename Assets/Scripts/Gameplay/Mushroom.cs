@@ -14,7 +14,6 @@ namespace Cgw.Gameplay
         public ContactFilter2D TerrainContactFilter;
         public float SpiderTouchTimer = 0.0f;
 
-        private LuaInstance m_Instance;
         private Collider2D m_Collider;
         private Vector2 m_Facing;
 
@@ -28,7 +27,7 @@ namespace Cgw.Gameplay
             m_Collider = GetComponent<Collider2D>();
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
+            scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/Enemy/MushroomController");
         }
 
@@ -54,9 +53,10 @@ namespace Cgw.Gameplay
             transform.Translate(translation);
         }
 
-        private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
+        protected override void OnAssetUpdate(LuaInstance instance)
         {
-            m_Instance = instance;
+            base.OnAssetUpdate(instance);
+
             instance["this"] = this;
         }
 

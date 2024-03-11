@@ -25,20 +25,19 @@ namespace Cgw.Gameplay
         public Vector2 Motion;
 
         private Collider2D m_Collider;
-        private LuaInstance m_Instance;
 
         private void Start()
         {
             m_Collider = GetComponent<Collider2D>();
 
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
+            scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
         }
 
-        private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
+        protected override void OnAssetUpdate(LuaInstance instance)
         {
-            m_Instance = instance;
+            base.OnAssetUpdate(instance);
 
             instance["this"] = this;
         }

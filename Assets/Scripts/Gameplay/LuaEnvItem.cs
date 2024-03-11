@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cgw.Gameplay
 {
-    public abstract class LuaEnvItem : MonoBehaviour
+    public abstract class LuaEnvItem : LuaMonoBehaviour
     {
         public string ObjectName = "";
 

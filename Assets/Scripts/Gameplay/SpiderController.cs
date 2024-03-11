@@ -13,18 +13,16 @@ namespace Cgw.Gameplay
         public float TouchTime = 3.0f;
         public float TouchSpeedMultiplier = 0.3f;
 
-        private LuaInstance m_Instance;
-
         void Start()
         {
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
+            scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/SpiderController");
         }
 
-        private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
+        protected override void OnAssetUpdate(LuaInstance instance)
         {
-            m_Instance = instance;
+            base.OnAssetUpdate(instance);
 
             instance["this"] = this;
         }
