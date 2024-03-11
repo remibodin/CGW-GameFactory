@@ -8,22 +8,36 @@ local ChaseSpeed = 2.0;
 local ChaseMode = false;
 
 local IsSpiderTouched = false;
+local NoMove = false;
+
+function Die()
+    -- spawn un fx ici serait mon plus grand rêve
+    Object.Destroy(this.gameObject)
+end
 
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
         AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
-        Object.Destroy(this.gameObject, 0.8)
+        local directionFromPlayer = (this.transform.position - player.transform.position).normalized
+        this:AddForceImpulse((Vector3.up + directionFromPlayer) * 3.0)
+        NoMove = true
+        this:DelayAction(0.7, "Die")
     end
 end
 
 function OnCollisionWithPlayer()
-    player:TakeDamage(AttackPower)
+    NoMove = true
+    player:TakeDamage(AttackPower, this)
     AudioManager:Play("Sounds/CHAMPI_POP_B-12_1")
     Object.Destroy(this.gameObject, 0.8)
 end
 
 function MushroomIA()
+    if (NoMove) then
+        return
+    end
+
     local distanceToPlayer = Vector3.Distance(player.transform.position, this.transform.position)
     if (not ChaseMode and distanceToPlayer < ChaseRange) then
         ChaseMode = true

@@ -7,6 +7,7 @@ using UnityEngine;
 
 using Cgw.Assets;
 using Cgw.Scripting;
+using System.Linq;
 
 namespace Cgw.Gameplay
 {
@@ -42,9 +43,9 @@ namespace Cgw.Gameplay
             instance["this"] = this;
         }
 
-        public void TakeDamage(float power)
+        public void TakeDamage(float power, Enemy enemy)
         {
-            m_Instance.Call("TakeDamage", power);
+            m_Instance.Call("TakeDamage", power, enemy);
         }
 
         private void Update()
@@ -116,7 +117,7 @@ namespace Cgw.Gameplay
                 animator.Attack();
             }
 
-            var hits = Physics2D.LinecastAll(transform.position, transform.position + (Facing * range));
+            var hits = Physics2D.LinecastAll(transform.position + Vector3.up, transform.position + (Facing * range) + Vector3.up);
             foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag("Enemy"))

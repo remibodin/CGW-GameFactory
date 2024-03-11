@@ -71,8 +71,15 @@ namespace Cgw.Audio
 
         private IEnumerator AutoRelease(AudioSource p_source)
         {
+            if (p_source.clip != null)
+            {
+                yield return new WaitForSeconds(p_source.clip.length);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
             yield return new WaitUntil(() => p_source.clip == null);
-            yield return new WaitForSeconds(p_source.clip.length);
             Release(p_source);
         }
 

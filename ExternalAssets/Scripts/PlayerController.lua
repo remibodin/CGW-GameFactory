@@ -9,18 +9,29 @@ local LaunchTimer = 6.0;
 
 local AttackTime = 1.0;
 local DamageTime = 0.8;
-local AttackRange = 2.5;
+local AttackRange = 0.8;
 local AttackPower = 1.0;
 
 local SinceLastFootStep = 0;
 
-function TakeDamage(power)
+local PreviousOnGround = true
+local NoControl = false
+
+function TookDamage()
+    if Life <= 0.0 then
+        Object.Destroy(this.gameObject)
+    end
+    NoControl = false
+end
+
+function TakeDamage(power, enemy)
     if this.DamageCooldown == 0.0 then
+        NoControl = true
         Life = Life - power
         this.DamageCooldown = DamageTime
-        if Life <= 0.0 then
-            Object.Destroy(this.gameObject)
-        end
+        local directionFromEnemy = (this.transform.position - enemy.transform.position).normalized
+        this:AddForceImpulse((Vector3.up + directionFromEnemy) * 3.0)
+        this:DelayAction(0.5, "TookDamage")
     end
 end
 
@@ -29,10 +40,21 @@ function PlayAttackSound()
 end
 
 function Update()
+    -- if (not this.OnGround == PreviousOnGround and PreviousOnGround == false) then
+    --     Debug.Log("drop")
+    --     AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+    -- end
+
+    if (NoControl) then
+        PreviousOnGround = this.OnGround
+        return
+    end
+
     local jumpAxis = Input.GetAxis("Jump")
     if (jumpAxis > 0 and (this.OnGround or this.OnMaterial == "Slope")) then
         if (this.JumpCooldown == 0.0) then
             this:Jump(JumpForce * jumpAxis)
+            AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
             this.JumpCooldown = JumpTime
         end
     end
@@ -51,7 +73,7 @@ function Update()
     if (Input.GetKeyDown("f")) then
         if (this.AttackCooldown == 0.0) then
             this:Attack(AttackRange, AttackPower)
-            this:DelayAction("PlayAttackSound", 0.32)
+            this:DelayAction(0.32, "PlayAttackSound")
             this.AttackCooldown = AttackTime
         end
     end
@@ -74,4 +96,6 @@ function Update()
             SinceLastFootStep = 0;
         end
     end
+
+    PreviousOnGround = this.OnGround
 end

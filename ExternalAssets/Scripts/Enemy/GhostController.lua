@@ -57,7 +57,7 @@ function GhostIA()
             ChargeMode = false
             this.ChargeCountdown = 0.0
         elseif (this.ChargeCountdown == 0.0) then
-            player:TakeDamage(ExplosionDamage)
+            player:TakeDamage(ExplosionDamage, this)
             Object.Destroy(this.gameObject)
         end
     end
