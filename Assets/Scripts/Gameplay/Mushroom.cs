@@ -37,7 +37,7 @@ namespace Cgw.Gameplay
             SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
         }
 
-        public void Move(float speed, float direction)
+        public void Move(float direction, float speed)
         {
             m_Facing = (Vector2.right * direction).normalized;
 

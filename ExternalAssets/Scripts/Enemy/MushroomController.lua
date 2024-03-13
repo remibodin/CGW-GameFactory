@@ -4,7 +4,7 @@ local Life = 1.0;
 local AttackPower = 1.0;
 
 local ChaseRange = 3.0;
-local ChaseSpeed = 2.0;
+local ChaseSpeed = 1.0;
 local ChaseMode = false;
 
 local IsSpiderTouched = false;
@@ -15,14 +15,18 @@ function Die()
     Object.Destroy(this.gameObject)
 end
 
+function Knockback(directionFromPlayer)
+    this:AddForceImpulse((Vector3.up + directionFromPlayer) * 3.0)
+    this:DelayAction(0.7, "Die")
+end
+
 function Attacked(power)
     Life = Life - power
     if Life <= 0.0 then
         AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
         local directionFromPlayer = (this.transform.position - player.transform.position).normalized
-        this:AddForceImpulse((Vector3.up + directionFromPlayer) * 3.0)
         NoMove = true
-        this:DelayAction(0.7, "Die")
+        this:DelayAction(0.3, "Knockback", directionFromPlayer)
     end
 end
 
@@ -52,7 +56,7 @@ function MushroomIA()
         end
         local speed = ChaseSpeed
         if (IsSpiderTouched) then
-            speed = ChaseSpeed * aragna.TouchSpeedMultiplier
+            speed = speed * aragna.TouchSpeedMultiplier
         end
         this:Move(directionToPlayer, speed)
     end

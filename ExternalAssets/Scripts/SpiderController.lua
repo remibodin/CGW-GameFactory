@@ -11,7 +11,7 @@ local CanLaunch = true;
 local LaunchRange = 6.0;
 local LaunchSpeed = 4.0;
 local TouchTime = 3.0;
-local TouchSpeedMultiplier = 0.3;
+local TouchSpeedMultiplier = 0.1;
 
 local HasTarget = false;
 local Target = nil;
