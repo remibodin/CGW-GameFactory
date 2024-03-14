@@ -17,16 +17,16 @@ end
 
 function Knockback(directionFromPlayer)
     this:AddForceImpulse((Vector3.up + directionFromPlayer) * 3.0)
-    this:DelayAction(0.7, "Die")
 end
 
 function Attacked(power)
     Life = Life - power
+    NoMove = true
+    local directionFromPlayer = (this.transform.position - player.transform.position).normalized
+    this:DelayAction(0.32, "Knockback", directionFromPlayer)
     if Life <= 0.0 then
         AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
-        local directionFromPlayer = (this.transform.position - player.transform.position).normalized
-        NoMove = true
-        this:DelayAction(0.3, "Knockback", directionFromPlayer)
+        this:DelayAction(0.7, "Die")
     end
 end
 

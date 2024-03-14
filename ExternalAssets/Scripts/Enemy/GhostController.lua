@@ -34,6 +34,11 @@ end
 function GhostIA()
     local distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position + Vector3.up)
     UpdateOpacity(distanceToPlayer)
+
+    if (NoMove) then
+        return
+    end
+
     if (not ChaseMode and distanceToPlayer < ChaseDistance) then
         ChaseMode = true
     end
@@ -43,7 +48,7 @@ function GhostIA()
             ChargeMode = false
             local speed = ChaseSpeed
             if (IsSpiderTouched) then
-                speed = ChaseSpeed * aragna.TouchSpeedMultiplier
+                speed = speed * aragna.TouchSpeedMultiplier
             end
             this:Move(((player.transform.position + Vector3.up) - this.transform.position).normalized, speed)
         else
@@ -65,6 +70,7 @@ end
 
 function Start()
     this.Opacity = MinOpacity
+    AudioManager:Play("Sounds/FANTOME_RODE_07_1")
 end
 
 function Update()
@@ -74,9 +80,22 @@ function Update()
     GhostIA()
 end
 
+function Die()
+    Object.Destroy(this.gameObject)
+end
+
+function Knockback(directionFromPlayer)
+    AudioManager:Play("Sounds/FANTOME_RECOIT_COUP_3_1")
+    this:AddForceImpulse(directionFromPlayer * 3.0)
+end
+
 function Attacked(power)
+    Debug.Log("Attacked")
     Life = Life - power
+    NoMove = true
+    local directionFromPlayer = (this.transform.position - player.transform.position).normalized
+    this:DelayAction(0.32, "Knockback", directionFromPlayer)
     if Life <= 0.0 then
-        Object.Destroy(this.gameObject, 0.8)
+        this:DelayAction(0.7, "Die")
     end
 end
