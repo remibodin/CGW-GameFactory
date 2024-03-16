@@ -1,12 +1,20 @@
 name: Unity builds
 run-name: ${{ github.actor }} start a build 🚀
+
 on:
   push:
     branches:
       - main
+      - features/ci-and-export
+
 jobs:
-  build-windows:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        targetPlatform: ['StandaloneWindows64', 'StandaloneOSX']
+
     steps:
 
       - name: Checkout repository
@@ -28,52 +36,33 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: StandaloneWindows64
+          targetPlatform: ${{ matrix.targetPlatform }}
           buildName: CGW
           versioning: Semantic
 
-      - uses: actions/upload-artifact@v4
-        name: Upload StandaloneWindows64
-        id: uploadStep
-        with:
-          name: CGW-Win-${{ steps.buildStep.outputs.buildVersion }}
-          path: |
-            build
-            !build/**/*_DoNotShip
-
-  build-osx:
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Cache files
-        uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-
-      - name: Build StandaloneOSX
-        uses: game-ci/unity-builder@v4
-        id: buildStep
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: StandaloneOSX
-          buildName: CGW
-          versioning: Semantic
-
-      - name: Archive OSX export 
-        run: tar -cvf build.tar -C build/StandaloneOSX CGW.app
+      - name: Archive
+        run: tar -cvf build.tar -C build/${{ matrix.targetPlatform }} .
 
       - uses: actions/upload-artifact@v4
-        name: Upload StandaloneOSX
-        id: uploadStep
+        name: Upload
+        id: upload
         with:
-          name: CGW-Osx-${{ steps.buildStep.outputs.buildVersion }}
+          name: CGW-${{ matrix.targetPlatform }}-${{ steps.buildStep.outputs.buildVersion }}
           path: build.tar
+
+      - name: Discord notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          description: 'New **${{ matrix.targetPlatform }}** build available'
+          details: ${{ steps.upload.outputs.artifact-url }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Discord notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          description: '**${{ matrix.targetPlatform }}** build failed'
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
