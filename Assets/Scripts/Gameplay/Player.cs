@@ -22,7 +22,7 @@ namespace Cgw.Gameplay
         public float DamageCooldown = 0.0f;
         public float LaunchCooldown = 0.0f;
         public Vector3 Facing = new(1.0f, 0.0f);
-        public float MinSurfaceAngle = 0.8f;
+        public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
 
         private Collider2D m_Collider;
@@ -52,23 +52,18 @@ namespace Cgw.Gameplay
         {
             Motion = Vector2.zero;
 
-            var hits = new RaycastHit2D[1];
-            if (m_Collider.Cast(Vector2.down, TerrainContactFilter, hits, 0.2f) > 0)
+            var hits = Physics2D.RaycastAll(transform.position, Vector2.down, 0.2f);
+            var hasHit = hits.Any(x => !x.collider.CompareTag("Player"));
+            if (hasHit)
             {
-                var hitNormal = hits[0].normal;
+                var hit = hits.First(x => !x.collider.CompareTag("Player"));  
+                var hitNormal = hit.normal;
                 OnGround = Mathf.Abs(hitNormal.y) > MinSurfaceAngle;
+                OnMaterial = hit.collider.tag;
             }
             else
             {
                 OnGround = false;
-            }
-
-            if (OnGround)
-            {
-                OnMaterial = hits[0].collider.tag;
-            }
-            else
-            {
                 OnMaterial = "Air";
             }
 

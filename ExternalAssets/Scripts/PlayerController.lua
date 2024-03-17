@@ -3,7 +3,7 @@ import 'UnityEngine'
 local Life = 3;
 local Speed = 0.9;
 local AirSpeed = 1.5;
-local JumpTime = 0.3;
+local JumpTime = 1.0;
 local JumpForce = 7.0;
 local LaunchTimer = 6.0;
 
@@ -14,6 +14,7 @@ local AttackPower = 1.0;
 
 local SinceLastFootStep = 0;
 
+local PreviousOnMaterial = "Dirt"
 local PreviousOnGround = true
 local NoControl = false
 
@@ -47,7 +48,13 @@ function Update()
 
     if (NoControl) then
         PreviousOnGround = this.OnGround
+        PreviousOnMaterial = this.OnMaterial
         return
+    end
+
+    if (this.OnMaterial == "Slope" and PreviousOnMaterial ~= "Slope") then
+        Debug.Log("OnSlope")
+        this.JumpCooldown = 0.0
     end
 
     local jumpAxis = Input.GetAxis("Jump")
@@ -98,4 +105,5 @@ function Update()
     end
 
     PreviousOnGround = this.OnGround
+    PreviousOnMaterial = this.OnMaterial
 end

@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 1511040395485575779}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,10 +420,13 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   OnGround: 0
+  OnMaterial: 
   AttackCooldown: 0
   JumpCooldown: 0
   DamageCooldown: 0
+  LaunchCooldown: 0
   Facing: {x: 1, y: 0, z: 0}
+  MinSurfaceAngle: 0.8
   Motion: {x: 0, y: 0}
 --- !u!50 &5980383037646149594
 Rigidbody2D:
