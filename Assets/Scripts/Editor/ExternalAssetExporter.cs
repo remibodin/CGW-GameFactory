@@ -28,6 +28,10 @@ namespace Cgw.Editor
                 case BuildTarget.StandaloneOSX :
                 {
                     var buildPath = Path.GetFullPath(p_report.summary.outputPath);
+                    if (!buildPath.EndsWith(".app"))
+                    {
+                        buildPath += ".app";
+                    }
                     var directoryInfo = new DirectoryInfo(buildPath);
                     externalAssetsBuildPath = Path.Combine(directoryInfo.FullName, "Contents", "ExternalAssets");
                 }
@@ -36,12 +40,13 @@ namespace Cgw.Editor
 
             if (externalAssetsBuildPath == null)
             {
-                Debug.LogWarning($"[ExternalAssetExporter] {p_report.summary.platform} not supported");
+                Debug.LogWarning($"[ExternalAssetExporter] Platform not supported (platform={p_report.summary.platform})");
                 return;
             }
 
             var externalAssetsPath = Path.GetFullPath("ExternalAssets");
             var externalAssetsInfos = new DirectoryInfo(externalAssetsPath);
+            Debug.Log($"[ExternalAssetExporter] Copy external assets (externalAssetsPath={externalAssetsPath}, externalAssetsBuildPath={externalAssetsBuildPath})");
             externalAssetsInfos.DeepCopy(externalAssetsBuildPath);
         }
     }
