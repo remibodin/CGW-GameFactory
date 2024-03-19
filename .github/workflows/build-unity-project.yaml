@@ -55,7 +55,7 @@ jobs:
         with:
           severity: info
           description: 'New **${{ matrix.targetPlatform }}** build available'
-          details: ${{ steps.upload.outputs.artifact-url }}
+          details: version:${{ steps.buildStep.outputs.buildVersion }} [Download](${{ steps.upload.outputs.artifact-url }})
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Discord notification
