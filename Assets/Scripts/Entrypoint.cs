@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 
 using UnityEngine;
 
@@ -18,7 +19,12 @@ namespace Cgw
         {
             CoroutineRunner.Initialize();
 
-            ResourcesManager.SetProjectRoot("ExternalAssets");
+            string externalAssetsPAth = "ExternalAssets";
+#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
+            externalAssetsPAth = Path.Combine(Application.dataPath, externalAssetsPAth);
+#endif
+
+            ResourcesManager.SetProjectRoot(externalAssetsPAth);
 
             // Register loaders
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());

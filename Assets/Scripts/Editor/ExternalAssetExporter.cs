@@ -22,14 +22,14 @@ namespace Cgw.Editor
                 {
                     var buildPath = Path.GetFullPath(p_report.summary.outputPath);
                     var fileInfo = new FileInfo(buildPath);
-                    externalAssetsBuildPath = Path.Combine(fileInfo.Directory.FullName, "ExternalAsset");
+                    externalAssetsBuildPath = Path.Combine(fileInfo.Directory.FullName, "ExternalAssets");
                 }
                 break;
                 case BuildTarget.StandaloneOSX :
                 {
                     var buildPath = Path.GetFullPath(p_report.summary.outputPath);
                     var directoryInfo = new DirectoryInfo(buildPath);
-                    externalAssetsBuildPath = Path.Combine(directoryInfo.FullName, "Contents", "ExternalAsset");
+                    externalAssetsBuildPath = Path.Combine(directoryInfo.FullName, "Contents", "ExternalAssets");
                 }
                 break;
             }
