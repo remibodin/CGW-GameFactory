@@ -1,7 +1,7 @@
 ,En,Fr,Co
 LANG_NAME,English,Français,Corse
-LANG_MENU_ENTRY,Choose your language,Choisie ta langue,
-START,Start,Commencer,
-OPTIONS,Options,Options,
-QUIT,Quit,Quitter,
-BACK,Back,Retour,
+LANG_MENU_ENTRY,Choose your language,Choisie ta langue,Sceglite a lingua
+START,Start,Commencer,Cumincià
+OPTIONS,Options,Options,Opzioni
+QUIT,Quit,Quitter,Sarrà
+BACK,Back,Retour,Ritornu
