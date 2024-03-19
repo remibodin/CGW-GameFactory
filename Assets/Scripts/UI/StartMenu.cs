@@ -14,6 +14,7 @@ namespace Cgw.UI
     {
         [SerializeField] private Image m_background;
         [SerializeField] private Image m_logo;
+        [SerializeField] private Image m_title;
         [SerializeField] private StartMenuPage m_homePage;
         [SerializeField] private StartMenuPage m_optionsPages;
         [SerializeField] private Button m_startBtn;
@@ -25,6 +26,7 @@ namespace Cgw.UI
         private SoundBehaviour m_selectedSound;
         private SoundBehaviour m_loopSound;
         private UiImageBehaviour m_logoBehaviour;
+        private UiImageBehaviour m_titleBehaviour;
         private Configuration m_configuration;
 
         private void Start()
@@ -60,6 +62,9 @@ namespace Cgw.UI
 
             m_logoBehaviour = m_logo.gameObject.AddComponent<UiImageBehaviour>();
             m_logo.preserveAspect = true;
+
+            m_titleBehaviour = m_title.gameObject.AddComponent<UiImageBehaviour>();
+            m_title.preserveAspect = true;
 
             UpdateConfiguration();
         }
@@ -113,9 +118,10 @@ namespace Cgw.UI
             m_loopSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuLoopButtonSfxIdentifier);
             m_selectedSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuSelectButtonSfxIdentifier);
             m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
+            m_titleBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuTitleIdentifier);
 
             m_logo.enabled = m_logoBehaviour.Asset != null;
+            m_title.enabled = m_titleBehaviour.Asset != null;
         }
     }
-
 }
