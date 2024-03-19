@@ -32,6 +32,7 @@ namespace Cgw.UI
             m_optionsBtn.onClick.AddListener(OptionsBtn_OnClick);
             m_backBtn.onClick.AddListener(BackBtn_OnClick);
             m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
+            m_startBtn.onClick.AddListener(StartBtn_OnClick);
 
             m_langDropDown.ClearOptions();
             for (int i = 1; i <= LocalizationManager.Instance.Count; i++)
@@ -83,6 +84,11 @@ namespace Cgw.UI
         {
             m_optionsPages.Hide();
             m_homePage.Show();
+        }
+
+        private void StartBtn_OnClick()
+        {
+            SceneLoader.DarkForest();
         }
 
         private void LangDropDown_OnValueChange(int p_value)
