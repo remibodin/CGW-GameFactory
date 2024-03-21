@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        targetPlatform: ['StandaloneWindows64', 'StandaloneOSX']
+        targetPlatform: ['StandaloneWindows64']
 
     steps:
 
