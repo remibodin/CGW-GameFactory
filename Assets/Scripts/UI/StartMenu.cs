@@ -142,7 +142,7 @@ namespace Cgw.UI
 
         private void StartBtn_OnClick()
         {
-            SceneLoader.DarkForest();
+            SceneLoader.Level1();
         }
 
         private void LangDropDown_OnValueChange(int p_value)

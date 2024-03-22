@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 62231e06ffff275488fd6fb597b7f1a7
   - enabled: 1
-    path: Assets/Scenes/Empty.unity
-    guid: e8c706003c322431f894ac0fdc1fd353
-  - enabled: 1
-    path: Assets/Scenes/DarkForest.unity
-    guid: d7f850774dc5e2f4287ba9b93fbd50ee
+    path: Assets/Scenes/LDTestScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}

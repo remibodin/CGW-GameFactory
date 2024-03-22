@@ -9,14 +9,14 @@ namespace Cgw.Assets
     /// </summary>
     public class SceneLoader : UniqueMonoBehaviour<SceneLoader>
     {
-        public static void DarkForest()
+        public static void Level1()
         {
-            Fade.In(() => LoadScene("DarkForest"));
+            Fade.In(() => LoadScene(1));
         }
 
         public static void StartMenu()
         {
-            Fade.In(() => LoadScene("StartMenu"));
+            Fade.In(() => LoadScene(0));
         }
 
         public static void Custom(string p_sceneName)
@@ -24,9 +24,20 @@ namespace Cgw.Assets
             Fade.In(() => LoadScene(p_sceneName));
         }
 
+        public static void Custom(int p_sceneIndex)
+        {
+            Fade.In(() => LoadScene(p_sceneIndex));
+        }
+
         private static void LoadScene(string p_sceneName)
         {
             SceneManager.LoadScene(p_sceneName);
+            Fade.Out();
+        }
+
+        private static void LoadScene(int p_sceneIndex)
+        {
+            SceneManager.LoadScene(p_sceneIndex);
             Fade.Out();
         }
     }
