@@ -7,6 +7,7 @@ using Cgw.Audio;
 using Cgw.Assets;
 using Cgw.Graphics;
 using Cgw.Localization;
+using System.Collections.Generic;
 
 namespace Cgw.UI
 {
@@ -17,17 +18,25 @@ namespace Cgw.UI
         [SerializeField] private Image m_title;
         [SerializeField] private StartMenuPage m_homePage;
         [SerializeField] private StartMenuPage m_optionsPages;
+
+        [Header("Buttons")]
         [SerializeField] private Button m_startBtn;
         [SerializeField] private Button m_optionsBtn;
         [SerializeField] private Button m_exitBtn;
         [SerializeField] private Button m_backBtn;
+
+        [Header("Options")]
         [SerializeField] private TMP_Dropdown m_langDropDown;
+        [SerializeField] private TMP_Dropdown m_resolutionDropDown;
+        [SerializeField] private Toggle m_fullscreenToggle;
 
         private SoundBehaviour m_selectedSound;
         private SoundBehaviour m_loopSound;
         private UiImageBehaviour m_logoBehaviour;
         private UiImageBehaviour m_titleBehaviour;
         private Configuration m_configuration;
+
+        private List<Resolution> m_availableResolutions;
 
         private void Start()
         {
@@ -45,6 +54,8 @@ namespace Cgw.UI
                 });
             }
             m_langDropDown.onValueChanged.AddListener(LangDropDown_OnValueChange);
+
+            InitScreenOptions();
 
             m_optionsPages.Hide();
             m_homePage.Show();
@@ -67,6 +78,44 @@ namespace Cgw.UI
             m_title.preserveAspect = true;
 
             UpdateConfiguration();
+        }
+
+        private void InitScreenOptions()
+        {
+            // Resolutions
+            m_resolutionDropDown.ClearOptions();
+            m_availableResolutions = new List<Resolution>();
+
+            var resolutions = Screen.resolutions;
+            var curRes = Screen.currentResolution;
+            int selectedRes = 0;
+            foreach (var resolution in resolutions)
+            {
+                if (resolution.refreshRateRatio.value != curRes.refreshRateRatio.value)
+                {
+                    continue;
+                }
+
+                if (resolution.width == curRes.width &&
+                    resolution.height == curRes.height)
+                {
+                    selectedRes = m_availableResolutions.Count;
+                }
+
+                m_availableResolutions.Add(resolution);
+                m_resolutionDropDown.options.Add(new TMP_Dropdown.OptionData() 
+                {
+                    text = $"{resolution.width} x {resolution.height}"
+                });
+            }
+            m_resolutionDropDown.value = selectedRes;
+            m_resolutionDropDown.onValueChanged.AddListener(ResolutionDropDown_OnValueChange);
+
+            // Fullscreen state
+            bool isFullscreen = Screen.fullScreen;
+            m_fullscreenToggle.isOn = isFullscreen;
+            m_fullscreenToggle.onValueChanged.RemoveAllListeners();
+            m_fullscreenToggle.onValueChanged.AddListener(FullscreenToggle_OnValueChanged);
         }
 
         public void PlaySelectedSound()
@@ -99,6 +148,26 @@ namespace Cgw.UI
         private void LangDropDown_OnValueChange(int p_value)
         {
             LocalizationManager.Instance.SetLangageId(p_value);
+        }
+
+        private void ResolutionDropDown_OnValueChange(int p_value)
+        {
+            if (p_value > m_availableResolutions.Count)
+            {
+                Debug.LogError("Resolution Error");
+                return;
+            }
+
+            var newRes = m_availableResolutions[p_value];
+            Screen.SetResolution(newRes.width, newRes.height, m_fullscreenToggle.isOn);
+        }
+
+        private void FullscreenToggle_OnValueChanged(bool p_selected)
+        {
+            if (p_selected != Screen.fullScreen)
+            {
+                Screen.fullScreen = p_selected;
+            }
         }
 
         private void OnConfigurationUpdated(Asset p_newConfiguration)
