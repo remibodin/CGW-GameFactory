@@ -11,12 +11,14 @@ namespace Cgw.UI
         {
             m_group.alpha = 1;
             m_group.interactable = true;
+            m_group.blocksRaycasts = true;
         }
 
         public void Hide()
         {
             m_group.alpha = 0;
             m_group.interactable = false;
+            m_group.blocksRaycasts = false;
         }
     }
 }
