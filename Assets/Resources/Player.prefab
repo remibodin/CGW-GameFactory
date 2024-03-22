@@ -334,7 +334,7 @@ Animator:
   m_GameObject: {fileID: 1239701722764302022}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: cd73512e9112a4d3e9d7b4c9a45766c3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 65e1ad4062a3ee3468ad6d580afed7aa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -368,18 +368,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239701722764302022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneShape: 1
+  boneShape: 2
   drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms: []
+  drawTripods: 1
+  boneSize: 0.59
+  tripodSize: 0.01
+  boneColor: {r: 0.03239751, g: 1, b: 0, a: 0.5}
+  m_Transforms:
+  - {fileID: 112081076399783573}
+  - {fileID: 8592425538446894699}
+  - {fileID: 3134176597555691980}
+  - {fileID: 4414591800152702815}
+  - {fileID: 166590740124654318}
+  - {fileID: 968243678771662233}
+  - {fileID: 3548264286810372853}
+  - {fileID: 2995019012626961662}
+  - {fileID: 8945095004533432075}
+  - {fileID: 4001603420790060464}
+  - {fileID: 4042097766605141689}
+  - {fileID: 965777001833421035}
+  - {fileID: 605615200160153467}
+  - {fileID: 4843665575360884369}
+  - {fileID: 1406744581848715433}
+  - {fileID: 4495840705925697591}
 --- !u!114 &4463992685904938821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,7 +1881,7 @@ Transform:
   m_GameObject: {fileID: 8665845868395039090}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.0780463, w: 0.9969498}
-  m_LocalPosition: {x: 0, y: 14.76, z: 0}
+  m_LocalPosition: {x: 0.04, y: 13.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

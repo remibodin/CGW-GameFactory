@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using Cgw.Assets;
-
 public class PlayerAnimator : MonoBehaviour
 {
     private Cgw.Gameplay.Player m_player;
@@ -28,7 +26,7 @@ public class PlayerAnimator : MonoBehaviour
         m_motion = currentPosition - m_lastFramePosition;
         m_lastFramePosition = transform.position;
 
-        m_animator.SetFloat("AbsH", Mathf.Abs(m_player.Motion.x) * 100f);
+        m_animator.SetFloat("AbsH", Mathf.Abs(m_player.Motion.x) * 1000f);
         m_animator.SetFloat("V", m_motion.y * 100f);
         m_animator.SetBool("OnGround", m_player.OnGround);
 
