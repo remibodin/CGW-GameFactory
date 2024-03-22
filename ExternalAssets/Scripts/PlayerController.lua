@@ -36,14 +36,9 @@ function TakeDamage(power, enemy)
     end
 end
 
-function PlayAttackSound()
-    AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
-end
-
 function Update()
     -- if (not this.OnGround == PreviousOnGround and PreviousOnGround == false) then
     --     Debug.Log("drop")
-    --     AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
     -- end
 
     if (NoControl) then
@@ -80,7 +75,6 @@ function Update()
     if (Input.GetKeyDown("f")) then
         if (this.AttackCooldown == 0.0) then
             this:Attack(AttackRange, AttackPower)
-            this:DelayAction(0.32, "PlayAttackSound")
             this.AttackCooldown = AttackTime
         end
     end
@@ -92,18 +86,38 @@ function Update()
         end
     end
 
-    if (this.Motion.magnitude > 0 and this.OnGround) then
-        SinceLastFootStep = SinceLastFootStep + Time.deltaTime
-        if (SinceLastFootStep > 0.32) then
-            if (this.OnMaterial == "Dirt") then
-                AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
-            elseif (this.OnMaterial == "Wood") then
+    -- if (this.Motion.magnitude > 0 and this.OnGround) then
+    --     SinceLastFootStep = SinceLastFootStep + Time.deltaTime
+    --     if (SinceLastFootStep > 0.32) then
+    --         if (this.OnMaterial == "Dirt") then
+    --             AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
+    --         elseif (this.OnMaterial == "Wood") then
 
-            end
-            SinceLastFootStep = 0;
-        end
-    end
+    --         end
+    --         SinceLastFootStep = 0;
+    --     end
+    -- end
 
     PreviousOnGround = this.OnGround
     PreviousOnMaterial = this.OnMaterial
+end
+
+function PlayFootStep()
+    if (this.OnMaterial == "Dirt") then
+        AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
+    elseif (this.OnMaterial == "Wood") then
+
+    end
+end
+
+function OnAnimEvent(animEvent)
+    if (animEvent == "AttackSound") then
+        AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
+    elseif (animEvent == "HeroLanding") then
+        -- AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+    elseif (animEvent == "HeroJumpingStart") then
+        AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+    elseif (animEvent == "HeroStep") then
+        PlayFootStep()
+    end
 end
