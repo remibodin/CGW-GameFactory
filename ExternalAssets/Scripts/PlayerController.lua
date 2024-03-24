@@ -1,7 +1,7 @@
 import 'UnityEngine'
 
 local Life = 3;
-local Speed = 1.1;
+local Speed = 0.65;
 local AirSpeed = 1.7;
 local JumpTime = .85;
 local JumpForce = 7;
@@ -86,11 +86,12 @@ function Update()
 end
 
 function PlayFootStep()
-    if (this.OnMaterial == "Dirt") then
-        AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
-    elseif (this.OnMaterial == "Wood") then
+    AudioManager:PlayFmodEvent('event:/Player/FootStep')
+    -- if (this.OnMaterial == "Dirt") then
+    --     AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
+    -- elseif (this.OnMaterial == "Wood") then
 
-    end
+    -- end
 end
 
 function OnAnimEvent(animEvent)
