@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 1876049768684293332}
   - component: {fileID: 5036889256143779663}
   - component: {fileID: 6286863693999197223}
+  - component: {fileID: 771756699080810196}
   m_Layer: 5
   m_Name: 03
   m_TagString: Untagged
@@ -376,7 +377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2026 pour ne plus jamais revenir."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -445,6 +446,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &771756699080810196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282824664436121571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09edf405307a4aacb6d8aaceba03396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: INTRO_03
 --- !u!1 &2781513883185044837
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +470,7 @@ GameObject:
   - component: {fileID: 7575419466329444950}
   - component: {fileID: 2464691537631466035}
   - component: {fileID: 9147820176058998673}
+  - component: {fileID: 2425027325545455493}
   m_Layer: 5
   m_Name: 02
   m_TagString: Untagged
@@ -510,7 +525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "nobles et courageux, ils sont partis en mission dans la for\xEAt\u2026"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -579,6 +594,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2425027325545455493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781513883185044837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09edf405307a4aacb6d8aaceba03396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: INTRO_02
 --- !u!1 &3808966218513397430
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +731,7 @@ GameObject:
   - component: {fileID: 2913054553237994801}
   - component: {fileID: 2095846228357532881}
   - component: {fileID: 1785140768226595342}
+  - component: {fileID: 2447657735930365014}
   m_Layer: 5
   m_Name: 01
   m_TagString: Untagged
@@ -757,7 +786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Voil\xE0 une vieille l\xE9gende, celle du mage, du guerrier et de l\u2019archer"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -826,6 +855,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2447657735930365014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638580613333541009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09edf405307a4aacb6d8aaceba03396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: INTRO_01
 --- !u!1 &6924220021445887586
 GameObject:
   m_ObjectHideFlags: 0
