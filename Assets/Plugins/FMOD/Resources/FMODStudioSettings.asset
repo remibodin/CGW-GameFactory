@@ -164,7 +164,7 @@ MonoBehaviour:
   sourceProjectPath: FMODProject/CGW-2024.fspro
   sourceBankPath: FMODProject/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0

@@ -71,7 +71,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{d6c2b69f-4c0e-49f3-9786-1356ff96a3d5}">
 		<property name="volume">
-			<value>-6</value>
+			<value>-2</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{d9ad56ff-1eb1-4ad0-b464-07dfc9738174}</destination>
@@ -118,7 +118,7 @@
 	<object class="MixerBusPanner" id="{f3394d13-4d76-4b54-a2c2-06ef263fef04}" />
 	<object class="NamedMarker" id="{dc873417-19e5-460a-8d20-8e46d5d35069}">
 		<property name="position">
-			<value>0.375</value>
+			<value>0</value>
 		</property>
 		<property name="name">
 			<value>Start</value>
