@@ -29,6 +29,7 @@ namespace Cgw.Assets
             Fade.Out(() => LoadScene(p_sceneIndex));
         }
 
+        [TermCommand]
         private static void LoadScene(string p_sceneName)
         {
             SceneManager.LoadScene(p_sceneName);
@@ -49,6 +50,18 @@ namespace Cgw.Assets
         {
             SceneManager.LoadScene(p_sceneIndex);
             Fade.In();
+        }
+
+        [TermCommand]
+        private static void Reset(string p_args)
+        {
+            if (!string.IsNullOrEmpty(p_args) &&
+                p_args.ToLower() == "hard")
+            {
+                SceneManager.LoadScene(0);
+                return;
+            }
+            SceneLoader.StartMenu();
         }
     }
 }
