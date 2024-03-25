@@ -99,5 +99,12 @@ namespace Cgw.Graphics
                 Fade.Instance.m_timeTarget = 0;
             Fade.Instance.m_endAction = p_callback;
         }
+
+        public static void ForceValue(float p_value)
+        {
+            Fade.Instance.m_endAction = null;
+            Fade.Instance.m_timeTarget = Mathf.Clamp01(p_value);
+            Fade.Instance.m_timeCurrent = Fade.Instance.m_timeTarget;
+        }
     }
 }

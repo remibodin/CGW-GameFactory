@@ -69,6 +69,11 @@ namespace Cgw.Audio
             return source;
         }
 
+        public void PlayFmodEvent(string p_eventName)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(p_eventName);
+        }
+
         private IEnumerator AutoRelease(AudioSource p_source)
         {
             if (p_source.clip != null)
