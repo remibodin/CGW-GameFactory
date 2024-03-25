@@ -87,7 +87,15 @@ namespace Cgw.UI
             m_availableResolutions = new List<Resolution>();
 
             var resolutions = Screen.resolutions;
-            var curRes = Screen.currentResolution;
+            var curRes = new Resolution
+            {
+                // Using player window resolution so fullscreen state doesn't matter anymore
+                // Still use Screen refresh rate
+                width = Screen.width, 
+                height = Screen.height,
+                refreshRateRatio = Screen.currentResolution.refreshRateRatio
+            };
+
             int selectedRes = 0;
             foreach (var resolution in resolutions)
             {
@@ -100,6 +108,7 @@ namespace Cgw.UI
                     resolution.height == curRes.height)
                 {
                     selectedRes = m_availableResolutions.Count;
+                    Debug.Log("Resolution found");
                 }
 
                 m_availableResolutions.Add(resolution);
