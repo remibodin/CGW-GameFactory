@@ -14649,7 +14649,7 @@ GameObject:
   - component: {fileID: 8122690253119735949}
   m_Layer: 0
   m_Name: Aragna
-  m_TagString: Untagged
+  m_TagString: Spider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -53,10 +53,10 @@ namespace Cgw.Gameplay
             Motion = Vector2.zero;
 
             var hits = Physics2D.RaycastAll(transform.position, Vector2.down, 0.2f);
-            var hasHit = hits.Any(x => !x.collider.CompareTag("Player"));
+            var hasHit = hits.Any(x => !x.collider.CompareTag("Player") && !x.collider.CompareTag("Spider"));
             if (hasHit)
             {
-                var hit = hits.First(x => !x.collider.CompareTag("Player"));  
+                var hit = hits.First(x => !x.collider.CompareTag("Player") && !x.collider.CompareTag("Spider"));  
                 var hitNormal = hit.normal;
                 OnGround = Mathf.Abs(hitNormal.y) > MinSurfaceAngle;
                 OnMaterial = hit.collider.tag;
