@@ -70,7 +70,6 @@ function Update()
                 end
             end
         else
-            Debug.Log("Inertia = " .. Inertia)
             local horizontalAxis = Input.GetAxis("Horizontal")
             this:MoveWithInertia(AirSpeed, horizontalAxis, Inertia)
         end
