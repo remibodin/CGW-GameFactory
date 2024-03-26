@@ -14,9 +14,11 @@ local AttackPower = 1.0;
 
 local SinceLastFootStep = 0;
 
+local PreviousXPosition = 0.0
 local PreviousOnMaterial = "Dirt"
 local PreviousOnGround = true
 local NoControl = false
+local Inertia = 0.0
 
 function TookDamage()
     if Life <= 0.0 then
@@ -36,48 +38,55 @@ function TakeDamage(power, enemy)
     end
 end
 
+function Start()
+    PreviousOnGround = this.OnGround
+    PreviousOnMaterial = this.OnMaterial
+end
+
 function Update()
-    if (NoControl) then
-        PreviousOnGround = this.OnGround
-        PreviousOnMaterial = this.OnMaterial
-        return
+    if (this.OnGround and not PreviousOnGround) then
+        Inertia = 0.0
     end
 
-    if (this.OnMaterial == "Slope" and PreviousOnMaterial ~= "Slope") then
-        Debug.Log("OnSlope")
-        this.JumpCooldown = 0.0
-    end
-
-    local jumpAxis = Input.GetAxis("Jump")
-    if (jumpAxis > 0 and (this.OnGround or this.OnMaterial == "Slope")) then
-        if (this.JumpCooldown == 0.0) then
-            this:Jump(JumpForce * jumpAxis)
-            this.JumpCooldown = JumpTime
-        end
-    end
-
-    local horizontalAxis = Input.GetAxis("Horizontal")
-    if (Mathf.Abs(horizontalAxis) > 0.0) then
-        if (this.OnGround and this.JumpCooldown == 0.0 and this.OnMaterial ~= "Slope") then
-            this:Move(Speed, Input.GetAxis("Horizontal"))
+    if (not NoControl) then
+        if (this.OnMaterial == "Slope" and PreviousOnMaterial ~= "Slope") then
+            this.JumpCooldown = 0.0
         end
 
-        if (not this.OnGround) then
-            this:Move(AirSpeed, Input.GetAxis("Horizontal"))
-        end
-    end
+        if (this.OnGround) then
+            local horizontalAxis = Input.GetAxis("Horizontal")
+            if (Mathf.Abs(horizontalAxis) > 0.0) then
+                if (this.JumpCooldown == 0.0 and this.OnMaterial ~= "Slope") then
+                    this:Move(Speed, Input.GetAxis("Horizontal"))
+                end
+            end
 
-    if (Input.GetKeyDown("f")) then
-        if (this.AttackCooldown == 0.0) then
-            this:Attack(AttackRange, AttackPower)
-            this.AttackCooldown = AttackTime
+            local jumpAxis = Input.GetAxis("Jump")
+            if (jumpAxis > 0 and (this.OnGround or this.OnMaterial == "Slope")) then
+                if (this.JumpCooldown == 0.0) then
+                    Inertia = this.Motion.x
+                    this:Jump(JumpForce * jumpAxis)
+                    this.JumpCooldown = JumpTime
+                end
+            end
+        else
+            Debug.Log("Inertia = " .. Inertia)
+            local horizontalAxis = Input.GetAxis("Horizontal")
+            this:MoveWithInertia(AirSpeed, horizontalAxis, Inertia)
         end
-    end
 
-    if (Input.GetKeyDown("g")) then
-        if (this.LaunchCooldown == 0.0) then
-            aragna:Launch()
-            this.LaunchCooldown = LaunchTimer
+        if (Input.GetKeyDown("f")) then
+            if (this.AttackCooldown == 0.0) then
+                this:Attack(AttackRange, AttackPower)
+                this.AttackCooldown = AttackTime
+            end
+        end
+
+        if (Input.GetKeyDown("g")) then
+            if (this.LaunchCooldown == 0.0) then
+                aragna:Launch()
+                this.LaunchCooldown = LaunchTimer
+            end
         end
     end
 

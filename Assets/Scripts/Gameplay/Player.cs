@@ -104,6 +104,24 @@ namespace Cgw.Gameplay
             Motion += translation;
         }
 
+        public void MoveWithInertia(float speed, float direction, float inertia)
+        {
+            Facing = (Vector2.right * direction).normalized;
+
+            Vector2 translation = speed * Time.deltaTime * Facing;
+            var hits = new RaycastHit2D[1];
+
+            if (m_Collider.Cast(Facing, TerrainContactFilter, hits, speed * Time.deltaTime) > 0)
+            {
+                Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
+                translation = hits[0].distance * Facing;
+            }
+
+            transform.Translate(translation + Vector2.right * inertia);
+
+            Motion += translation;
+        }
+
         public void Attack(float range, float power)
         {
             var animator = GetComponent<PlayerAnimator>();
