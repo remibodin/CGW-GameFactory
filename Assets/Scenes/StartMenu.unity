@@ -400,6 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294515031}
+  - component: {fileID: 294515032}
   m_Layer: 5
   m_Name: LangSelection
   m_TagString: Untagged
@@ -428,6 +429,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &294515032
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294515030}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &326004875
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +955,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545055882}
+  - component: {fileID: 545055883}
   m_Layer: 5
   m_Name: ResolutionSelection
   m_TagString: Untagged
@@ -970,6 +984,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &545055883
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545055881}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &556927593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,6 +1235,7 @@ GameObject:
   - component: {fileID: 629674821}
   - component: {fileID: 629674820}
   - component: {fileID: 629674819}
+  - component: {fileID: 629674823}
   m_Layer: 5
   m_Name: BackButtonBtn
   m_TagString: Untagged
@@ -1347,6 +1374,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629674817}
   m_CullTransparentMesh: 1
+--- !u!225 &629674823
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629674817}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &669853655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871922997}
   - component: {fileID: 871922998}
+  - component: {fileID: 871922999}
   m_Layer: 5
   m_Name: FullscreenToggle
   m_TagString: Untagged
@@ -1855,6 +1895,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!225 &871922999
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871922996}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &893934403
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,7 +4241,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_group: {fileID: 1632533136}
+  m_elementsGroup:
+  - {fileID: 294515032}
+  - {fileID: 545055883}
+  - {fileID: 871922999}
+  - {fileID: 629674823}
   m_firstSelectedControl: {fileID: 365812524}
+  m_showAnimDurationPerElement: 0.3
+  m_showAnimDelayBetweenElements: 0.1
+  m_hideAnimDuration: 0.15
 --- !u!225 &1632533136
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4481,7 +4541,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_group: {fileID: 1775743361}
+  m_elementsGroup: []
   m_firstSelectedControl: {fileID: 1373572010}
+  m_showAnimDurationPerElement: 0.3
+  m_showAnimDelayBetweenElements: 0.1
+  m_hideAnimDuration: 0.15
 --- !u!225 &1775743361
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ namespace Cgw.UI
 
             InitScreenOptions();
 
-            m_optionsPages.Hide();
+            m_optionsPages.ForceHide();
             m_homePage.Show();
 
             m_configuration = ResourcesManager.Get<Configuration>("configuration");
@@ -139,14 +139,14 @@ namespace Cgw.UI
 
         private void OptionsBtn_OnClick()
         {
-            m_optionsPages.Show();
-            m_homePage.Hide();
+            float delay = m_homePage.Hide();
+            m_optionsPages.Show(delay);
         }
 
         private void BackBtn_OnClick()
         {
-            m_optionsPages.Hide();
-            m_homePage.Show();
+            float delay = m_optionsPages.Hide();
+            m_homePage.Show(delay);
         }
 
         private void StartBtn_OnClick()
