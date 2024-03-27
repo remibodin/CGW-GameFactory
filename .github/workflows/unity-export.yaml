@@ -37,7 +37,7 @@ jobs:
         id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}
+          name: CGW-StandalonWindows64-${{ steps.build.outputs.buildVersion }}
           path: build/StandaloneWindows64
       - name: Discord notification
         uses: rjstone/discord-webhook-notify@v1
