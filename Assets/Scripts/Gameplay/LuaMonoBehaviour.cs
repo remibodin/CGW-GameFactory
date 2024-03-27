@@ -24,9 +24,15 @@ namespace Cgw.Gameplay
             m_Instance.Call(action, args);
         }
 
-        public void OnAnimEvent(string animEvent)
+        public void AnimEvent(string animEvent)
         {
             m_Instance.Call("OnAnimEvent", animEvent);
+            OnAnimEvent(animEvent);
+        }
+
+        protected virtual void OnAnimEvent(string animEvent)
+        {
+
         }
 
         public void AddForceImpulse(Vector3 force)

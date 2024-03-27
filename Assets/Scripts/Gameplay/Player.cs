@@ -1,14 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 
-using Unity.Mathematics;
 using UnityEngine;
+using Unity.Mathematics;
+
+using FMODUnity;
+using FMOD.Studio;
 
 using Cgw.Assets;
 using Cgw.Scripting;
-using System.Linq;
-
 using Cgw.Audio;
 
 namespace Cgw.Gameplay
@@ -26,8 +26,10 @@ namespace Cgw.Gameplay
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
+        public EventReference FootStepEventRef;
 
         private Collider2D m_Collider;
+        private EventInstance m_footStepEventInstance;
 
         private void Start()
         {
@@ -36,6 +38,15 @@ namespace Cgw.Gameplay
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
+
+            m_footStepEventInstance = RuntimeManager.CreateInstance(FootStepEventRef);
+            RuntimeManager.AttachInstanceToGameObject(m_footStepEventInstance, transform);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            m_footStepEventInstance.release();
         }
 
         protected override void OnAssetUpdate(LuaInstance instance)
@@ -142,6 +153,15 @@ namespace Cgw.Gameplay
                         enemy.Attacked(power);
                     }
                 }
+            }
+        }
+
+        protected override void OnAnimEvent(string animEvent)
+        {
+            if (animEvent == "HeroStep")
+            {
+                m_footStepEventInstance.setParameterByName("Material", (float)OnMaterial);
+                m_footStepEventInstance.start();
             }
         }
 

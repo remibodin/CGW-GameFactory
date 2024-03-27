@@ -93,14 +93,6 @@ function Update()
     PreviousOnMaterial = this.OnMaterial
 end
 
-function PlayFootStep()
-    AudioManager:PlayFmodEvent('event:/Player/FootStep')
-    -- if (this.OnMaterial == "Dirt") then
-    --     AudioManager:PlayRandom('Sounds/Collections/FootStepsDirtRight')
-    -- elseif (this.OnMaterial == "Wood") then
-
-    -- end
-end
 
 function OnAnimEvent(animEvent)
     if (animEvent == "AttackSound") then
@@ -109,7 +101,4 @@ function OnAnimEvent(animEvent)
         AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
     elseif (animEvent == "HeroJumpingStart") then
         -- AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
-    elseif (animEvent == "HeroStep") then
-        PlayFootStep()
-    end
 end

@@ -1,8 +1,8 @@
 namespace Cgw.Audio
 {
-    public enum ESurfaceType
+    public enum ESurfaceType : byte
     {
-        Unknown = -1,
+        Unknown = byte.MaxValue,
         Dirt = 0,
         Wood = 1
     }
