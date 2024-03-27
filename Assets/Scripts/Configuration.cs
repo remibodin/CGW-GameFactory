@@ -12,6 +12,8 @@ namespace Cgw
         // StartMenu
         [YamlMember(Alias = "menu_logo")]
         public string MenuLogoIdentifier;
+        [YamlMember(Alias = "menu_logo_lighting")]
+        public string MenuLogoLightingIdentifier;
         [YamlMember(Alias = "menu_title")]
         public string MenuTitleIdentifier;
         [YamlMember(Alias = "menu_background_color")]
