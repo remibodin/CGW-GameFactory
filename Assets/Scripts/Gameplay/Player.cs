@@ -9,6 +9,8 @@ using Cgw.Assets;
 using Cgw.Scripting;
 using System.Linq;
 
+using Cgw.Audio;
+
 namespace Cgw.Gameplay
 {
     public class Player : LuaEnvItem
@@ -16,7 +18,7 @@ namespace Cgw.Gameplay
         public ContactFilter2D TerrainContactFilter;
         
         public bool OnGround;
-        public string OnMaterial;
+        public ESurfaceType OnMaterial;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
@@ -59,12 +61,12 @@ namespace Cgw.Gameplay
                 var hit = hits.First(x => !x.collider.CompareTag("Player") && !x.collider.CompareTag("Spider"));  
                 var hitNormal = hit.normal;
                 OnGround = Mathf.Abs(hitNormal.y) > MinSurfaceAngle;
-                OnMaterial = hit.collider.tag;
+                OnMaterial = hit.collider.GetSurfaceType();
             }
             else
             {
                 OnGround = false;
-                OnMaterial = "Air";
+                OnMaterial = ESurfaceType.Unknown;
             }
 
             AttackCooldown -= Time.deltaTime;
