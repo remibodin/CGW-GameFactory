@@ -12,6 +12,9 @@ jobs:
 
   windows-export:
     runs-on: windows-latest
+    outputs:
+      buildVersion: ${{steps.build.outputs.buildVersion}}
+      artifact-url: ${{steps.upload.outputs.artifact-url}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,6 +52,9 @@ jobs:
 
   macos-export:
     runs-on: macos-latest
+    outputs:
+      buildVersion: ${{steps.build.outputs.buildVersion}}
+      artifact-url: ${{steps.upload.outputs.artifact-url}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -93,8 +99,6 @@ jobs:
         if: success()
         with:
           severity: info
-          description: '**Version ${{needs.windows-export.build.outputs.buildVersion}}**'
-          details: |
-            [Windows 64](${{ needs.windows-export.upload.outputs.artifact-url }})
-            [MacOS universal](${{ needs.macos-export.upload.outputs.artifact-url }})
+          description: '**Version ${{needs.windows-export.outputs.buildVersion}}**'
+          details: "[Windows 64](${{ needs.windows-export.outputs.artifact-url }}) [MacOS universal](${{ needs.macos-export.outputs.artifact-url }})"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
