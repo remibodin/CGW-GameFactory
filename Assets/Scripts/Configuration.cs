@@ -16,6 +16,8 @@ namespace Cgw
         public string MenuLogoLightingIdentifier;
         [YamlMember(Alias = "menu_title")]
         public string MenuTitleIdentifier;
+        [YamlMember(Alias = "menu_halo_fx")]
+        public string MenuHaloFXIdentifier;
         [YamlMember(Alias = "menu_background_color")]
         public string MenuBackgroundColor = "#000000";
         [YamlMember(Alias = "menu_loop_sfx")]

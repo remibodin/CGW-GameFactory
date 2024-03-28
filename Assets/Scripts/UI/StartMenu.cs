@@ -17,6 +17,7 @@ namespace Cgw.UI
         [SerializeField] private Image m_logo;
         [SerializeField] private Image m_logoLighting;
         [SerializeField] private Image m_title;
+        [SerializeField] private Image m_titleHaloFx;
         [SerializeField] private StartMenuPage m_homePage;
         [SerializeField] private StartMenuPage m_optionsPages;
 
@@ -36,16 +37,10 @@ namespace Cgw.UI
         private UiImageBehaviour m_logoBehaviour;
         private UiImageBehaviour m_logoLightingBehaviour;
         private UiImageBehaviour m_titleBehaviour;
+        private UiImageBehaviour m_titleHaloFxBehaviour;
         private Configuration m_configuration;
 
         private List<Resolution> m_availableResolutions;
-
-        private CanvasGroup m_logoLightingGroup = null;
-
-        private void Awake()
-        {
-            m_logoLightingGroup = m_logoLighting.GetComponent<CanvasGroup>();
-        }
 
         private void Start()
         {
@@ -88,6 +83,9 @@ namespace Cgw.UI
 
             m_titleBehaviour = m_title.gameObject.AddComponent<UiImageBehaviour>();
             m_title.preserveAspect = true;
+
+            m_titleHaloFxBehaviour = m_titleHaloFx.gameObject.AddComponent<UiImageBehaviour>();
+            m_titleHaloFx.preserveAspect = true;
 
             UpdateConfiguration();
         }
@@ -209,10 +207,12 @@ namespace Cgw.UI
             m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
             m_logoLightingBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoLightingIdentifier);
             m_titleBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuTitleIdentifier);
+            m_titleHaloFxBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuHaloFXIdentifier);
 
             m_logo.enabled = m_logoBehaviour.Asset != null;
             m_logoLighting.enabled = m_logoLightingBehaviour.Asset != null && m_logo.enabled;
             m_title.enabled = m_titleBehaviour.Asset != null;
+            m_titleHaloFx.enabled = m_titleHaloFxBehaviour.Asset != null;
         }
     }
 }
