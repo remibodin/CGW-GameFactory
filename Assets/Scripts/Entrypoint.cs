@@ -21,7 +21,7 @@ namespace Cgw
 
             string externalAssetsPAth = "ExternalAssets";
 #if UNITY_STANDALONE_OSX && !UNITY_EDITOR
-            externalAssetsPAth = Path.Combine(Application.dataPath, externalAssetsPAth);
+            externalAssetsPAth = Path.Combine(Application.dataPath, "Resources/Data/StreamingAssets", externalAssetsPAth);
 #endif
 
             ResourcesManager.SetProjectRoot(externalAssetsPAth);

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Cgw.Editor
 {
-    public class ExternalAssetExporter : IPostprocessBuildWithReport
+    public class WindowsExternalAssetExporter : IPostprocessBuildWithReport
     {
         public int callbackOrder => 0;
 
@@ -25,23 +25,8 @@ namespace Cgw.Editor
                     externalAssetsBuildPath = Path.Combine(fileInfo.Directory.FullName, "ExternalAssets");
                 }
                 break;
-                case BuildTarget.StandaloneOSX :
-                {
-                    var buildPath = Path.GetFullPath(p_report.summary.outputPath);
-                    if (!buildPath.EndsWith(".app"))
-                    {
-                        buildPath += ".app";
-                    }
-                    var directoryInfo = new DirectoryInfo(buildPath);
-                    externalAssetsBuildPath = Path.Combine(directoryInfo.FullName, "Contents", "ExternalAssets");
-                }
-                break;
-            }
-
-            if (externalAssetsBuildPath == null)
-            {
-                Debug.LogWarning($"[ExternalAssetExporter] Platform not supported (platform={p_report.summary.platform})");
-                return;
+                default:
+                    return;
             }
 
             var externalAssetsPath = Path.GetFullPath("ExternalAssets");
