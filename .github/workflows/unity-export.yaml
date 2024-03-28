@@ -51,7 +51,7 @@ jobs:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   macos-export:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     outputs:
       buildVersion: ${{steps.build.outputs.buildVersion}}
       artifact-url: ${{steps.upload.outputs.artifact-url}}
