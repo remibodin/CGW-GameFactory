@@ -10,9 +10,6 @@ namespace RuntimeNodeEditor
 #if ENABLE_LEGACY_INPUT_MANAGER
 	        mousePosition = Input.mousePosition;
 #endif
-#if ENABLE_INPUT_SYSTEM
-	        mousePosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
-#endif
             return mousePosition;
         }
 
@@ -32,12 +29,6 @@ namespace RuntimeNodeEditor
                                                                                   Input.mousePosition,
                                                                                   null,
                                                                                   out localPointerPos);
-#endif
-#if ENABLE_INPUT_SYSTEM
-	        success = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect,
-		        						UnityEngine.InputSystem.Mouse.current.position.ReadValue(),
-		        						null,
-		        						out localPointerPos);
 #endif
             return localPointerPos;
         }

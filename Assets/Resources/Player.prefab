@@ -444,6 +444,7 @@ MonoBehaviour:
   Facing: {x: 1, y: 0, z: 0}
   MinSurfaceAngle: 0.8
   Motion: {x: 0, y: 0}
+  InputActions: {fileID: -944628639613478452, guid: 2efbd34f4e52f694ba5d39c456305106, type: 3}
 --- !u!50 &5980383037646149594
 Rigidbody2D:
   serializedVersion: 4

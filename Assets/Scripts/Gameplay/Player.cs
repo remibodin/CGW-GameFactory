@@ -8,6 +8,7 @@ using UnityEngine;
 using Cgw.Assets;
 using Cgw.Scripting;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 namespace Cgw.Gameplay
 {
@@ -25,7 +26,49 @@ namespace Cgw.Gameplay
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
 
+        public InputActionAsset InputActions;
+
         private Collider2D m_Collider;
+
+        private InputAction m_HorizontalAction = null;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            InputActions.Enable();
+
+            m_HorizontalAction = InputActions.FindActionMap("Player").FindAction("Horizontal");
+
+            InputActions.FindActionMap("Player").FindAction("Jump").performed += Player_OnJump;
+            InputActions.FindActionMap("Player").FindAction("Attack").performed += Player_OnAttack;
+            InputActions.FindActionMap("Player").FindAction("Interact").performed += Player_OnInteract;
+            InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed += Player_OnAragnaAttack;
+        }
+
+        private void Player_OnAragnaAttack(InputAction.CallbackContext context)
+        {
+            Debug.Log("AragnaAttack");
+            m_Instance.Call("OnAragnaAttack");
+        }
+
+        private void Player_OnInteract(InputAction.CallbackContext context)
+        {
+            Debug.Log("Interact");
+            m_Instance.Call("OnInteract");
+        }
+
+        private void Player_OnAttack(InputAction.CallbackContext context)
+        {
+            Debug.Log("Attack");
+            m_Instance.Call("OnAttack");
+        }
+
+        private void Player_OnJump(InputAction.CallbackContext obj)
+        {
+            Debug.Log("Jump");
+            m_Instance.Call("OnJump");
+        }
 
         private void Start()
         {
@@ -43,6 +86,11 @@ namespace Cgw.Gameplay
             instance["this"] = this;
         }
 
+        public float GetHorizontalInput()
+        {
+            return m_HorizontalAction.ReadValue<float>();
+        }
+
         public void TakeDamage(float power, Enemy enemy)
         {
             m_Instance.Call("TakeDamage", power, enemy);
@@ -50,6 +98,7 @@ namespace Cgw.Gameplay
 
         private void Update()
         {
+            Debug.Log("horizontal = " + m_HorizontalAction.ReadValue<float>());
             Motion = Vector2.zero;
 
             var hits = Physics2D.RaycastAll(transform.position, Vector2.down, 0.2f);
