@@ -48,25 +48,21 @@ namespace Cgw.Gameplay
 
         private void Player_OnAragnaAttack(InputAction.CallbackContext context)
         {
-            Debug.Log("AragnaAttack");
             m_Instance.Call("OnAragnaAttack");
         }
 
         private void Player_OnInteract(InputAction.CallbackContext context)
         {
-            Debug.Log("Interact");
             m_Instance.Call("OnInteract");
         }
 
         private void Player_OnAttack(InputAction.CallbackContext context)
         {
-            Debug.Log("Attack");
             m_Instance.Call("OnAttack");
         }
 
         private void Player_OnJump(InputAction.CallbackContext obj)
         {
-            Debug.Log("Jump");
             m_Instance.Call("OnJump");
         }
 
@@ -98,7 +94,6 @@ namespace Cgw.Gameplay
 
         private void Update()
         {
-            Debug.Log("horizontal = " + m_HorizontalAction.ReadValue<float>());
             Motion = Vector2.zero;
 
             var hits = Physics2D.RaycastAll(transform.position, Vector2.down, 0.2f);
