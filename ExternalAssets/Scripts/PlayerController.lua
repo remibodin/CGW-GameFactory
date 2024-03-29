@@ -107,12 +107,12 @@ function OnJump()
 end
 
 
-function OnAnimEvent(animEvent)
-    if (animEvent == "AttackSound") then
-        AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
-    elseif (animEvent == "HeroLanding") then
-        AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
-    elseif (animEvent == "HeroJumpingStart") then
-        -- AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
-    end
-end
+-- function OnAnimEvent(animEvent)
+--     if (animEvent == "AttackSound") then
+--         AudioManager:Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1")
+--     elseif (animEvent == "HeroLanding") then
+--         AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+--     elseif (animEvent == "HeroJumpingStart") then
+--         -- AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+--     end
+-- end
