@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{22d0e959-488e-4e6f-8a1b-1cc8c32e9dde}">
+		<property name="assetPath">
+			<value>Jump/HERO_SAUT_BOIS-09_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.70111111111111113</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{162b2e50-4426-444a-85fa-4a6370cda07a}</destination>
+		</relationship>
+	</object>
+</objects>

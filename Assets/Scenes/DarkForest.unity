@@ -7580,26 +7580,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8972128007618031464, guid: 95308285485844a2aa270d59a37908e4, type: 3}
-      propertyPath: FootStepEventRef.Path
-      value: event:/Player/FootStep
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972128007618031464, guid: 95308285485844a2aa270d59a37908e4, type: 3}
-      propertyPath: FootStepEventRef.Guid.Data1
-      value: 1979791194
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972128007618031464, guid: 95308285485844a2aa270d59a37908e4, type: 3}
-      propertyPath: FootStepEventRef.Guid.Data2
-      value: 1238079494
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972128007618031464, guid: 95308285485844a2aa270d59a37908e4, type: 3}
-      propertyPath: FootStepEventRef.Guid.Data3
-      value: 1712055219
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972128007618031464, guid: 95308285485844a2aa270d59a37908e4, type: 3}
-      propertyPath: FootStepEventRef.Guid.Data4
-      value: 1231085810
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -436,7 +436,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   OnGround: 0
-  OnMaterial: 
+  OnMaterial: 0
   AttackCooldown: 0
   JumpCooldown: 0
   DamageCooldown: 0
@@ -444,6 +444,20 @@ MonoBehaviour:
   Facing: {x: 1, y: 0, z: 0}
   MinSurfaceAngle: 0.8
   Motion: {x: 0, y: 0}
+  FootStepEventRef:
+    Guid:
+      Data1: 1979791194
+      Data2: 1238079494
+      Data3: 1712055219
+      Data4: 1231085810
+    Path: event:/Player/FootStep
+  LandingEventRef:
+    Guid:
+      Data1: 1690858777
+      Data2: 1212767386
+      Data3: -1375956592
+      Data4: 1598306399
+    Path: event:/Player/Landing
 --- !u!50 &5980383037646149594
 Rigidbody2D:
   serializedVersion: 4

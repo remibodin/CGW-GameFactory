@@ -16,9 +16,6 @@ namespace Cgw.Gameplay
     public class Player : LuaEnvItem
     {
         public ContactFilter2D TerrainContactFilter;
-        
-        public bool OnGround;
-        public ESurfaceType OnMaterial;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
@@ -27,9 +24,14 @@ namespace Cgw.Gameplay
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
         public EventReference FootStepEventRef;
+        public EventReference LandingEventRef;
+
+        public bool OnGround { get; private set; }
+        public ESurfaceType OnMaterial { get; private set; }
 
         private Collider2D m_Collider;
         private EventInstance m_footStepEventInstance;
+        private EventInstance m_landingEventInstance;
 
         private void Start()
         {
@@ -41,12 +43,16 @@ namespace Cgw.Gameplay
 
             m_footStepEventInstance = RuntimeManager.CreateInstance(FootStepEventRef);
             RuntimeManager.AttachInstanceToGameObject(m_footStepEventInstance, transform);
+
+            m_landingEventInstance = RuntimeManager.CreateInstance(LandingEventRef);
+            RuntimeManager.AttachInstanceToGameObject(m_landingEventInstance, transform);
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             m_footStepEventInstance.release();
+            m_landingEventInstance.release();
         }
 
         protected override void OnAssetUpdate(LuaInstance instance)
@@ -162,6 +168,11 @@ namespace Cgw.Gameplay
             {
                 m_footStepEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_footStepEventInstance.start();
+            }
+            if (animEvent == "HeroLanding")
+            {
+                m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
+                m_landingEventInstance.start();
             }
         }
 
