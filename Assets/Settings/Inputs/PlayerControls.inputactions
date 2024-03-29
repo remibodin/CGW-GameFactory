@@ -142,6 +142,17 @@
                 },
                 {
                     "name": "",
+                    "id": "784be04a-335e-4139-9072-b80b2eb6d9c1",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "AxisDeadzone(min=0.4,max=0.9)",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "95adf1af-92ce-460b-b9df-8d8901888660",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
