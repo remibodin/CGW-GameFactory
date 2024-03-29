@@ -1041,7 +1041,7 @@ Transform:
   m_GameObject: {fileID: 270359614}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.058, y: -0.73384225, z: 0}
+  m_LocalPosition: {x: 5.029, y: -0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1079,7 +1079,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01330024, y: -0.011665225}
+  m_Offset: {x: 0.01330024, y: -0.028676271}
   m_SpriteTilingProperty:
     border: {x: 0.10666667, y: 0.33733332, z: 0.18066667, w: 1.2919999}
     pivot: {x: 0.4848255, y: 0.26395208}
@@ -1090,7 +1090,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6249255, y: 0.35478616}
+  m_Size: {x: 1.6249255, y: 0.32076406}
   m_EdgeRadius: 0
 --- !u!114 &270359617
 MonoBehaviour:
@@ -2150,7 +2150,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2917,7 +2917,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01330024, y: -0.011665225}
+  m_Offset: {x: 0.01330024, y: -0.025436074}
   m_SpriteTilingProperty:
     border: {x: 0.10666667, y: 0.33733332, z: 0.18066667, w: 1.2919999}
     pivot: {x: 0.4848255, y: 0.26395208}
@@ -2928,7 +2928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6249255, y: 0.35478616}
+  m_Size: {x: 1.6249255, y: 0.32724446}
   m_EdgeRadius: 0
 --- !u!114 &829952189
 MonoBehaviour:
@@ -5414,6 +5414,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1517806584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517806586}
+  - component: {fileID: 1517806585}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1517806585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517806584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3a8e524be5954444aafbd12932293006, type: 2}
+--- !u!4 &1517806586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517806584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.403612, y: -0.46364278, z: -0.008745845}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525728558
 GameObject:
   m_ObjectHideFlags: 0
@@ -7542,11 +7591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8461049090513450010, guid: 95308285485844a2aa270d59a37908e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04
+      value: -0.153
       objectReference: {fileID: 0}
     - target: {fileID: 8461049090513450010, guid: 95308285485844a2aa270d59a37908e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.81
+      value: -0.83521366
       objectReference: {fileID: 0}
     - target: {fileID: 8461049090513450010, guid: 95308285485844a2aa270d59a37908e4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7673,6 +7722,7 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1517806586}
   - {fileID: 763230024}
   - {fileID: 347107168}
   - {fileID: 592105410}

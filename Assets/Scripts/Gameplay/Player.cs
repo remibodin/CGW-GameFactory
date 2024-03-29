@@ -26,6 +26,7 @@ namespace Cgw.Gameplay
         public Vector2 Motion;
         public EventReference FootStepEventRef;
         public EventReference LandingEventRef;
+        public EventReference AttackEventRef;
 
         public bool OnGround { get; private set; }
         public ESurfaceType OnMaterial { get; private set; }
@@ -217,6 +218,10 @@ namespace Cgw.Gameplay
             {
                 m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_landingEventInstance.start();
+            }
+            if (animEvent == "HeroAttack")
+            {
+                RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
             }
         }
 
