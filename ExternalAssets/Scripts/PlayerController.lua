@@ -101,4 +101,5 @@ function OnAnimEvent(animEvent)
         AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
     elseif (animEvent == "HeroJumpingStart") then
         -- AudioManager:PlayRandom("Sounds/Collections/JumpDirt")
+    end
 end
