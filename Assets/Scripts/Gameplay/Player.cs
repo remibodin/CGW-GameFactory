@@ -1,23 +1,22 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.InputSystem;
 
-using Unity.Mathematics;
 using UnityEngine;
+using Unity.Mathematics;
+
+using FMODUnity;
+using FMOD.Studio;
 
 using Cgw.Assets;
 using Cgw.Scripting;
-using System.Linq;
-using UnityEngine.InputSystem;
+using Cgw.Audio;
 
 namespace Cgw.Gameplay
 {
     public class Player : LuaEnvItem
     {
         public ContactFilter2D TerrainContactFilter;
-        
-        public bool OnGround;
-        public string OnMaterial;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
         public float DamageCooldown = 0.0f;
@@ -25,10 +24,17 @@ namespace Cgw.Gameplay
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
+        public EventReference FootStepEventRef;
+        public EventReference LandingEventRef;
+
+        public bool OnGround { get; private set; }
+        public ESurfaceType OnMaterial { get; private set; }
 
         public InputActionAsset InputActions;
 
         private Collider2D m_Collider;
+        private EventInstance m_footStepEventInstance;
+        private EventInstance m_landingEventInstance;
 
         private InputAction m_HorizontalAction = null;
 
@@ -73,6 +79,19 @@ namespace Cgw.Gameplay
             var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
             scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
             scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
+
+            m_footStepEventInstance = RuntimeManager.CreateInstance(FootStepEventRef);
+            RuntimeManager.AttachInstanceToGameObject(m_footStepEventInstance, transform);
+
+            m_landingEventInstance = RuntimeManager.CreateInstance(LandingEventRef);
+            RuntimeManager.AttachInstanceToGameObject(m_landingEventInstance, transform);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            m_footStepEventInstance.release();
+            m_landingEventInstance.release();
         }
 
         protected override void OnAssetUpdate(LuaInstance instance)
@@ -103,12 +122,12 @@ namespace Cgw.Gameplay
                 var hit = hits.First(x => !x.collider.CompareTag("Player") && !x.collider.CompareTag("Spider"));  
                 var hitNormal = hit.normal;
                 OnGround = Mathf.Abs(hitNormal.y) > MinSurfaceAngle;
-                OnMaterial = hit.collider.tag;
+                OnMaterial = hit.collider.GetSurfaceType();
             }
             else
             {
                 OnGround = false;
-                OnMaterial = "Air";
+                OnMaterial = ESurfaceType.Unknown;
             }
 
             AttackCooldown -= Time.deltaTime;
@@ -184,6 +203,20 @@ namespace Cgw.Gameplay
                         enemy.Attacked(power);
                     }
                 }
+            }
+        }
+
+        protected override void OnAnimEvent(string animEvent)
+        {
+            if (animEvent == "HeroStep")
+            {
+                m_footStepEventInstance.setParameterByName("Material", (float)OnMaterial);
+                m_footStepEventInstance.start();
+            }
+            if (animEvent == "HeroLanding")
+            {
+                m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
+                m_landingEventInstance.start();
             }
         }
 

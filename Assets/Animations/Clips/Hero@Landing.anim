@@ -1832,7 +1832,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: OnAnimEvent
+    functionName: AnimEvent
     data: HeroLanding
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
