@@ -70,7 +70,7 @@ end
 
 function Start()
     this.Opacity = MinOpacity
-    AudioManager:Play("Sounds/FANTOME_RODE_07_1")
+    -- AudioManager:Play("Sounds/FANTOME_RODE_07_1")
 end
 
 function Update()
@@ -85,7 +85,7 @@ function Die()
 end
 
 function Knockback(directionFromPlayer)
-    AudioManager:Play("Sounds/FANTOME_RECOIT_COUP_3_1")
+    -- AudioManager:Play("Sounds/FANTOME_RECOIT_COUP_3_1")
     this:AddForceImpulse(directionFromPlayer * 3.0)
 end
 
