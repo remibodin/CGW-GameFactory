@@ -40,7 +40,7 @@ namespace Cgw
             switch (p_args)
             {
                 case "mu" : 
-                    go = Resources.Load("Enemies/Mushroom") as GameObject;
+                    go = Resources.Load("Enemies/Mushroom01") as GameObject;
                 break;
                 default:
                     go = Resources.Load(p_args) as GameObject;
