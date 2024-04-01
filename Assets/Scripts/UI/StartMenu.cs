@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 using TMPro;
 
-using Cgw.Audio;
 using Cgw.Assets;
 using Cgw.Graphics;
 using Cgw.Localization;
@@ -32,8 +31,6 @@ namespace Cgw.UI
         [SerializeField] private TMP_Dropdown m_resolutionDropDown;
         [SerializeField] private Toggle m_fullscreenToggle;
 
-        private SoundBehaviour m_selectedSound;
-        private SoundBehaviour m_loopSound;
         private UiImageBehaviour m_logoBehaviour;
         private UiImageBehaviour m_logoLightingBehaviour;
         private UiImageBehaviour m_titleBehaviour;
@@ -72,9 +69,6 @@ namespace Cgw.UI
             }
             m_configuration.OnUpdated += OnConfigurationUpdated;
 
-            m_selectedSound = new GameObject("[Sound] Selected").AddComponent<SoundBehaviour>();
-            m_loopSound = new GameObject("[Sound] Loop").AddComponent<SoundBehaviour>();
-
             m_logoBehaviour = m_logo.gameObject.AddComponent<UiImageBehaviour>();
             m_logo.preserveAspect = true;
 
@@ -84,8 +78,6 @@ namespace Cgw.UI
             m_titleBehaviour = m_title.gameObject.AddComponent<UiImageBehaviour>();
             m_title.preserveAspect = true;
 
-            // m_titleHaloFxBehaviour = m_titleHaloFx.gameObject.AddComponent<UiImageBehaviour>();
-            // m_titleHaloFx.preserveAspect = true;
             m_titleHaloFx.enabled = false;
 
             UpdateConfiguration();
@@ -139,7 +131,7 @@ namespace Cgw.UI
 
         public void PlaySelectedSound()
         {
-            m_selectedSound?.Source.Play();
+
         }
 
         private void ExitBtn_OnClick()
@@ -203,8 +195,6 @@ namespace Cgw.UI
             {
                 m_background.color = color;
             }
-            m_loopSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuLoopButtonSfxIdentifier);
-            m_selectedSound.Asset = ResourcesManager.Get<SoundAsset>(m_configuration.MenuSelectButtonSfxIdentifier);
             m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
             m_logoLightingBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoLightingIdentifier);
             m_titleBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuTitleIdentifier);
