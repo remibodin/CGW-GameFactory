@@ -3,8 +3,8 @@ import 'UnityEngine'
 local Life = 1.0;
 local AttackPower = 1.0;
 
-local ChaseRange = 3.0;
-local ChaseSpeed = 1.0;
+local ChaseRange = 1.5;
+local ChaseSpeed = 0.8;
 local ChaseMode = false;
 
 local IsSpiderTouched = false;
