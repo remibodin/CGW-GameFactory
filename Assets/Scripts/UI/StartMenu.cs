@@ -84,8 +84,9 @@ namespace Cgw.UI
             m_titleBehaviour = m_title.gameObject.AddComponent<UiImageBehaviour>();
             m_title.preserveAspect = true;
 
-            m_titleHaloFxBehaviour = m_titleHaloFx.gameObject.AddComponent<UiImageBehaviour>();
-            m_titleHaloFx.preserveAspect = true;
+            // m_titleHaloFxBehaviour = m_titleHaloFx.gameObject.AddComponent<UiImageBehaviour>();
+            // m_titleHaloFx.preserveAspect = true;
+            m_titleHaloFx.enabled = false;
 
             UpdateConfiguration();
         }
@@ -207,12 +208,12 @@ namespace Cgw.UI
             m_logoBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoIdentifier);
             m_logoLightingBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuLogoLightingIdentifier);
             m_titleBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuTitleIdentifier);
-            m_titleHaloFxBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuHaloFXIdentifier);
+            //m_titleHaloFxBehaviour.Asset = ResourcesManager.Get<SpriteAsset>(m_configuration.MenuHaloFXIdentifier);
 
             m_logo.enabled = m_logoBehaviour.Asset != null;
             m_logoLighting.enabled = m_logoLightingBehaviour.Asset != null && m_logo.enabled;
             m_title.enabled = m_titleBehaviour.Asset != null;
-            m_titleHaloFx.enabled = m_titleHaloFxBehaviour.Asset != null;
+            //m_titleHaloFx.enabled = m_titleHaloFxBehaviour.Asset != null;
         }
     }
 }
