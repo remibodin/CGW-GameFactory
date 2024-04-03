@@ -408,6 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8404795ca5344ce58f3577700e399d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HorizontalSpeedNameParameter: Horizontal
+  VerticalSpeedNameParameter: Vertical
+  MaxXMotionValue: 0.65
 --- !u!114 &8972128007618031464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,8 +438,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  OnGround: 0
-  OnMaterial: 
   AttackCooldown: 0
   JumpCooldown: 0
   DamageCooldown: 0
@@ -444,6 +445,28 @@ MonoBehaviour:
   Facing: {x: 1, y: 0, z: 0}
   MinSurfaceAngle: 0.8
   Motion: {x: 0, y: 0}
+  FootStepEventRef:
+    Guid:
+      Data1: 1979791194
+      Data2: 1238079494
+      Data3: 1712055219
+      Data4: 1231085810
+    Path: event:/Player/FootStep
+  LandingEventRef:
+    Guid:
+      Data1: 1690858777
+      Data2: 1212767386
+      Data3: -1375956592
+      Data4: 1598306399
+    Path: event:/Player/Landing
+  AttackEventRef:
+    Guid:
+      Data1: -809873788
+      Data2: 1124256974
+      Data3: 1956366511
+      Data4: 781405840
+    Path: event:/Player/Attack
+  InputActions: {fileID: -944628639613478452, guid: 2efbd34f4e52f694ba5d39c456305106, type: 3}
 --- !u!50 &5980383037646149594
 Rigidbody2D:
   serializedVersion: 4

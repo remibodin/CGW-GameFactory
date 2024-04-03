@@ -3,8 +3,8 @@ import 'UnityEngine'
 local Life = 1.0;
 local AttackPower = 1.0;
 
-local ChaseRange = 3.0;
-local ChaseSpeed = 1.0;
+local ChaseRange = 1.5;
+local ChaseSpeed = 0.8;
 local ChaseMode = false;
 
 local IsSpiderTouched = false;
@@ -25,7 +25,7 @@ function Attacked(power)
     local directionFromPlayer = (this.transform.position - player.transform.position).normalized
     this:DelayAction(0.32, "Knockback", directionFromPlayer)
     if Life <= 0.0 then
-        AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
+        -- AudioManager:Play("Sounds/CHAMPI_DEGONFLER_06_1")
         this:DelayAction(0.7, "Die")
     end
 end
@@ -33,7 +33,7 @@ end
 function OnCollisionWithPlayer()
     NoMove = true
     player:TakeDamage(AttackPower, this)
-    AudioManager:Play("Sounds/CHAMPI_POP_B-12_1")
+    -- AudioManager:Play("Sounds/CHAMPI_POP_B-12_1")
     Object.Destroy(this.gameObject, 0.8)
 end
 
