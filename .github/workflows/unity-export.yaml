@@ -10,45 +10,45 @@ on:
 
 jobs:
 
-  windows-export:
-    runs-on: ubuntu-latest
-    outputs:
-      buildVersion: ${{steps.build.outputs.buildVersion}}
-      artifact-url: ${{steps.upload.outputs.artifact-url}}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Cache files
-        uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-      - name: Build 
-        id: build
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: StandaloneWindows64
-          buildName: CGW
-          versioning: Semantic
-      - name: Upload
-        id: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: CGW-StandalonWindows64-${{ steps.build.outputs.buildVersion }}
-          path: build/StandaloneWindows64
-      - name: Discord notification
-        uses: rjstone/discord-webhook-notify@v1
-        if: failure()
-        with:
-          severity: error
-          description: '**StandaloneWindows64** build failed'
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+  # windows-export:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     buildVersion: ${{steps.build.outputs.buildVersion}}
+  #     artifact-url: ${{steps.upload.outputs.artifact-url}}
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #     - name: Cache files
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: Library
+  #         key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+  #         restore-keys: |
+  #           Library-
+  #     - name: Build 
+  #       id: build
+  #       uses: game-ci/unity-builder@v4
+  #       env:
+  #         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  #         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  #         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+  #       with:
+  #         targetPlatform: StandaloneWindows64
+  #         buildName: CGW
+  #         versioning: Semantic
+  #     - name: Upload
+  #       id: upload
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: CGW-StandalonWindows64-${{ steps.build.outputs.buildVersion }}
+  #         path: build/StandaloneWindows64
+  #     - name: Discord notification
+  #       uses: rjstone/discord-webhook-notify@v1
+  #       if: failure()
+  #       with:
+  #         severity: error
+  #         description: '**StandaloneWindows64** build failed'
+  #         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   macos-export:
     runs-on: macos-latest
@@ -76,31 +76,30 @@ jobs:
           targetPlatform: StandaloneOSX
           buildName: CGW
           versioning: Semantic
-      - name: Archive
-        run: tar -cvf CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}.tar -C build/StandaloneOSX CGW.app
+      - name: Chmod and Archive
+        run: chmod -R +x build/StandaloneOSX/CGW.app/Content/MacOS ; tar -cvf CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}.tar -C build/StandaloneOSX CGW.app
       - name: Upload
         id: upload
         uses: actions/upload-artifact@v4
         with:
           name: CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}
           path: CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}.tar
-      - name: Discord notification
-        uses: rjstone/discord-webhook-notify@v1
-        if: failure()
-        with:
-          severity: error
-          description: '**StandaloneOSX** build failed'
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # - name: Discord notification
+      #   uses: rjstone/discord-webhook-notify@v1
+      #   if: failure()
+      #   with:
+      #     severity: error
+      #     description: '**StandaloneOSX** build failed'
+      #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
-  discord-notification:
-    runs-on: ubuntu-latest
-    needs: [windows-export, macos-export]
-    steps:
-      - name: Discord notification
-        uses: rjstone/discord-webhook-notify@v1
-        if: success()
-        with:
-          severity: info
-          description: '**Version ${{needs.windows-export.outputs.buildVersion}}**'
-          details: "[Windows 64](${{ needs.windows-export.outputs.artifact-url }}) | [MacOS universal](${{ needs.macos-export.outputs.artifact-url }})"
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+  # discord-notification:
+  #   runs-on: ubuntu-latest
+  #   needs: [windows-export, macos-export]
+  #   steps:
+  #     - name: Discord notification
+  #       uses: rjstone/discord-webhook-notify@v1
+  #       with:
+  #         severity: info
+  #         description: '**Version ${{needs.windows-export.outputs.buildVersion}}**'
+  #         details: "[Windows 64](${{ needs.windows-export.outputs.artifact-url }}) | [MacOS universal](${{ needs.macos-export.outputs.artifact-url }})"
+  #         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
