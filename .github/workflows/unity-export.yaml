@@ -77,7 +77,7 @@ jobs:
           buildName: CGW
           versioning: Semantic
       - name: Chmod and Archive
-        run: chmod -R +x build/StandaloneOSX/CGW.app/Content/MacOS ; tar -cvf CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}.tar -C build/StandaloneOSX CGW.app
+        run: chmod -R +x build/StandaloneOSX/CGW.app/Contents/MacOS ; tar -cvf CGW-StandaloneOSX-${{ steps.build.outputs.buildVersion }}.tar -C build/StandaloneOSX CGW.app
       - name: Upload
         id: upload
         uses: actions/upload-artifact@v4
