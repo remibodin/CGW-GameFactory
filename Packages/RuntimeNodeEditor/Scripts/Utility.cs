@@ -11,7 +11,10 @@ namespace RuntimeNodeEditor
 	        mousePosition = Input.mousePosition;
 #endif
 #if ENABLE_INPUT_SYSTEM
-	        mousePosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+            if (UnityEngine.InputSystem.Mouse.current != null)
+            {
+	            mousePosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+            }
 #endif
             return mousePosition;
         }
