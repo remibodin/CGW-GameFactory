@@ -1,6 +1,6 @@
 ﻿using Cgw.Assets;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     public class EntrypointAssetBehaviour : AssetBehaviour<EntrypointAsset>
     {

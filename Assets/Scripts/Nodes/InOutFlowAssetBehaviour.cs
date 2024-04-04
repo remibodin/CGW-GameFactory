@@ -1,7 +1,6 @@
 ﻿using Cgw.Assets;
-using UnityEditor;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     public class InOutFlowAssetBehaviour : AssetBehaviour<InOutFlowAsset>
     {

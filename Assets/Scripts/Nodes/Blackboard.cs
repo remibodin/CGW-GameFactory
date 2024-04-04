@@ -1,8 +1,9 @@
 using System;
 using System.Text;
+
 using UnityEngine;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     [Serializable]
     public class BlackboardEntry

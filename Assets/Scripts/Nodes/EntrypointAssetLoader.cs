@@ -1,6 +1,6 @@
 ﻿using Cgw.Assets.Loaders;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     public class EntrypointAssetLoader : AssetLoader<EntrypointAsset>
     {

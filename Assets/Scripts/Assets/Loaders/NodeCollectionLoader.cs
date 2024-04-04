@@ -1,4 +1,4 @@
-using Assets.Nodes;
+using Cgw.Scripting.Graph;
 
 namespace Cgw.Assets.Loaders
 {

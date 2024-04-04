@@ -1,10 +1,9 @@
-﻿using RuntimeNodeEditor;
-using System.Diagnostics;
-using System.Text;
-using TMPro;
-using UnityEngine;
+﻿using System.Text;
 
-namespace Assets.Nodes
+using TMPro;
+using RuntimeNodeEditor;
+
+namespace Cgw.Scripting.Graph
 {
 
     public class InOutFlowNode : LuaGraphNode

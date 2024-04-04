@@ -9,7 +9,7 @@ using Cgw.Scripting;
 using Cgw.Graphics;
 using Cgw.Audio;
 
-using Assets.Nodes;
+using Cgw.Scripting.Graph;
 using Cgw.Localization;
 
 namespace Cgw

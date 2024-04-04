@@ -1,9 +1,9 @@
-using RuntimeNodeEditor;
 using System.Collections.Generic;
 using System.Text;
+
 using UnityEngine;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     public class NodeGraphCompiler : MonoBehaviour
     {

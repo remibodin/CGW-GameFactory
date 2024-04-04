@@ -1,7 +1,8 @@
-﻿using Cgw.Assets;
-using YamlDotNet.Serialization;
+﻿using YamlDotNet.Serialization;
 
-namespace Assets.Nodes
+using Cgw.Assets;
+
+namespace Cgw.Scripting.Graph
 {
     public class InOutFlowAsset : Asset
     {

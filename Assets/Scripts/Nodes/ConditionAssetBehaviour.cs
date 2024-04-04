@@ -1,7 +1,6 @@
 ﻿using Cgw.Assets;
-using UnityEngine.Rendering;
 
-namespace Assets.Nodes
+namespace Cgw.Scripting.Graph
 {
     public class ConditionAssetBehaviour : AssetBehaviour<ConditionAsset>
     {

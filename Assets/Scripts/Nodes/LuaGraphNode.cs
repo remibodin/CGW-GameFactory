@@ -1,9 +1,8 @@
-using Cgw.Assets;
-using RuntimeNodeEditor;
-using System.Diagnostics;
 using System.Text;
 
-namespace Assets.Nodes
+using RuntimeNodeEditor;
+
+namespace Cgw.Scripting.Graph
 {
     public abstract class LuaGraphNode : Node
     {

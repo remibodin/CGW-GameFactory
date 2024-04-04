@@ -1,9 +1,9 @@
-﻿using RuntimeNodeEditor;
-using System.Linq;
-using System.Text;
-using TMPro;
+﻿using System.Text;
 
-namespace Assets.Nodes
+using TMPro;
+using RuntimeNodeEditor;
+
+namespace Cgw.Scripting.Graph
 {
 
     public class Condition : LuaGraphNode

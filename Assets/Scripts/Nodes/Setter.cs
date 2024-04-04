@@ -1,7 +1,8 @@
-﻿using RuntimeNodeEditor;
-using System.Text;
+﻿using System.Text;
 
-namespace Assets.Nodes
+using RuntimeNodeEditor;
+
+namespace Cgw.Scripting.Graph
 {
     public class Setter : LuaGraphNode
     {

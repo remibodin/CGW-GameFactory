@@ -1,9 +1,8 @@
-﻿using RuntimeNodeEditor;
-using System;
-using System.Text;
-using UnityEngine;
+﻿using System.Text;
 
-namespace Assets.Nodes
+using RuntimeNodeEditor;
+
+namespace Cgw.Scripting.Graph
 {
 
     public class Entrypoint : LuaGraphNode

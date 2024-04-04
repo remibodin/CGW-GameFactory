@@ -1,15 +1,15 @@
-using Cgw;
-using Cgw.Assets;
-using Cgw.Test;
-using RuntimeNodeEditor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Assets.Nodes
+using RuntimeNodeEditor;
+
+using Cgw.Assets;
+using Cgw.Test;
+
+namespace Cgw.Scripting.Graph
 {
     public class NodeLoader : AssetBehaviour<NodeCollection>
     {
