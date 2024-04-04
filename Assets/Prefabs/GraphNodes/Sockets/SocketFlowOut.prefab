@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1841003318184717250, guid: d5b424b52c9f14126954e1025915a828, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841003318184717250, guid: d5b424b52c9f14126954e1025915a828, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 3783978722233111050, guid: d5b424b52c9f14126954e1025915a828, type: 3}
       propertyPath: connectionType
       value: 0
@@ -94,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8910129825122914749, guid: d5b424b52c9f14126954e1025915a828, type: 3}
       propertyPath: m_Name
-      value: FlowOut
+      value: SocketFlowOut
       objectReference: {fileID: 0}
     - target: {fileID: 8910129826047973058, guid: d5b424b52c9f14126954e1025915a828, type: 3}
       propertyPath: m_LocalRotation.w
