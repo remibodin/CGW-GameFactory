@@ -122,6 +122,11 @@ namespace Cgw
                 return;
             }
             m_canvas.enabled = p_value;
+            if (EventSystem.current == null)
+            {
+                var eventSystemObject = new GameObject("EventSystem");
+                eventSystemObject.AddComponent<StandaloneInputModule>(); // EventSystem component is auto add by StandaloneInputModule
+            }
             if (m_canvas.enabled && EventSystem.current != null)
             {
                 EventSystem.current.SetSelectedGameObject(m_input.gameObject);

@@ -24,6 +24,6 @@ namespace Cgw.Audio
         public bool Loop = false;
 
         [YamlMember(Alias = "auto_start")]
-        public bool AutoStart = false;
+        public bool AutoStart = true;
     }
 }

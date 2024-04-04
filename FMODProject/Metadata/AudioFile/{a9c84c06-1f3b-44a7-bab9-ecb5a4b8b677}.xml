@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a9c84c06-1f3b-44a7-bab9-ecb5a4b8b677}">
+		<property name="assetPath">
+			<value>Jump/HERO_SAUT_TERRE_09_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.87269841269841275</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{162b2e50-4426-444a-85fa-4a6370cda07a}</destination>
+		</relationship>
+	</object>
+</objects>

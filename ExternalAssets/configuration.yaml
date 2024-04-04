@@ -1,9 +1,14 @@
+localization: "Configurations/Localization"
+
 # menu
-menu_logo: "Sprites/Menu/logo01"
+menu_logo: "Sprites/Jaquette_NoText"
+menu_logo_lighting: "Sprites/Jaquette_Lighting"
+menu_title: "Sprites/Title"
+menu_halo_fx: "Sprites/Halo_Effect"
 menu_background_color: "#000018"
 menu_loop_sfx: "Sounds/Menu/menu_loop"
 menu_select_button_sfx: "Sounds/Menu/Pop"
 
 # fade
-fade_color: "#000018"
-fade_speed: 3
+fade_color: "#000000"
+fade_speed: 2

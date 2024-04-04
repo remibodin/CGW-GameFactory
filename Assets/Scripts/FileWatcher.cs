@@ -11,6 +11,12 @@ namespace Cgw
         {
             m_onChangeHandler = p_onChangeHandler;
 
+            if (!Directory.Exists(p_path))
+            {
+                UnityEngine.Debug.LogError($"Directory not found {p_path}");
+                return;
+            }
+
             var watcher = new FileSystemWatcher()
             {
                 Path = p_path,

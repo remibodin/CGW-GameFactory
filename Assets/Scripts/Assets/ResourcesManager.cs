@@ -50,6 +50,7 @@ namespace Cgw.Assets
                 if (!File.Exists(path))
                 {
                     UnityEngine.Debug.LogError($"File not found {path}");
+                    return null;
                 }
                 m_resources[p_identifier] = m_loaders[typeof(T)].Load(path);
             }

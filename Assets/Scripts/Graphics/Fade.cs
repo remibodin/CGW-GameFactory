@@ -21,6 +21,12 @@ namespace Cgw.Graphics
         private void Start()
         {
             m_configuration = ResourcesManager.Get<Configuration>("configuration");
+            if (m_configuration == null)
+            {
+                SetAlphaValue(0);
+                this.enabled = false;
+                return;
+            }
             m_configuration.OnUpdated += OnConfigurationUpdated;
             UpdateConfiguration();
         }
@@ -92,6 +98,13 @@ namespace Cgw.Graphics
             else 
                 Fade.Instance.m_timeTarget = 0;
             Fade.Instance.m_endAction = p_callback;
+        }
+
+        public static void ForceValue(float p_value)
+        {
+            Fade.Instance.m_endAction = null;
+            Fade.Instance.m_timeTarget = Mathf.Clamp01(p_value);
+            Fade.Instance.m_timeCurrent = Fade.Instance.m_timeTarget;
         }
     }
 }

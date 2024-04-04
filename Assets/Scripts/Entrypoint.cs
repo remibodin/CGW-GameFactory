@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 
 using UnityEngine;
 
@@ -7,8 +8,9 @@ using Cgw.Assets.Loaders;
 using Cgw.Scripting;
 using Cgw.Graphics;
 using Cgw.Audio;
-using System.Resources;
+
 using Assets.Nodes;
+using Cgw.Localization;
 
 namespace Cgw
 {
@@ -19,24 +21,35 @@ namespace Cgw
         {
             CoroutineRunner.Initialize();
 
-            ResourcesManager.SetProjectRoot("ExternalAssets");
+            string externalAssetsPAth = "ExternalAssets";
+#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
+            externalAssetsPAth = Path.Combine(Application.dataPath, externalAssetsPAth);
+#endif
 
-            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
-            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
+            ResourcesManager.SetProjectRoot(externalAssetsPAth);
 
             // Register loaders
             ResourcesManager.RegisterLoader<LuaScript>(new LuaScriptLoader());
             ResourcesManager.RegisterLoader<SpriteAsset>(new SpriteLoader());
             ResourcesManager.RegisterLoader<SoundAsset>(new SoundLoader());
+            ResourcesManager.RegisterLoader<SoundAssetCollection>(new YamlFileLoader<SoundAssetCollection>());
             ResourcesManager.RegisterLoader<GameObjectAsset>(new GameObjectLoader());
             ResourcesManager.RegisterLoader<Configuration>(new YamlFileLoader<Configuration>());
             ResourcesManager.RegisterLoader<NodeCollection>(new NodeCollectionLoader());
             ResourcesManager.RegisterLoader<EntrypointAsset>(new EntrypointAssetLoader());
             ResourcesManager.RegisterLoader<ConditionAsset>(new ConditionAssetLoader());
             ResourcesManager.RegisterLoader<InOutFlowAsset>(new InOutFlowAssetLoader());
+            ResourcesManager.RegisterLoader<CSVFileAsset>(new CSVFileLoader());
             //
 
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
+
+            LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
+
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
+
+            AudioManager.Instance.Init();
         }
 
         // Sync assets every second

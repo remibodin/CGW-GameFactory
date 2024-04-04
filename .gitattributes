@@ -1,0 +1,2 @@
+# Fix end of line issue with Fmod lib on windows
+Assets/Plugins/FMOD/platforms/mac/lib/**/*.plist text=binary
