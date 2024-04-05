@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mushroom03
+  m_Name: Mushroom03_variant
   m_Shader: {fileID: -6465566751694194690, guid: 1917cbd7411b9b1449089f1f5858e517, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
