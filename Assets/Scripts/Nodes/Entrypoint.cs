@@ -10,6 +10,11 @@ namespace Cgw.Scripting.Graph
         public SocketOutput FlowOutSocket;
         public NodeLoader Loader;
 
+        public override bool CanMove()
+        {
+            return false;
+        }
+
         public override void GenerateLua(StringBuilder output)
         {
             string template = GetComponent<EntrypointAssetBehaviour>().Asset.Template;
