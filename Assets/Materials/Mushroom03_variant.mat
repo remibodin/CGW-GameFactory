@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mushroom03_variant
-  m_Shader: {fileID: -6465566751694194690, guid: 1917cbd7411b9b1449089f1f5858e517, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1c0d8aa9c3933ed43be74fdf20ee0fce, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,6 +29,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissiveTex:
         m_Texture: {fileID: 2800000, guid: e2e71562fc01b2a4cac43fc30908fdae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex_1:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
