@@ -20,7 +20,7 @@ local PreviousOnGround = true
 local NoControl = false
 local Inertia = 0.0
 
-local KillY = -1000.0
+local KillY = -50.0
 
 local HorizontalInputAction = nil
 local JumpInputAction = nil
@@ -28,9 +28,15 @@ local AttackInputAction = nil
 local InteractInputAction = nil
 local AragnaAttackInputAction = nil
 
+function Die()
+    Object.Destroy(this.gameObject)
+    Object.Destroy(aragna.gameObject)
+    spawner:RequestSpawn()
+end
+
 function TookDamage()
     if Life <= 0.0 then
-        Object.Destroy(this.gameObject)
+        Die()
     end
     NoControl = false
 end
@@ -78,7 +84,7 @@ function Update()
     PreviousOnMaterial = this.OnMaterial
 
     if this.transform.position.y <= KillY then
-        Object.Destroy(this.gameObject);
+        Die()
     end
 end
 

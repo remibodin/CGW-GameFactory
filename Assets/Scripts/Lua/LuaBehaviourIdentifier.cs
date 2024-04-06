@@ -12,9 +12,10 @@ namespace Cgw.Scripting
         [SerializeField]
         private string m_identifier;
 
-        private void Awake()
+        protected override void Awake()
         {
             Script = ResourcesManager.Get<LuaScript>(m_identifier);
+            base.Awake();
         }
     }
 }

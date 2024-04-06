@@ -21,11 +21,13 @@ function Start()
     this.TouchTime = TouchTime
     this.TouchSpeedMultiplier = TouchSpeedMultiplier
 
-    local targetPosition = player.transform.position + Vector3.up * FollowHeight
-    if (player.Facing.x > 0.0) then
-        targetPosition = targetPosition + Vector3.left * FollowDistance
-    else
-        targetPosition = targetPosition + Vector3.right * FollowDistance
+    if (player ~= nil) then
+        local targetPosition = player.transform.position + Vector3.up * FollowHeight
+        if (player.Facing.x > 0.0) then
+            targetPosition = targetPosition + Vector3.left * FollowDistance
+        else
+            targetPosition = targetPosition + Vector3.right * FollowDistance
+        end
     end
     this.transform.position = targetPosition
 end

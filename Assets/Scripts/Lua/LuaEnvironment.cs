@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using NLua;
+using System;
 
 namespace Cgw.Scripting
 {
@@ -12,17 +13,20 @@ namespace Cgw.Scripting
         public static readonly LuaEnvironment Instance = new();
         private static Dictionary<string, object> s_GlobalEnv = new Dictionary<string, object>();
 
+        public static event Action OnEnvironmentUpdated;
+
         public static void AddEnvItem(string key, object value)
         {
             s_GlobalEnv[key] = value;
+            if (OnEnvironmentUpdated != null)
+                OnEnvironmentUpdated();
         }
 
         public static void RemoveEnvItem(string key)
         {
-            if (s_GlobalEnv.ContainsKey(key))
-            {
-                s_GlobalEnv.Remove(key);
-            }
+            s_GlobalEnv[key] = null;
+            if (OnEnvironmentUpdated != null)
+                OnEnvironmentUpdated();
         }
 
         public static void InjectEnv(LuaInstance instance)

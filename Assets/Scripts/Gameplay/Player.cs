@@ -93,6 +93,11 @@ namespace Cgw.Gameplay
             base.OnDestroy();
             m_footStepEventInstance.release();
             m_landingEventInstance.release();
+
+            InputActions.FindActionMap("Player").FindAction("Jump").performed -= Player_OnJump;
+            InputActions.FindActionMap("Player").FindAction("Attack").performed -= Player_OnAttack;
+            InputActions.FindActionMap("Player").FindAction("Interact").performed -= Player_OnInteract;
+            InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed -= Player_OnAragnaAttack;
         }
 
         protected override void OnAssetUpdate(LuaInstance instance)
