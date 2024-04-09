@@ -31,6 +31,34 @@ Material:
         m_Texture: {fileID: 2800000, guid: e2e71562fc01b2a4cac43fc30908fdae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissiveTex01:
+        m_Texture: {fileID: 2800000, guid: a495264c19e4fe94cb68366de115b31d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex02:
+        m_Texture: {fileID: 2800000, guid: b1433e6f266fbdb4a8eea2f82c4f7322, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex03:
+        m_Texture: {fileID: 2800000, guid: 13b76d1580ee4e14ba54c4f03713885b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex04:
+        m_Texture: {fileID: 2800000, guid: f55bb23e018bdb84d9ed12a0d4e9d437, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex05:
+        m_Texture: {fileID: 2800000, guid: 7ca6fc0617044754d985908627385013, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex06:
+        m_Texture: {fileID: 2800000, guid: 6f0b4b4ea51c79249b10679b5d4fb120, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex07:
+        m_Texture: {fileID: 2800000, guid: 8e10080ab529fa5468cbedd37614dd28, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissiveTex_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}

@@ -86,8 +86,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039728319467863778, guid: 1d09eb724dc81324384e43cf1bc00d18, type: 3}
       propertyPath: m_Name
-      value: Mushroom03 Variant
+      value: Mushroom03_variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8603771482621307956, guid: 1d09eb724dc81324384e43cf1bc00d18, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7914e91813803a54f996f01f512d2b52, type: 2}
     - target: {fileID: 8636906872898454184, guid: 1d09eb724dc81324384e43cf1bc00d18, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99860406
