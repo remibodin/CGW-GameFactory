@@ -29,11 +29,21 @@ namespace Cgw.Scripting
             m_instance.Call("Start");
         }
 
-        private void InitTable()
+        protected virtual void InitTable()
         {
             LuaEnvironment.InjectEnv(m_instance);
 
             m_instance["transform"] = transform;
+        }
+
+        protected virtual void Awake()
+        {
+            LuaEnvironment.OnEnvironmentUpdated += LuaEnvironment_OnEnvironmentUpdated;
+        }
+
+        private void LuaEnvironment_OnEnvironmentUpdated()
+        {
+            InitTable();
         }
 
         private void Update()
@@ -54,6 +64,8 @@ namespace Cgw.Scripting
         private void OnDestroy()
         {
             m_instance.Call("OnDestroy");
+
+            LuaEnvironment.OnEnvironmentUpdated -= LuaEnvironment_OnEnvironmentUpdated;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

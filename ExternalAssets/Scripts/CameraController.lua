@@ -5,9 +5,14 @@ local CameraAheadDistance = 0.5;
 local CameraTurnLimit = 1.0;
 
 function LateUpdate()
-    local direction = player.Facing.x;
+    local direction = 0.0;
+    local cameraPosition = spawner.transform.position
 
-    local cameraPosition = player.transform.position
+    if (player ~= nil) then
+        direction = player.Facing.x;
+        cameraPosition = player.transform.position
+    end
+
     cameraPosition.z = camera.transform.position.z
     cameraPosition.x = cameraPosition.x + 1.2 * direction
     cameraPosition.y = 0.0
