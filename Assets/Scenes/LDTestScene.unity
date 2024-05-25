@@ -6536,6 +6536,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1214529776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214529778}
+  - component: {fileID: 1214529777}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1214529777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214529776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbd11a81a08212409521caca3a6dce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: spawner
+  PlayerPrefab: {fileID: 1239701722764302022, guid: 95308285485844a2aa270d59a37908e4, type: 3}
+  AragnaPrefab: {fileID: 6606185937357792900, guid: 1c46efd250afcc946b6c2504ba32b4c0, type: 3}
+  SpawnOnStart: 1
+--- !u!4 &1214529778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214529776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -107.58, y: 3.342, z: -0.00021886826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1218293577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6768210536005787313, guid: cc622e8c684187748b04ac3b7d20b402, type: 3}
@@ -9074,6 +9122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1239701722764302022, guid: 95308285485844a2aa270d59a37908e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8461049090513450010, guid: 95308285485844a2aa270d59a37908e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -104.157425
@@ -10725,7 +10777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6606185937357792900, guid: 1c46efd250afcc946b6c2504ba32b4c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12394,6 +12446,10 @@ PrefabInstance:
     - target: {fileID: 5741080449727529694, guid: aeabe49977bf70741b22afe850d72573, type: 3}
       propertyPath: m_Name
       value: AragnaWindUpThrowPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741080449727529694, guid: aeabe49977bf70741b22afe850d72573, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20028,6 +20084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AragnaThrow
       objectReference: {fileID: 0}
+    - target: {fileID: 1655407200796077614, guid: 6fd23032ecab5f2479461dedd58c720f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3065765304495184770, guid: 6fd23032ecab5f2479461dedd58c720f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -104.407425
@@ -24782,6 +24842,10 @@ PrefabInstance:
     - target: {fileID: 7674658878299422806, guid: dd34c16c84990df4699235b8ba61c635, type: 3}
       propertyPath: m_Name
       value: AragnaIdlePS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674658878299422806, guid: dd34c16c84990df4699235b8ba61c635, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30362,3 +30426,4 @@ SceneRoots:
   - {fileID: 7033075607846641427}
   - {fileID: 3279319196521495642}
   - {fileID: 6901546930115818887}
+  - {fileID: 1214529778}
