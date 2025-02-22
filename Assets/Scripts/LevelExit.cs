@@ -27,8 +27,7 @@ public class LevelExit : MonoBehaviour
         {
             if (notValidatedCondition.HasMessage)
             {
-
-                Debug.Log(notValidatedCondition.Message);
+                Subtitle.Display(notValidatedCondition.Message, 5f);
             }
             return;
         }
