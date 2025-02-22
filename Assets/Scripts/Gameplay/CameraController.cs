@@ -1,9 +1,45 @@
+using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Cgw.Gameplay
 {
     public class CameraController : SingleBehaviour<CameraController>
     {
+        private Camera _camera;
+        private UniversalAdditionalCameraData _cameraData;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _camera = GetComponent<Camera>();
+            _cameraData = GetComponent<UniversalAdditionalCameraData>();
+        }
+
+        private void OnEnable()
+        {
+            RuntimeManager.StudioSystem.setNumListeners(1);
+        }
+
+        private void OnDisable()
+        {
+            RuntimeManager.StudioSystem.setNumListeners(0);
+        }
+
+        private void Update()
+        {
+            GameObject targetEffect = gameObject;
+
+            if (Player.Instance != null)
+            {
+                targetEffect = Player.Instance.gameObject;
+            }
+
+            RuntimeManager.SetListenerLocation(targetEffect);
+            _cameraData.volumeTrigger = targetEffect.transform;
+        }
+
         private void LateUpdate()
         {
             float direction = 0.0f;

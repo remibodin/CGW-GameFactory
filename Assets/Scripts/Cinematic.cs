@@ -26,7 +26,21 @@ namespace Cgw
             }
 
             _inputActions.Enable();
-            _inputActions.FindActionMap("Cinematic").FindAction("Skip").performed += (context) => m_director.Stop();
+        }
+
+        private void OnEnable()
+        {
+            _inputActions.FindActionMap("Cinematic").FindAction("Skip").performed += Skip;
+        }
+
+        private void OnDisable()
+        {
+            _inputActions.FindActionMap("Cinematic").FindAction("Skip").performed -= Skip;
+        }
+
+        private void Skip(InputAction.CallbackContext context)
+        {
+            m_director.Stop();
         }
 
         public void Play(Action p_callback)
