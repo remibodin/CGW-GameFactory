@@ -152,7 +152,7 @@ namespace Cgw.Gameplay
         public void Jump(float force)
         {
             var rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.velocity = Vector2.up * force;
+            rigidbody.linearVelocity = Vector2.up * force;
         }
 
         public void Move(float speed, float direction)

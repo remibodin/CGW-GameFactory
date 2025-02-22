@@ -7,8 +7,8 @@ QUIT,Quit,Quitter,Sarrà
 BACK,Back,Retour,Ritornu
 RESOLUTION,Resolution,Résolution,Nittera
 FULLSCREEN,Fullscreen,Plein Ecran,Imagina piena
-"INTRO_01,""There is an old legend, of the mage, the warrior and the archer"",""Voilà une vieille légende, celle du mage, du guerrier et de l’archer"",""Quissa hè una veghja lighjenda, quidda di u magu, u guerrieru è di l’archeru"""
-"INTRO_02,""Noble and brave, they went on a mission in the forest..."",""Nobles et courageux, ils sont partis en mission dans la forêt…"",""Nobili è curaghjiosi, so partiti in missioni in a furesta"""
-INTRO_03,... never to return.,… pour ne plus jamais revenir.,E un so mai vultati…
+INTRO_01,"There is an old legend, of the mage, the warrior and the archer","Voilà une vieille légende, celle du mage, du guerrier et de l’archer","Quissa hè una veghja lighjenda, quidda di u magu, u guerrieru è di l’archeru"
+INTRO_02,"Noble and brave, they went on a mission in the forest...","Nobles et courageux, ils sont partis en mission dans la forêt…","Nobili è curaghjiosi, so partiti in missioni in a furesta"
+INTRO_03,"... never to return.","… pour ne plus jamais revenir.","E un so mai vultati…"
 PAUSE,Pause,Pause,
 RESUME,Resume,Continuer,
