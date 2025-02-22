@@ -9,7 +9,7 @@ using TMPro;
 
 namespace Cgw
 {
-    public class Terminal : UniqueMonoBehaviour<Terminal>
+    public class Terminal : SingleBehaviour<Terminal>
     {
         [SerializeField] private Canvas m_canvas;
         [SerializeField] private TMP_InputField m_input;

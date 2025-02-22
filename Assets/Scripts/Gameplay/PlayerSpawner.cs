@@ -1,21 +1,8 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
 {
-    private static PlayerSpawner s_Instance;
-    public static PlayerSpawner Instance
-    {
-        get
-        {
-            if (s_Instance == null)
-            {
-                s_Instance = new PlayerSpawner();
-            }
-            return s_Instance;
-        }
-    }
-
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
     public bool SpawnOnStart = true;

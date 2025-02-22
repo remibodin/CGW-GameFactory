@@ -16,6 +16,8 @@ namespace Cgw.Gameplay
 {
     public class Player : LuaEnvItem
     {
+        public static Player Instance { get; private set; } = null;  // FIXME: Temporaire
+
         public ContactFilter2D TerrainContactFilter;
         public float AttackCooldown = 0.0f;
         public float JumpCooldown = 0.0f;
@@ -42,6 +44,8 @@ namespace Cgw.Gameplay
         protected override void Awake()
         {
             base.Awake();
+
+            Instance = this; // FIXME: Temporaire
 
             InputActions.Enable();
 

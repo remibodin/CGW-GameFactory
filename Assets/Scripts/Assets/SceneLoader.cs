@@ -7,7 +7,7 @@ namespace Cgw.Assets
     /// <summary>
     /// Helper class to load scenes with fade in and out.
     /// </summary>
-    public class SceneLoader : UniqueMonoBehaviour<SceneLoader>
+    public class SceneLoader : SingleBehaviour<SceneLoader>
     {
         public static void Level1()
         {
