@@ -155,7 +155,7 @@ namespace Cgw.Gameplay
             {
                 if (Target != null)
                 {
-                    MoveTowards(Target.transform.position, LaunchSpeed);
+                    MoveTowards(Target.transform.position + Vector3.up * 0.5f, LaunchSpeed);
                 }
                 else
                 {
