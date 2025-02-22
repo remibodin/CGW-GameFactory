@@ -92,7 +92,7 @@ namespace Cgw.Gameplay
 
         public void MushroomIA()
         {
-            if (NoMove)
+            if (NoMove || Dying)
             {
                 return;
             }
