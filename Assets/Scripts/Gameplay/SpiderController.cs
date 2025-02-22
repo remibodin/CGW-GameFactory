@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Cgw.Gameplay
@@ -62,6 +63,13 @@ namespace Cgw.Gameplay
             return null;
         }
 
+        private IEnumerator Feedback_FailedLaunch()
+        {
+            var animator = GetComponent<Animator>();
+            animator.Play("Aragna@FailLaunch");
+            yield return null;
+        }
+
         public void Launch()
         {
             if (CanLaunch && Life > 0)
@@ -79,6 +87,7 @@ namespace Cgw.Gameplay
                     HasTarget = false;
                     Target = null;
                     TargetPoint = player.transform.position + player.Facing * LaunchRange;
+                    CoroutineRunner.StartCoroutine(Feedback_FailedLaunch());
                 }
             }
         }
