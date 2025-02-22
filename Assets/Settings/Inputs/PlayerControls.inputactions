@@ -260,7 +260,7 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "1233868d-5f98-438f-93ea-fa73548306ca",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

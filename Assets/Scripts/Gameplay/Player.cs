@@ -79,19 +79,9 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed += Player_OnAragnaAttack;
         }
 
-        public IEnumerator Die()
-        {
-            yield return new WaitForSeconds(0.5f);
-            Destroy(gameObject);
-            Destroy(SpiderController.Instance);
-            PlayerSpawner.Instance.RequestSpawn();
-        }
-
         public void DieImmediately()
         {
-            Destroy(gameObject);
-            Destroy(SpiderController.Instance);
-            PlayerSpawner.Instance.RequestSpawn();
+            PlayerSpawner.Instance.Respawn();
         }
 
         public IEnumerator TookDamage()

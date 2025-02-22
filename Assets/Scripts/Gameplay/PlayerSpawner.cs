@@ -1,11 +1,14 @@
 using Unity.Mathematics;
 using UnityEngine;
 
+using Cgw.Gameplay;
+
 public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
 {
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
     public bool SpawnOnStart = true;
+    public bool SpawnAragna = true;
 
     private bool m_SpawnRequested = false;
     private float m_SpawnDelay = 0.0f;
@@ -18,27 +21,18 @@ public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
         }
     }
 
-    private void Update()
-    {
-        m_SpawnDelay -= math.clamp(Time.deltaTime, 0.0f, 1.0f);
-
-        if (m_SpawnRequested && m_SpawnDelay <= 0.0f)
-        {
-            DoSpawn();
-
-            m_SpawnRequested = false;
-        }
-    }
-
     private void DoSpawn()
     {
         Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
-        Instantiate(AragnaPrefab, transform.position, Quaternion.identity);
+        if (SpawnAragna)
+        {
+            Instantiate(AragnaPrefab, transform.position, Quaternion.identity);
+        }
     }
 
-    public void RequestSpawn(float delay = 0.0f)
+    public void Respawn()
     {
-        m_SpawnDelay = delay;
-        m_SpawnRequested = true;
+        Player.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        SpiderController.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
     }
 }
