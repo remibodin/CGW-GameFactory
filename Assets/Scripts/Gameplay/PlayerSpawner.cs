@@ -1,6 +1,8 @@
 using Unity.Mathematics;
 using UnityEngine;
 
+using Cgw.Gameplay;
+
 public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
 {
     public GameObject PlayerPrefab;
@@ -19,18 +21,6 @@ public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
         }
     }
 
-    private void Update()
-    {
-        m_SpawnDelay -= math.clamp(Time.deltaTime, 0.0f, 1.0f);
-
-        if (m_SpawnRequested && m_SpawnDelay <= 0.0f)
-        {
-            DoSpawn();
-
-            m_SpawnRequested = false;
-        }
-    }
-
     private void DoSpawn()
     {
         Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
@@ -40,9 +30,9 @@ public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
         }
     }
 
-    public void RequestSpawn(float delay = 0.0f)
+    public void Respawn()
     {
-        m_SpawnDelay = delay;
-        m_SpawnRequested = true;
+        Player.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        SpiderController.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
     }
 }
