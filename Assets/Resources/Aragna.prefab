@@ -14871,3 +14871,5 @@ MonoBehaviour:
   HasTarget: 0
   Target: {fileID: 0}
   TargetPoint: {x: 0, y: 0, z: 0}
+  FlyingDotsParticles: {fileID: 1408647874493177703}
+  LaunchTimer: 0

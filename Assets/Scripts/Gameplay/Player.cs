@@ -42,7 +42,6 @@ namespace Cgw.Gameplay
         private float AttackTimer = 0.0f;
         private float JumpTimer = 0.0f;
         private float DamageTimer = 0.0f;
-        private float LaunchTimer = 0.0f;
 
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.4f;
@@ -109,11 +108,7 @@ namespace Cgw.Gameplay
 
         private void Player_OnAragnaAttack(InputAction.CallbackContext context)
         {
-            if (Mathf.Approximately(LaunchTimer, 0.0f))
-            {
-                SpiderController.Instance.Launch();
-                LaunchTimer = LaunchCooldownTime;
-            }
+            SpiderController.Instance.Launch(LaunchCooldownTime);
         }
 
         private void Player_OnInteract(InputAction.CallbackContext context)
@@ -204,9 +199,6 @@ namespace Cgw.Gameplay
 
             DamageTimer -= Time.deltaTime;
             DamageTimer = math.max(0.0f, DamageTimer);
-
-            LaunchTimer -= Time.deltaTime;
-            LaunchTimer = math.max(0.0f, LaunchTimer);
 
             if (OnGround && !PreviousOnGround)
             {

@@ -24,6 +24,10 @@ namespace Cgw.Gameplay
         public Enemy Target = null;
         public Vector3 TargetPoint = Vector3.zero;
 
+        public ParticleSystem FlyingDotsParticles;
+
+        public float LaunchTimer = 0.0f;
+
         public void Start()
         {
             var player = Player.Instance;
@@ -70,7 +74,7 @@ namespace Cgw.Gameplay
             yield return null;
         }
 
-        public void Launch()
+        public void Launch(float cooldown)
         {
             if (CanLaunch && Life > 0)
             {
@@ -78,6 +82,10 @@ namespace Cgw.Gameplay
                 var enemy = CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange);
                 if (enemy != null)
                 {
+                    var emission = FlyingDotsParticles.emission;
+                    emission.enabled = false;
+                    CanLaunch = false;
+                    LaunchTimer = cooldown;
                     HasTarget = true;
                     Target = enemy;
                     Life = Life - LifePerLaunch;
@@ -120,6 +128,16 @@ namespace Cgw.Gameplay
 
         public void Update()
         {
+            LaunchTimer -= Time.deltaTime;
+            LaunchTimer = Mathf.Max(0.0f, LaunchTimer);
+            
+            if (Mathf.Approximately(LaunchTimer, 0.0f) && !CanLaunch)
+            {
+                CanLaunch = true;
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = true;
+            }
+
             var player = Player.Instance;
             var targetPosition = player.transform.position + Vector3.up * FollowHeight;
             if (!HasTarget && Vector3.Distance(transform.position, targetPosition) > FollowDistance)

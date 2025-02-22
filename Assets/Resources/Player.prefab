@@ -436,7 +436,7 @@ MonoBehaviour:
   AirSpeed: 1
   JumpCooldownTime: 0.85
   JumpForce: 3.5
-  LaunchCooldownTime: 6
+  LaunchCooldownTime: 5
   AttackCooldownTime: 0.6
   DamageCooldownTime: 0.8
   AttackRange: 0.6
