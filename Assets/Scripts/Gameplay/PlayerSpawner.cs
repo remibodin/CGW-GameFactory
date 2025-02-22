@@ -1,11 +1,21 @@
-using Cgw.Gameplay;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerSpawner : LuaEnvItem
+public class PlayerSpawner : MonoBehaviour
 {
+    private static PlayerSpawner s_Instance;
+    public static PlayerSpawner Instance
+    {
+        get
+        {
+            if (s_Instance == null)
+            {
+                s_Instance = new PlayerSpawner();
+            }
+            return s_Instance;
+        }
+    }
+
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
     public bool SpawnOnStart = true;
