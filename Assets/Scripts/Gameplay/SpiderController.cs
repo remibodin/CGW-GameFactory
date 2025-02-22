@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cgw.Gameplay
 {
-    public class SpiderController : SingleBehaviour<SpiderController>
+    public class SpiderController : SingleBehaviourInScene<SpiderController>
     {
         public float Life = 3;
         public float LifePerLaunch = 0.5f;

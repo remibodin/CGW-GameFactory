@@ -4809,8 +4809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1239701722764302022, guid: 95308285485844a2aa270d59a37908e4, type: 3}
   AragnaPrefab: {fileID: 6606185937357792900, guid: 1c46efd250afcc946b6c2504ba32b4c0, type: 3}
-  SpawnOnStart: 1
-  SpawnAragna: 1
+  SpawnPlayerOnStart: 1
+  SpawnAragnaAragna: 1
 --- !u!1 &1006585564
 GameObject:
   m_ObjectHideFlags: 0
@@ -6246,7 +6246,7 @@ GameObject:
   - component: {fileID: 1339758048}
   - component: {fileID: 1339758050}
   - component: {fileID: 1339758049}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MerlinTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

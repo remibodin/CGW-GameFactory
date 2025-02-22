@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Cgw.Gameplay
 {
-    public class CameraController : SingleBehaviour<CameraController>
+    public class CameraController : SingleBehaviourInScene<CameraController>
     {
         private Camera _camera;
         private UniversalAdditionalCameraData _cameraData;
