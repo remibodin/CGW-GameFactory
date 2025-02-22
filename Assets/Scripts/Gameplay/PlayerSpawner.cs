@@ -2,6 +2,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 using Cgw.Gameplay;
+using Cgw;
 
 public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
 {
@@ -50,5 +51,16 @@ public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
     {
         Player.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
         SpiderController.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+    }
+
+    [TermCommand]
+    private static void Aragna(string p_args)
+    {
+        if (Instance == null)
+        {
+            return;
+        }
+
+        Instance.SpawnAragna();
     }
 }
