@@ -438,7 +438,7 @@ MonoBehaviour:
   LaunchCooldownTime: 6
   AttackCooldownTime: 0.6
   DamageCooldownTime: 0.8
-  AttackRange: 0.8
+  AttackRange: 0.6
   AttackPower: 1
   SinceLastFootStep: 0
   KillY: -50

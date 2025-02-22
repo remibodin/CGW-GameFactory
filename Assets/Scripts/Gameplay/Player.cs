@@ -134,7 +134,11 @@ namespace Cgw.Gameplay
         {
             if (Mathf.Approximately(AttackTimer, 0.0f))
             {
-                Attack(AttackRange, AttackPower);
+                var animator = GetComponent<PlayerAnimator>();
+                if (animator != null)
+                {
+                    animator.Attack();
+                }
                 AttackTimer = AttackCooldownTime;
             }
         }
@@ -291,13 +295,7 @@ namespace Cgw.Gameplay
 
         public void Attack(float range, float power)
         {
-            var animator = GetComponent<PlayerAnimator>();
-            if (animator != null)
-            {
-                animator.Attack();
-            }
-
-            var hits = Physics2D.LinecastAll(transform.position + Vector3.up, transform.position + (Facing * range) + Vector3.up);
+            var hits = Physics2D.LinecastAll(transform.position + Vector3.up * 0.4f, transform.position + (Facing * range) + Vector3.up * 0.4f);
             foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -324,6 +322,7 @@ namespace Cgw.Gameplay
             }
             else if (animEvent == "HeroAttack")
             {
+                Attack(AttackRange, AttackPower);
                 RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
             }
         }

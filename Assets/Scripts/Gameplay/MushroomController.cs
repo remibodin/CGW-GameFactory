@@ -125,16 +125,19 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithPlayer()
         {
-            NoMove = true;
-            Player.Instance.TakeDamage(AttackPower, this);
-            // AudioManager.Instance.Play("Sounds/CHAMPI_POP_B-12_1");
-            CoroutineRunner.StartCoroutine(Die());
+            if (!IsSpiderTouched)
+            {
+                NoMove = true;
+                Player.Instance.TakeDamage(AttackPower, this);
+                // AudioManager.Instance.Play("Sounds/CHAMPI_POP_B-12_1");
+                CoroutineRunner.StartCoroutine(Die());
+            }
         }
 
         public override void OnCollisionWithSpider()
         {
             IsSpiderTouched = true;
-            SpiderTouchTimer = SpiderController.Instance.TouchSpeedMultiplier;
+            SpiderTouchTimer = SpiderController.Instance.TouchTime;
         }
 
         public override void OnCollisionWithDanger()
