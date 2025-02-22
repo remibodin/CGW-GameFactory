@@ -10,6 +10,7 @@ using FMOD.Studio;
 
 using Cgw.Audio;
 using System.Collections;
+using Unity.Collections;
 
 namespace Cgw.Gameplay
 {
@@ -20,43 +21,47 @@ namespace Cgw.Gameplay
         public float AirSpeed = 1.0f;
         public float JumpCooldownTime = .85f;
         public float JumpForce = 3.5f;
-        public float LaunchCooldownTime = 6.0f;
 
+        public float LaunchCooldownTime = 6.0f;
         public float AttackCooldownTime = 0.6f;
         public float DamageCooldownTime = 0.8f;
+
         public float AttackRange = 0.8f;
         public float AttackPower = 1.0f;
         public float SinceLastFootStep = 0f;
 
-        public float PreviousXPosition = 0.0f;
-        public ESurfaceType PreviousOnMaterial = ESurfaceType.Dirt;
-        public bool PreviousOnGround = true;
-        public bool NoControl = false;
-        public float Inertia = 0.0f;
-
         public float KillY = -50.0f;
 
-        public ContactFilter2D TerrainContactFilter;
-        public float AttackTimer = 0.0f;
-        public float JumpTimer = 0.0f;
-        public float DamageTimer = 0.0f;
-        public float LaunchTimer = 0.0f;
+        private float PreviousXPosition = 0.0f;
+        private ESurfaceType PreviousOnMaterial = ESurfaceType.Dirt;
+        private bool PreviousOnGround = true;
+        private bool NoControl = false;
+        private float Inertia = 0.0f;
+        private ContactFilter2D TerrainContactFilter;
+
+        private float AttackTimer = 0.0f;
+        private float JumpTimer = 0.0f;
+        private float DamageTimer = 0.0f;
+        private float LaunchTimer = 0.0f;
+
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
-        public EventReference FootStepEventRef;
-        public EventReference LandingEventRef;
-        public EventReference AttackEventRef;
 
         public bool OnGround { get; private set; }
         public ESurfaceType OnMaterial { get; private set; }
 
+        [ReadOnly]
         public InputActionAsset InputActions;
 
         private Collider2D m_Collider;
         private Rigidbody2D m_Rigidbody;
-        private EventInstance m_footStepEventInstance;
-        private EventInstance m_landingEventInstance;
+
+        public EventInstance m_footStepEventInstance;
+        public EventInstance m_landingEventInstance;
+        public EventReference FootStepEventRef;
+        public EventReference LandingEventRef;
+        public EventReference AttackEventRef;
 
         private InputAction m_HorizontalAction = null;
 
@@ -74,7 +79,15 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed += Player_OnAragnaAttack;
         }
 
-        public void Die()
+        public IEnumerator Die()
+        {
+            yield return new WaitForSeconds(0.5f);
+            Destroy(gameObject);
+            Destroy(SpiderController.Instance);
+            PlayerSpawner.Instance.RequestSpawn();
+        }
+
+        public void DieImmediately()
         {
             Destroy(gameObject);
             Destroy(SpiderController.Instance);
@@ -86,7 +99,7 @@ namespace Cgw.Gameplay
             yield return new WaitForSeconds(0.5f);
             if (Life <= 0.0f)
             {
-                Die();
+                DieImmediately();
             }
             NoControl = false;
         }
@@ -100,7 +113,7 @@ namespace Cgw.Gameplay
                 DamageTimer = DamageCooldownTime;
                 var directionFromEnemy = (transform.position - enemy.transform.position).normalized;
                 m_Rigidbody.AddForce((Vector3.up + directionFromEnemy) * 3.0f);
-                StartCoroutine(TookDamage());
+                CoroutineRunner.StartCoroutine(TookDamage());
             }
         }
 
@@ -139,7 +152,7 @@ namespace Cgw.Gameplay
             }
         }
 
-        private void Start()
+        public void Start()
         {
             m_Collider = GetComponent<Collider2D>();
             m_Rigidbody = GetComponent<Rigidbody2D>();
@@ -165,14 +178,12 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed -= Player_OnAragnaAttack;
         }
 
-
         public float GetHorizontalInput()
         {
             return m_HorizontalAction.ReadValue<float>();
         }
 
-
-        private void Update()
+        public void Update()
         {
             Motion = Vector2.zero;
 
@@ -229,7 +240,7 @@ namespace Cgw.Gameplay
 
             if (transform.position.y <= KillY)
             {
-                Die();
+                DieImmediately();
             }
 
             PreviousOnGround = OnGround;
@@ -299,7 +310,7 @@ namespace Cgw.Gameplay
             }
         }
 
-        protected void OnAnimEvent(string animEvent)
+        public void OnAnimEvent(string animEvent)
         {
             if (animEvent == "HeroStep")
             {
@@ -314,14 +325,6 @@ namespace Cgw.Gameplay
             else if (animEvent == "HeroAttack")
             {
                 RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
-            }
-            else if (animEvent == "AttackSound")
-            {
-                AudioManager.Instance.Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1");
-            }
-            else if (animEvent == "HeroLanding")
-            {
-                AudioManager.Instance.PlayRandom("Sounds/Collections/JumpDirt");
             }
         }
 
