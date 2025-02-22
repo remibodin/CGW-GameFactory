@@ -24,7 +24,8 @@ namespace Cgw.Gameplay
 
         private void OnDisable()
         {
-            RuntimeManager.StudioSystem.setNumListeners(0);
+            // FMOD aime pas le set a 0
+            // RuntimeManager.StudioSystem.setNumListeners(0); 
         }
 
         private void Update()
