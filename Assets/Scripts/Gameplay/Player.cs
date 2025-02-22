@@ -100,7 +100,7 @@ namespace Cgw.Gameplay
                 DamageTimer = DamageCooldownTime;
                 var directionFromEnemy = (transform.position - enemy.transform.position).normalized;
                 m_Rigidbody.AddForce((Vector3.up + directionFromEnemy) * 3.0f);
-                StartCoroutine(TookDamage());
+                CoroutineRunner.StartCoroutine(TookDamage());
             }
         }
 
