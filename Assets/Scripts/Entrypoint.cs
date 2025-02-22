@@ -38,6 +38,7 @@ namespace Cgw
 
             GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Fade")));
             GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Terminal")));
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Subtitle")));
 
             LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
 
