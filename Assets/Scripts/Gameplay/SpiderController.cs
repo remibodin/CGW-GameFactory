@@ -28,7 +28,7 @@ namespace Cgw.Gameplay
 
         public void Start()
         {
-            var player = Player.PlayerInstance;
+            var player = Player.Instance;
 
             if (player != null)
             {
@@ -69,7 +69,7 @@ namespace Cgw.Gameplay
         {
             if (CanLaunch && Life > 0)
             {
-                var player = Player.PlayerInstance;
+                var player = Player.Instance;
                 var enemy = CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange);
                 if (enemy != null)
                 {
@@ -114,7 +114,7 @@ namespace Cgw.Gameplay
 
         public void Update()
         {
-            var player = Player.PlayerInstance;
+            var player = Player.Instance;
             var targetPosition = player.transform.position + Vector3.up * FollowHeight;
             if (!HasTarget && Vector3.Distance(transform.position, targetPosition) > FollowDistance)
             {
