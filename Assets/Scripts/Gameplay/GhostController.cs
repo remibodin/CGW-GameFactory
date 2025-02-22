@@ -132,7 +132,6 @@ namespace Cgw.Gameplay
         public IEnumerator KnockBack(Vector2 directionFromPlayer)
         {
             NoMove = true;
-            Debug.Log("knockback");
             yield return new WaitForSeconds(0.32f);
             m_Rigidbody.AddForce(directionFromPlayer * 3.0f, ForceMode2D.Impulse);
             yield return new WaitForSeconds(1.0f);
@@ -146,7 +145,6 @@ namespace Cgw.Gameplay
 
         public override void Attacked(float power)
         {
-            Debug.Log("attacked");
             if (Dying)
             {
                 return;
@@ -167,10 +165,13 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithSpider()
         {
-            var emission = FlyingDotsParticles.emission;
-            emission.enabled = true;
-            IsSpiderTouched = true;
-            SpiderTouchTimer = SpiderController.Instance.TouchTime;
+            if (SpiderController.Instance.HasTarget)
+            {
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = true;
+                IsSpiderTouched = true;
+                SpiderTouchTimer = SpiderController.Instance.TouchTime;
+            }
         }
 
         public override void OnCollisionWithDanger()

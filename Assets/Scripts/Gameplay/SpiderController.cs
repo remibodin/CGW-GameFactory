@@ -107,8 +107,8 @@ namespace Cgw.Gameplay
                 var enemy = collision.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    HasTarget = false;
                     enemy.OnCollisionWithSpider();
+                    HasTarget = false;
                 }
             }
         }
@@ -120,8 +120,8 @@ namespace Cgw.Gameplay
                 var enemy = collision.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    HasTarget = false;
                     enemy.OnCollisionWithSpider();
+                    HasTarget = false;
                 }
             }
         }
@@ -155,7 +155,8 @@ namespace Cgw.Gameplay
             {
                 if (Target != null)
                 {
-                    MoveTowards(Target.transform.position + Vector3.up * 0.5f, LaunchSpeed);
+                    Vector3 targetCenter = Target.GetComponent<Collider2D>().bounds.center;
+                    MoveTowards(targetCenter, LaunchSpeed);
                 }
                 else
                 {

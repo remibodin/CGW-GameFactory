@@ -141,10 +141,13 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithSpider()
         {
-            var emission = FlyingDotsParticles.emission;
-            emission.enabled = true;
-            IsSpiderTouched = true;
-            SpiderTouchTimer = SpiderController.Instance.TouchTime;
+            if (SpiderController.Instance.HasTarget)
+            {
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = true;
+                IsSpiderTouched = true;
+                SpiderTouchTimer = SpiderController.Instance.TouchTime;
+            }
         }
 
         public override void OnCollisionWithDanger()
