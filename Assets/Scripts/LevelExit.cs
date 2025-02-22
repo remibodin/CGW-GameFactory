@@ -17,10 +17,23 @@ public class LevelExit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player")
-            && _conditions.FirstOrDefault((c) => !c.IsValid) == default)
+        if (!collider.gameObject.CompareTag("Player"))
         {
-            SceneLoader.Custom(_nextSceneName);
+            return;
         }
+
+        var notValidatedCondition = _conditions.FirstOrDefault((c) => !c.IsValid);
+        if (notValidatedCondition != default)
+        {
+            if (notValidatedCondition.HasMessage)
+            {
+
+                Debug.Log(notValidatedCondition.Message);
+            }
+            return;
+        }
+
+        SceneLoader.Custom(_nextSceneName);
+
     }
 }
