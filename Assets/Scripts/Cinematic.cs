@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
 using Cgw.Graphics;
@@ -10,6 +11,8 @@ namespace Cgw
     [RequireComponent(typeof(PlayableDirector))]
     public class Cinematic : MonoBehaviour
     {
+        [SerializeField] private InputActionAsset _inputActions;
+
         private PlayableDirector m_director;
         private Action m_callback;
 
@@ -21,6 +24,9 @@ namespace Cgw
                 enabled = false;
                 return;
             }
+
+            _inputActions.Enable();
+            _inputActions.FindActionMap("Cinematic").FindAction("Skip").performed += (context) => m_director.Stop();
         }
 
         public void Play(Action p_callback)
@@ -39,6 +45,5 @@ namespace Cgw
             m_callback?.Invoke();
             m_callback = null;
         }
-        
     }
 }

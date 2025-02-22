@@ -6,7 +6,7 @@ using System;
 
 namespace Cgw.Graphics
 {
-    public class Fade : UniqueMonoBehaviour<Fade>
+    public class Fade : SingleBehaviour<Fade>
     {
         [SerializeField] private Image m_image;
         [SerializeField] private float m_speed = 1f;

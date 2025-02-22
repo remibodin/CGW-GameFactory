@@ -1,32 +1,25 @@
-using Cgw.Assets;
-using Cgw.Scripting;
-using System;
 using UnityEngine;
 
 namespace Cgw.Gameplay
 {
-    public class CameraController : LuaEnvItem
+    public class CameraController : SingleBehaviour<CameraController>
     {
-        public void Start()
+        private void LateUpdate()
         {
-            var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += ScriptBehaviour_OnAssetUpdated;
-            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/CameraController");
-        }
+            float direction = 0.0f;
+            Vector3 cameraPosition = PlayerSpawner.Instance.transform.position;
+            Player player = Player.Instance;
 
-        private void ScriptBehaviour_OnAssetUpdated(LuaInstance instance)
-        {
-            instance["this"] = this;
-        }
+            if (player != null)
+            {
+                direction = player.Facing.x;
+                cameraPosition = player.transform.position;
+            }
 
-        public void InitCameraPosition(Vector3 playerPosition, Vector3 facing, float cameraAheadPosition)
-        {
-            transform.position = new Vector3(playerPosition.x + facing.x * cameraAheadPosition, transform.position.y, -10.0f);
-        }
-
-        public void MoveCamera(float cameraOffset, float speed)
-        {
-            transform.position = Vector3.Lerp(transform.position, transform.position + (Vector3.right * cameraOffset), speed * Time.deltaTime);
+            cameraPosition.z = transform.position.z;
+            cameraPosition.x = cameraPosition.x + 1.2f * direction;
+            cameraPosition.y = 0.0f;
+            transform.position = Vector3.Lerp(transform.position, cameraPosition, Time.deltaTime * 2);
         }
     }
 }

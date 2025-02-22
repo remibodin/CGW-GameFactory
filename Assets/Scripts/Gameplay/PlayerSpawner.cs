@@ -1,10 +1,7 @@
-using Cgw.Gameplay;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerSpawner : LuaEnvItem
+public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
 {
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
