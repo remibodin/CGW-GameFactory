@@ -309,7 +309,7 @@ namespace Cgw.Gameplay
             }
         }
 
-        protected void OnAnimEvent(string animEvent)
+        public void OnAnimEvent(string animEvent)
         {
             if (animEvent == "HeroStep")
             {
@@ -320,18 +320,11 @@ namespace Cgw.Gameplay
             {
                 m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_landingEventInstance.start();
+                AudioManager.Instance.PlayRandom("Sounds/Collections/JumpDirt");
             }
             else if (animEvent == "HeroAttack")
             {
-                RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
-            }
-            else if (animEvent == "AttackSound")
-            {
                 AudioManager.Instance.Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1");
-            }
-            else if (animEvent == "HeroLanding")
-            {
-                AudioManager.Instance.PlayRandom("Sounds/Collections/JumpDirt");
             }
         }
 
