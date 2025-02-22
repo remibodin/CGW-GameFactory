@@ -14,7 +14,7 @@ using Unity.Collections;
 
 namespace Cgw.Gameplay
 {
-    public class Player : SingleBehaviour<Player>
+    public class Player : SingleBehaviourInScene<Player>
     {
         public float Life = 3.0f;
         public float Speed = 0.65f;

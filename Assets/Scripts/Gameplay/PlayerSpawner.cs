@@ -3,19 +3,19 @@ using UnityEngine;
 
 using Cgw.Gameplay;
 
-public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
+public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
 {
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
-    public bool SpawnOnStart = true;
-    public bool SpawnAragna = true;
+    public bool SpawnPlayerOnStart = true;
+    public bool SpawnAragnaAragna = true;
 
     private bool m_SpawnRequested = false;
     private float m_SpawnDelay = 0.0f;
 
     protected void Start()
     {
-        if (SpawnOnStart)
+        if (SpawnPlayerOnStart)
         {
             DoSpawn();
         }
@@ -23,10 +23,26 @@ public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
 
     private void DoSpawn()
     {
-        Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
-        if (SpawnAragna)
+        SpawnPlayer();
+        if (SpawnAragnaAragna)
         {
-            Instantiate(AragnaPrefab, transform.position, Quaternion.identity);
+            SpawnAragna();
+        }
+    }
+
+    public void SpawnPlayer()
+    {
+        if (Player.Instance == null)
+        {
+            Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    public void SpawnAragna()
+    {
+        if (SpiderController.Instance == null)
+        {
+            Instantiate(AragnaPrefab, Player.Instance.transform.position, Quaternion.identity);
         }
     }
 
