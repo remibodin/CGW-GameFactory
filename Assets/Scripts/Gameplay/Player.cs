@@ -108,7 +108,10 @@ namespace Cgw.Gameplay
 
         private void Player_OnAragnaAttack(InputAction.CallbackContext context)
         {
-            SpiderController.Instance.Launch(LaunchCooldownTime);
+            if (SpiderController.Instance != null)
+            {
+                SpiderController.Instance.Launch(LaunchCooldownTime);
+            }
         }
 
         private void Player_OnInteract(InputAction.CallbackContext context)
