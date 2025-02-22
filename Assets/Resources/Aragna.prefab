@@ -14850,8 +14850,8 @@ MonoBehaviour:
   FollowDistance: 0.1
   FollowHeight: 0.6
   CanLaunch: 1
-  LaunchRange: 6
-  LaunchSpeed: 4
+  LaunchRange: 2
+  LaunchSpeed: 2
   ContactFilter:
     useTriggers: 0
     useLayerMask: 0

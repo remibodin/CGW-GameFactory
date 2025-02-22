@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Cgw.Gameplay
@@ -59,10 +60,14 @@ namespace Cgw.Gameplay
 
         public Enemy CheckLaunch(Vector3 origin, Vector3 direction, float range)
         {
-            RaycastHit2D[] hits = new RaycastHit2D[1];
-            if (Physics2D.Raycast(origin, direction, ContactFilter, hits, range) > 0)
+            Vector2 boxSize = new Vector2{ x = range, y = range * 0.5f };
+            var hits = Physics2D.OverlapBoxAll(origin + direction * range * 0.5f, boxSize, 0.0f);
+            foreach (var hit in hits.OrderBy(x => Vector3.Distance(x.transform.position, origin)).ToList())
             {
-                return hits[0].collider.GetComponent<Enemy>();
+                if (hit.CompareTag("Enemy"))
+                {
+                    return hit.GetComponent<Enemy>();
+                }
             }
             return null;
         }

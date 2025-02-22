@@ -280,12 +280,12 @@ namespace Cgw.Gameplay
 
         public void Attack(float range, float power)
         {
-            var hits = Physics2D.LinecastAll(transform.position + Vector3.up * 0.4f, transform.position + (Facing * range) + Vector3.up * 0.4f);
+            var hits = Physics2D.OverlapCircleAll(transform.position + Vector3.up * 0.4f + range * 0.5f * Facing, range);
             foreach (var hit in hits)
             {
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.CompareTag("Enemy"))
                 {
-                    if (hit.collider.gameObject.TryGetComponent<Enemy>(out var enemy))
+                    if (hit.gameObject.TryGetComponent<Enemy>(out var enemy))
                     {
                         enemy.Attacked(power);
                     }
