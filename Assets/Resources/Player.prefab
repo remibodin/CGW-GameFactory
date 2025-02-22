@@ -442,33 +442,31 @@ MonoBehaviour:
   AttackPower: 1
   SinceLastFootStep: 0
   KillY: -50
-  PreviousXPosition: 0
-  PreviousOnMaterial: 0
-  PreviousOnGround: 1
-  NoControl: 0
-  Inertia: 0
-  TerrainContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  AttackTimer: 0
-  JumpTimer: 0
-  DamageTimer: 0
-  LaunchTimer: 0
   Facing: {x: 1, y: 0, z: 0}
   MinSurfaceAngle: 0.8
   Motion: {x: 0, y: 0}
   InputActions: {fileID: -944628639613478452, guid: 2efbd34f4e52f694ba5d39c456305106, type: 3}
+  FootStepEventRef:
+    Guid:
+      Data1: 1979791194
+      Data2: 1238079494
+      Data3: 1712055219
+      Data4: 1231085810
+    Path: event:/Player/FootStep
+  LandingEventRef:
+    Guid:
+      Data1: 1690858777
+      Data2: 1212767386
+      Data3: -1375956592
+      Data4: 1598306399
+    Path: event:/Player/Landing
+  AttackEventRef:
+    Guid:
+      Data1: -809873788
+      Data2: 1124256974
+      Data3: 1956366511
+      Data4: 781405840
+    Path: event:/Player/Attack
 --- !u!50 &5980383037646149594
 Rigidbody2D:
   serializedVersion: 5

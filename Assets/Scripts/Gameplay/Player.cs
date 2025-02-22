@@ -56,11 +56,12 @@ namespace Cgw.Gameplay
 
         private Collider2D m_Collider;
         private Rigidbody2D m_Rigidbody;
-        private EventInstance m_footStepEventInstance;
-        private EventInstance m_landingEventInstance;
-        private EventReference FootStepEventRef;
-        private EventReference LandingEventRef;
-        private EventReference AttackEventRef;
+
+        public EventInstance m_footStepEventInstance;
+        public EventInstance m_landingEventInstance;
+        public EventReference FootStepEventRef;
+        public EventReference LandingEventRef;
+        public EventReference AttackEventRef;
 
         private InputAction m_HorizontalAction = null;
 
@@ -320,11 +321,10 @@ namespace Cgw.Gameplay
             {
                 m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_landingEventInstance.start();
-                AudioManager.Instance.PlayRandom("Sounds/Collections/JumpDirt");
             }
             else if (animEvent == "HeroAttack")
             {
-                AudioManager.Instance.Play("Sounds/HERO_ATTAQUE_WHOOSH-05_1");
+                RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
             }
         }
 
