@@ -1,44 +1,66 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerSpawner : Cgw.SingleBehaviour<PlayerSpawner>
+using Cgw.Gameplay;
+using Cgw;
+
+public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
 {
     public GameObject PlayerPrefab;
     public GameObject AragnaPrefab;
-    public bool SpawnOnStart = true;
+    public bool SpawnPlayerOnStart = true;
+    public bool SpawnAragnaAragna = true;
 
     private bool m_SpawnRequested = false;
     private float m_SpawnDelay = 0.0f;
 
     protected void Start()
     {
-        if (SpawnOnStart)
+        if (SpawnPlayerOnStart)
         {
             DoSpawn();
-        }
-    }
-
-    private void Update()
-    {
-        m_SpawnDelay -= math.clamp(Time.deltaTime, 0.0f, 1.0f);
-
-        if (m_SpawnRequested && m_SpawnDelay <= 0.0f)
-        {
-            DoSpawn();
-
-            m_SpawnRequested = false;
         }
     }
 
     private void DoSpawn()
     {
-        Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
-        Instantiate(AragnaPrefab, transform.position, Quaternion.identity);
+        SpawnPlayer();
+        if (SpawnAragnaAragna)
+        {
+            SpawnAragna();
+        }
     }
 
-    public void RequestSpawn(float delay = 0.0f)
+    public void SpawnPlayer()
     {
-        m_SpawnDelay = delay;
-        m_SpawnRequested = true;
+        if (Player.Instance == null)
+        {
+            Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    public void SpawnAragna()
+    {
+        if (SpiderController.Instance == null)
+        {
+            Instantiate(AragnaPrefab, Player.Instance.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void Respawn()
+    {
+        Player.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        SpiderController.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+    }
+
+    [TermCommand]
+    private static void Aragna(string p_args)
+    {
+        if (Instance == null)
+        {
+            return;
+        }
+
+        Instance.SpawnAragna();
     }
 }

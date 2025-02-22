@@ -8,44 +8,65 @@ using Unity.Mathematics;
 using FMODUnity;
 using FMOD.Studio;
 
-using Cgw.Assets;
-using Cgw.Scripting;
 using Cgw.Audio;
+using System.Collections;
+using Unity.Collections;
 
 namespace Cgw.Gameplay
 {
-    public class Player : LuaEnvItem
+    public class Player : SingleBehaviourInScene<Player>
     {
-        public static Player Instance { get; private set; } = null;  // FIXME: Temporaire
+        public float Life = 3.0f;
+        public float Speed = 0.65f;
+        public float AirSpeed = 1.0f;
+        public float JumpCooldownTime = .85f;
+        public float JumpForce = 3.5f;
 
-        public ContactFilter2D TerrainContactFilter;
-        public float AttackCooldown = 0.0f;
-        public float JumpCooldown = 0.0f;
-        public float DamageCooldown = 0.0f;
-        public float LaunchCooldown = 0.0f;
+        public float LaunchCooldownTime = 6.0f;
+        public float AttackCooldownTime = 0.6f;
+        public float DamageCooldownTime = 0.8f;
+
+        public float AttackRange = 0.8f;
+        public float AttackPower = 1.0f;
+        public float SinceLastFootStep = 0f;
+
+        public float KillY = -50.0f;
+
+        private float PreviousXPosition = 0.0f;
+        private ESurfaceType PreviousOnMaterial = ESurfaceType.Dirt;
+        private bool PreviousOnGround = true;
+        private bool NoControl = false;
+        private float Inertia = 0.0f;
+        private ContactFilter2D TerrainContactFilter;
+
+        private float AttackTimer = 0.0f;
+        private float JumpTimer = 0.0f;
+        private float DamageTimer = 0.0f;
+
         public Vector3 Facing = new(1.0f, 0.0f);
         public float MinSurfaceAngle = 0.4f;
         public Vector2 Motion;
-        public EventReference FootStepEventRef;
-        public EventReference LandingEventRef;
-        public EventReference AttackEventRef;
 
         public bool OnGround { get; private set; }
         public ESurfaceType OnMaterial { get; private set; }
 
+        [ReadOnly]
         public InputActionAsset InputActions;
 
         private Collider2D m_Collider;
-        private EventInstance m_footStepEventInstance;
-        private EventInstance m_landingEventInstance;
+        private Rigidbody2D m_Rigidbody;
+
+        public EventInstance m_footStepEventInstance;
+        public EventInstance m_landingEventInstance;
+        public EventReference FootStepEventRef;
+        public EventReference LandingEventRef;
+        public EventReference AttackEventRef;
 
         private InputAction m_HorizontalAction = null;
 
         protected override void Awake()
         {
             base.Awake();
-
-            Instance = this; // FIXME: Temporaire
 
             InputActions.Enable();
 
@@ -57,44 +78,89 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed += Player_OnAragnaAttack;
         }
 
+        public void DieImmediately()
+        {
+            PlayerSpawner.Instance.Respawn();
+        }
+
+        public IEnumerator TookDamage()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (Life <= 0.0f)
+            {
+                DieImmediately();
+            }
+            NoControl = false;
+        }
+
+        public void TakeDamage(float power, Enemy enemy)
+        {
+            if (Mathf.Approximately(DamageTimer, 0.0f))
+            {
+                NoControl = true;
+                Life = Life - power;
+                DamageTimer = DamageCooldownTime;
+                var directionFromEnemy = (transform.position - enemy.transform.position).normalized;
+                m_Rigidbody.AddForce((Vector3.up + directionFromEnemy) * 3.0f);
+                CoroutineRunner.StartCoroutine(TookDamage());
+            }
+        }
+
         private void Player_OnAragnaAttack(InputAction.CallbackContext context)
         {
-            m_Instance.Call("OnAragnaAttack");
+            if (SpiderController.Instance != null)
+            {
+                SpiderController.Instance.Launch(LaunchCooldownTime);
+            }
         }
 
         private void Player_OnInteract(InputAction.CallbackContext context)
         {
-            m_Instance.Call("OnInteract");
         }
 
         private void Player_OnAttack(InputAction.CallbackContext context)
         {
-            m_Instance.Call("OnAttack");
+            if (Mathf.Approximately(AttackTimer, 0.0f))
+            {
+                var animator = GetComponent<PlayerAnimator>();
+                if (animator != null)
+                {
+                    animator.Attack();
+                }
+                AttackTimer = AttackCooldownTime;
+            }
         }
 
         private void Player_OnJump(InputAction.CallbackContext obj)
         {
-            m_Instance.Call("OnJump");
+            if (OnGround)
+            {
+                if (Mathf.Approximately(JumpTimer, 0.0f))
+                {
+                    Inertia = Motion.x;
+                    Jump(JumpForce);
+                    JumpTimer = JumpCooldownTime;
+                }
+            }
         }
 
-        private void Start()
+        public void Start()
         {
             m_Collider = GetComponent<Collider2D>();
-
-            var scriptBehaviour = gameObject.AddComponent<LuaBehaviour>();
-            scriptBehaviour.OnAssetUpdated += OnAssetUpdate;
-            scriptBehaviour.Script = ResourcesManager.Get<LuaScript>("Scripts/PlayerController");
+            m_Rigidbody = GetComponent<Rigidbody2D>();
 
             m_footStepEventInstance = RuntimeManager.CreateInstance(FootStepEventRef);
             RuntimeManager.AttachInstanceToGameObject(m_footStepEventInstance, transform);
 
             m_landingEventInstance = RuntimeManager.CreateInstance(LandingEventRef);
             RuntimeManager.AttachInstanceToGameObject(m_landingEventInstance, transform);
+
+            PreviousOnGround = OnGround;
+            PreviousOnMaterial = OnMaterial;
         }
 
-        protected override void OnDestroy()
+        protected void OnDestroy()
         {
-            base.OnDestroy();
             m_footStepEventInstance.release();
             m_landingEventInstance.release();
 
@@ -104,24 +170,12 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed -= Player_OnAragnaAttack;
         }
 
-        protected override void OnAssetUpdate(LuaInstance instance)
-        {
-            base.OnAssetUpdate(instance);
-
-            instance["this"] = this;
-        }
-
         public float GetHorizontalInput()
         {
             return m_HorizontalAction.ReadValue<float>();
         }
 
-        public void TakeDamage(float power, Enemy enemy)
-        {
-            m_Instance.Call("TakeDamage", power, enemy);
-        }
-
-        private void Update()
+        public void Update()
         {
             Motion = Vector2.zero;
 
@@ -140,17 +194,46 @@ namespace Cgw.Gameplay
                 OnMaterial = ESurfaceType.Unknown;
             }
 
-            AttackCooldown -= Time.deltaTime;
-            AttackCooldown = math.max(0.0f, AttackCooldown);
+            AttackTimer -= Time.deltaTime;
+            AttackTimer = math.max(0.0f, AttackTimer);
 
-            JumpCooldown -= Time.deltaTime;
-            JumpCooldown = math.max(0.0f, JumpCooldown);
+            JumpTimer -= Time.deltaTime;
+            JumpTimer = math.max(0.0f, JumpTimer);
 
-            DamageCooldown -= Time.deltaTime;
-            DamageCooldown = math.max(0.0f, DamageCooldown);
+            DamageTimer -= Time.deltaTime;
+            DamageTimer = math.max(0.0f, DamageTimer);
 
-            LaunchCooldown -= Time.deltaTime;
-            LaunchCooldown = math.max(0.0f, LaunchCooldown);
+            if (OnGround && !PreviousOnGround)
+            {
+                Inertia = 0.0f;
+            }
+
+            if (!NoControl)
+            {
+                var horizontalAxis = GetHorizontalInput();
+                if (OnGround)
+                {
+                    if (Mathf.Abs(horizontalAxis) > 0.0f)
+                    {
+                        if (Mathf.Approximately(JumpTimer, 0.0f))
+                        {
+                            Move(Speed, horizontalAxis);
+                        }
+                    }
+                }
+                else
+                {
+                    MoveWithInertia(AirSpeed, horizontalAxis, Inertia);
+                }
+            }
+
+            if (transform.position.y <= KillY)
+            {
+                DieImmediately();
+            }
+
+            PreviousOnGround = OnGround;
+            PreviousOnMaterial = OnMaterial;
         }
 
         public void Jump(float force)
@@ -197,18 +280,12 @@ namespace Cgw.Gameplay
 
         public void Attack(float range, float power)
         {
-            var animator = GetComponent<PlayerAnimator>();
-            if (animator != null)
-            {
-                animator.Attack();
-            }
-
-            var hits = Physics2D.LinecastAll(transform.position + Vector3.up, transform.position + (Facing * range) + Vector3.up);
+            var hits = Physics2D.OverlapCircleAll(transform.position + Vector3.up * 0.4f + range * 0.5f * Facing, range);
             foreach (var hit in hits)
             {
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.CompareTag("Enemy"))
                 {
-                    if (hit.collider.gameObject.TryGetComponent<Enemy>(out var enemy))
+                    if (hit.gameObject.TryGetComponent<Enemy>(out var enemy))
                     {
                         enemy.Attacked(power);
                     }
@@ -216,20 +293,21 @@ namespace Cgw.Gameplay
             }
         }
 
-        protected override void OnAnimEvent(string animEvent)
+        public void OnAnimEvent(string animEvent)
         {
             if (animEvent == "HeroStep")
             {
                 m_footStepEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_footStepEventInstance.start();
             }
-            if (animEvent == "HeroLanding")
+            else if (animEvent == "HeroLanding")
             {
                 m_landingEventInstance.setParameterByName("Material", (float)OnMaterial);
                 m_landingEventInstance.start();
             }
-            if (animEvent == "HeroAttack")
+            else if (animEvent == "HeroAttack")
             {
+                Attack(AttackRange, AttackPower);
                 RuntimeManager.PlayOneShot(AttackEventRef, transform.position);
             }
         }

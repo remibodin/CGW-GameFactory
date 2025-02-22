@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Cgw.Gameplay
 {
-    public class SpiderController : SingleBehaviour<SpiderController>
+    public class SpiderController : SingleBehaviourInScene<SpiderController>
     {
         public float Life = 3;
         public float LifePerLaunch = 0.5f;
@@ -22,6 +24,10 @@ namespace Cgw.Gameplay
         public bool HasTarget = false;
         public Enemy Target = null;
         public Vector3 TargetPoint = Vector3.zero;
+
+        public ParticleSystem FlyingDotsParticles;
+
+        public float LaunchTimer = 0.0f;
 
         public void Start()
         {
@@ -54,15 +60,26 @@ namespace Cgw.Gameplay
 
         public Enemy CheckLaunch(Vector3 origin, Vector3 direction, float range)
         {
-            RaycastHit2D[] hits = new RaycastHit2D[1];
-            if (Physics2D.Raycast(origin, direction, ContactFilter, hits, range) > 0)
+            Vector2 boxSize = new Vector2{ x = range, y = range * 0.5f };
+            var hits = Physics2D.OverlapBoxAll(origin + direction * range * 0.5f, boxSize, 0.0f);
+            foreach (var hit in hits.OrderBy(x => Vector3.Distance(x.transform.position, origin)).ToList())
             {
-                return hits[0].collider.GetComponent<Enemy>();
+                if (hit.CompareTag("Enemy"))
+                {
+                    return hit.GetComponent<Enemy>();
+                }
             }
             return null;
         }
 
-        public void Launch()
+        private IEnumerator Feedback_FailedLaunch()
+        {
+            var animator = GetComponent<Animator>();
+            animator.Play("Aragna@FailLaunch");
+            yield return null;
+        }
+
+        public void Launch(float cooldown)
         {
             if (CanLaunch && Life > 0)
             {
@@ -70,6 +87,10 @@ namespace Cgw.Gameplay
                 var enemy = CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange);
                 if (enemy != null)
                 {
+                    var emission = FlyingDotsParticles.emission;
+                    emission.enabled = false;
+                    CanLaunch = false;
+                    LaunchTimer = cooldown;
                     HasTarget = true;
                     Target = enemy;
                     Life = Life - LifePerLaunch;
@@ -79,6 +100,7 @@ namespace Cgw.Gameplay
                     HasTarget = false;
                     Target = null;
                     TargetPoint = player.transform.position + player.Facing * LaunchRange;
+                    CoroutineRunner.StartCoroutine(Feedback_FailedLaunch());
                 }
             }
         }
@@ -90,8 +112,8 @@ namespace Cgw.Gameplay
                 var enemy = collision.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    HasTarget = false;
                     enemy.OnCollisionWithSpider();
+                    HasTarget = false;
                 }
             }
         }
@@ -103,14 +125,24 @@ namespace Cgw.Gameplay
                 var enemy = collision.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    HasTarget = false;
                     enemy.OnCollisionWithSpider();
+                    HasTarget = false;
                 }
             }
         }
 
         public void Update()
         {
+            LaunchTimer -= Time.deltaTime;
+            LaunchTimer = Mathf.Max(0.0f, LaunchTimer);
+            
+            if (Mathf.Approximately(LaunchTimer, 0.0f) && !CanLaunch)
+            {
+                CanLaunch = true;
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = true;
+            }
+
             var player = Player.Instance;
             var targetPosition = player.transform.position + Vector3.up * FollowHeight;
             if (!HasTarget && Vector3.Distance(transform.position, targetPosition) > FollowDistance)
@@ -128,7 +160,8 @@ namespace Cgw.Gameplay
             {
                 if (Target != null)
                 {
-                    MoveTowards(Target.transform.position, LaunchSpeed);
+                    Vector3 targetCenter = Target.GetComponent<Collider2D>().bounds.center;
+                    MoveTowards(targetCenter, LaunchSpeed);
                 }
                 else
                 {
