@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 62231e06ffff275488fd6fb597b7f1a7
   - enabled: 1
-    path: Assets/Scenes/DarkForest.unity
+    path: Assets/Scenes/Levels/DarkForest.unity
     guid: d7f850774dc5e2f4287ba9b93fbd50ee
   - enabled: 1
     path: Assets/Scenes/Cinematic.unity

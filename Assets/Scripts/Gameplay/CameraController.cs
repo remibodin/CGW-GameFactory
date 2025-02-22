@@ -1,9 +1,32 @@
+using FMODUnity;
 using UnityEngine;
 
 namespace Cgw.Gameplay
 {
     public class CameraController : SingleBehaviour<CameraController>
     {
+        private void OnEnable()
+        {
+            RuntimeManager.StudioSystem.setNumListeners(1);
+        }
+
+        private void OnDisable()
+        {
+            RuntimeManager.StudioSystem.setNumListeners(0);
+        }
+
+        private void Update()
+        {
+            if (Player.Instance != null)
+            {
+                RuntimeManager.SetListenerLocation(Player.Instance.gameObject);
+            }
+            else
+            {
+                RuntimeManager.SetListenerLocation(gameObject);
+            }
+        }
+
         private void LateUpdate()
         {
             float direction = 0.0f;
