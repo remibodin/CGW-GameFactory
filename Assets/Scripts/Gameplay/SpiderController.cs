@@ -1,6 +1,3 @@
-using Cgw.Assets;
-using Cgw.Scripting;
-using UnityEditor.Rendering.Analytics;
 using UnityEngine;
 
 namespace Cgw.Gameplay
