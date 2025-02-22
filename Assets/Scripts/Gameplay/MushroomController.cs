@@ -1,12 +1,6 @@
-using Cgw.Assets;
-using Cgw.Scripting;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UIElements.Experimental;
 
 namespace Cgw.Gameplay
 {
@@ -21,6 +15,7 @@ namespace Cgw.Gameplay
 
         public bool IsSpiderTouched = false;
         public bool NoMove = false;
+        public bool Dying = false;
 
         public ContactFilter2D TerrainContactFilter;
         public float SpiderTouchTimer = 0.0f;
@@ -31,6 +26,7 @@ namespace Cgw.Gameplay
 
         public IEnumerator Die()
         {
+            Dying = true;
             NoMove = true;
             yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);
@@ -44,6 +40,11 @@ namespace Cgw.Gameplay
 
         public override void Attacked(float power)
         {
+            if (Dying)
+            {
+                return;
+            }
+
             Life -= power;
             NoMove = true;
             Vector3 directionFromPlayer = (transform.position - Player.Instance.transform.position).normalized;
@@ -125,7 +126,7 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithPlayer()
         {
-            if (!IsSpiderTouched)
+            if (!IsSpiderTouched && !Dying)
             {
                 NoMove = true;
                 Player.Instance.TakeDamage(AttackPower, this);
@@ -142,7 +143,10 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithDanger()
         {
-            CoroutineRunner.StartCoroutine(Die());
+            if (!Dying)
+            {
+                CoroutineRunner.StartCoroutine(Die());
+            }
         }
     }
 }
