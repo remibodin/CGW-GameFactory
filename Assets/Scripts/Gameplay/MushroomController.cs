@@ -17,6 +17,8 @@ namespace Cgw.Gameplay
         public bool NoMove = false;
         public bool Dying = false;
 
+        public ParticleSystem FlyingDotsParticles;
+
         public ContactFilter2D TerrainContactFilter;
         public float SpiderTouchTimer = 0.0f;
 
@@ -67,8 +69,10 @@ namespace Cgw.Gameplay
             SpiderTouchTimer -= Time.deltaTime;
             SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
 
-            if (Mathf.Approximately(SpiderTouchTimer, 0.0f))
+            if (Mathf.Approximately(SpiderTouchTimer, 0.0f) && IsSpiderTouched)
             {
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = false;
                 IsSpiderTouched = false;
             }
             MushroomIA();
@@ -137,6 +141,8 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithSpider()
         {
+            var emission = FlyingDotsParticles.emission;
+            emission.enabled = true;
             IsSpiderTouched = true;
             SpiderTouchTimer = SpiderController.Instance.TouchTime;
         }

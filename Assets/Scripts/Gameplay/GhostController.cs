@@ -30,6 +30,8 @@ namespace Cgw.Gameplay
         public float ChargeTimer = 0.0f;
         public float SpiderTouchTimer = 0.0f;
 
+        public ParticleSystem FlyingDotsParticles;
+
         private Rigidbody2D m_Rigidbody;
         private SpriteRenderer m_SpriteRenderer;
         private bool NoMove = false;
@@ -108,8 +110,10 @@ namespace Cgw.Gameplay
             SpiderTouchTimer -= Time.deltaTime;
             SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
 
-            if (Mathf.Approximately(SpiderTouchTimer, 0.0f))
+            if (Mathf.Approximately(SpiderTouchTimer, 0.0f) && IsSpiderTouched)
             {
+                var emission = FlyingDotsParticles.emission;
+                emission.enabled = false;
                 IsSpiderTouched = false;
             }
             GhostIA();
@@ -163,6 +167,8 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithSpider()
         {
+            var emission = FlyingDotsParticles.emission;
+            emission.enabled = true;
             IsSpiderTouched = true;
             SpiderTouchTimer = SpiderController.Instance.TouchTime;
         }
