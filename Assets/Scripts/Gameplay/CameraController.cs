@@ -1,10 +1,22 @@
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Cgw.Gameplay
 {
     public class CameraController : SingleBehaviour<CameraController>
     {
+        private Camera _camera;
+        private UniversalAdditionalCameraData _cameraData;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _camera = GetComponent<Camera>();
+            _cameraData = GetComponent<UniversalAdditionalCameraData>();
+        }
+
         private void OnEnable()
         {
             RuntimeManager.StudioSystem.setNumListeners(1);
@@ -17,14 +29,15 @@ namespace Cgw.Gameplay
 
         private void Update()
         {
+            GameObject targetEffect = gameObject;
+
             if (Player.Instance != null)
             {
-                RuntimeManager.SetListenerLocation(Player.Instance.gameObject);
+                targetEffect = Player.Instance.gameObject;
             }
-            else
-            {
-                RuntimeManager.SetListenerLocation(gameObject);
-            }
+
+            RuntimeManager.SetListenerLocation(targetEffect);
+            _cameraData.volumeTrigger = targetEffect.transform;
         }
 
         private void LateUpdate()

@@ -20,13 +20,19 @@ namespace Cgw.UI
         private void Awake()
         {
             m_group = GetComponent<CanvasGroup>();
-        }
-
-        private void Start()
-        {
-            m_inputActions.FindActionMap("Menu").FindAction("Pause").performed += SwitchPause;
             m_resumeBtn.onClick.AddListener(ResumeGame);
             m_quitBtn.onClick.AddListener(ReturnToStartMenu);
+        }
+
+        private void OnEnable()
+        {
+            m_inputActions.FindActionMap("Menu").FindAction("Pause").performed += SwitchPause;
+            
+        }
+
+        private void OnDisable()
+        {
+            m_inputActions.FindActionMap("Menu").FindAction("Pause").performed -= SwitchPause;
         }
 
         private void SwitchPause(InputAction.CallbackContext context)
@@ -62,6 +68,10 @@ namespace Cgw.UI
 
         private void DisplayScreen(bool p_visible)
         {
+            if (m_group == null)
+            {
+                return;
+            }
             m_group.alpha = p_visible ? 1.0f : 0.0f;
             m_group.blocksRaycasts = p_visible;
             m_group.interactable = p_visible;

@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 62231e06ffff275488fd6fb597b7f1a7
   - enabled: 1
-    path: Assets/Scenes/Levels/DarkForest.unity
-    guid: d7f850774dc5e2f4287ba9b93fbd50ee
+    path: Assets/Scenes/Levels/Village.unity
+    guid: 492b19d0b8fc87e43b1c790eddf9fc04
   - enabled: 1
     path: Assets/Scenes/Cinematic.unity
     guid: dab80552adf7143c9b86943361c482b5
+  - enabled: 1
+    path: Assets/Scenes/Levels/DarkForest.unity
+    guid: d7f850774dc5e2f4287ba9b93fbd50ee
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bcd10789b4c209640a1043bc393ec08f, type: 2}
   m_UseUCBPForAssetBundles: 0
