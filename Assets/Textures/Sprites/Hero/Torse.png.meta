@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: c1949db501c914734a17eaaafd6375cc
+guid: def577ec3bc79a04e8495ab6de938583
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6963164448316688718
+    second: Torse_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,20 +116,20 @@ TextureImporter:
       name: Torse_0
       rect:
         serializedVersion: 2
-        x: 791
-        y: 1464
-        width: 559
-        height: 873
-      alignment: 9
-      pivot: {x: 0.53378445, y: 0.22958532}
+        x: 432
+        y: 986
+        width: 267
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b1d55bb34a82e42209d126e1b67c4fca
-      internalID: -666696056
+      spriteID: e498b8e5c2122a060800000000000000
+      internalID: 6963164448316688718
       vertices: []
       indices: 
       edges: []
@@ -135,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -144,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Torse_0: -666696056
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

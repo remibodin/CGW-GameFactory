@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -29,8 +28,12 @@ namespace Cgw.Gameplay
 
         public float LaunchTimer = 0.0f;
 
+        private Collider2D m_Collider;
+
         public void Start()
         {
+            m_Collider = GetComponent<Collider2D>();
+
             var player = Player.Instance;
 
             if (player != null)
@@ -72,13 +75,6 @@ namespace Cgw.Gameplay
             return null;
         }
 
-        private IEnumerator Feedback_FailedLaunch()
-        {
-            var animator = GetComponent<Animator>();
-            animator.Play("Aragna@FailLaunch");
-            yield return null;
-        }
-
         public void Launch(float cooldown)
         {
             if (CanLaunch && Life > 0)
@@ -87,20 +83,28 @@ namespace Cgw.Gameplay
                 var enemy = CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange);
                 if (enemy != null)
                 {
+                    if (m_Collider.IsTouching(enemy.GetComponent<Collider2D>()))
+                    {
+                        enemy.OnCollisionWithSpider();
+                    }
+                    else
+                    {
+                        HasTarget = true;
+                        Target = enemy;
+                    }
                     var emission = FlyingDotsParticles.emission;
                     emission.enabled = false;
                     CanLaunch = false;
                     LaunchTimer = cooldown;
-                    HasTarget = true;
-                    Target = enemy;
-                    Life = Life - LifePerLaunch;
+                    Life -= LifePerLaunch;
                 }
                 else
                 {
                     HasTarget = false;
                     Target = null;
                     TargetPoint = player.transform.position + player.Facing * LaunchRange;
-                    CoroutineRunner.StartCoroutine(Feedback_FailedLaunch());
+                    var animator = GetComponent<Animator>();
+                    animator.Play("Aragna@FailLaunch");
                 }
             }
         }

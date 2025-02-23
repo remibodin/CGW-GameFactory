@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 6f2ccc384a12f4e9886208e16e118e85
+guid: 5009fe76b842d7341813d0324223cb14
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4139642226703899589
+    second: G_Pied_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: G_pied_0
+      name: G_Pied_0
       rect:
         serializedVersion: 2
-        x: 1173
-        y: 55
-        width: 373
-        height: 536
-      alignment: 9
-      pivot: {x: 0.3227876, y: 0.83472836}
+        x: 311
+        y: 162
+        width: 218
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 39fd9a2ef6eac4ae58286f29374301a3
-      internalID: -2042019862
+      spriteID: b346b1cd3590d86c0800000000000000
+      internalID: -4139642226703899589
       vertices: []
       indices: 
       edges: []
@@ -135,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -144,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      G_pied_0: -2042019862
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,6 +15,7 @@ namespace Cgw.Gameplay
 
             _camera = GetComponent<Camera>();
             _cameraData = GetComponent<UniversalAdditionalCameraData>();
+            _camera.orthographicSize = 1.3f;
         }
 
         private void OnEnable()
@@ -39,23 +40,6 @@ namespace Cgw.Gameplay
 
             RuntimeManager.SetListenerLocation(targetEffect);
             _cameraData.volumeTrigger = targetEffect.transform;
-
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                _camera.orthographicSize = 1.1f;
-            }
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                _camera.orthographicSize = 1.3f;
-            }
-            if (Input.GetKeyDown(KeyCode.F3))
-            {
-                _camera.orthographicSize = 1.5f;
-            }
-            if (Input.GetKeyDown(KeyCode.F4))
-            {
-                _camera.orthographicSize = 1.7f;
-            }
         }
 
         private void LateUpdate()

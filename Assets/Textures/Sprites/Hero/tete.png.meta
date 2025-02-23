@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 33f79eba332464c87b0284bc3b326931
+guid: 096f3d8087019f64c9e7daf02ccbc45c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6649375695552559675
+    second: Tete_0
+  - first:
+      213: -2146518360737445386
+    second: Tete_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,34 +116,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tete_0
+      name: Tete_0
       rect:
         serializedVersion: 2
-        x: 990
-        y: 2446
-        width: 399
-        height: 360
-      alignment: 9
-      pivot: {x: 0.45721972, y: 0.1279758}
+        x: 480
+        y: 1313
+        width: 219
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7eed8720d069d4662addcc6f9c4245d1
-      internalID: 1071237029
+      spriteID: b3ab68717f3574c50800000000000000
+      internalID: 6649375695552559675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tete_1
+      name: Tete_1
       rect:
         serializedVersion: 2
-        x: 1243
-        y: 2456
-        width: 9
+        x: 545
+        y: 1302
+        width: 6
         height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,10 +151,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c95ef6ad5443c408b901163a70648d47
-      internalID: 1686713905
+      spriteID: 6f904647ce80632e0800000000000000
+      internalID: -2146518360737445386
       vertices: []
       indices: 
       edges: []
@@ -157,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -166,9 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      tete_0: 1071237029
-      tete_1: 1686713905
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

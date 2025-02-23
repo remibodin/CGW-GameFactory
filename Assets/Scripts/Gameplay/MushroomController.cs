@@ -16,7 +16,9 @@ namespace Cgw.Gameplay
         public bool IsSpiderTouched = false;
         public bool NoMove = false;
         public bool Dying = false;
+        public bool TouchedPlayer = false;
 
+        public GameObject BoomParticlePrefab;
         public ParticleSystem FlyingDotsParticles;
 
         public ContactFilter2D TerrainContactFilter;
@@ -24,13 +26,22 @@ namespace Cgw.Gameplay
 
         private Collider2D m_Collider;
         private Rigidbody2D m_Rigidbody;
+        private Animator m_Animator;
         private Vector2 m_Facing;
 
-        public IEnumerator Die()
+        public void StartDying()
         {
             Dying = true;
             NoMove = true;
-            yield return new WaitForSeconds(0.7f);
+        }
+
+        public void Die()
+        {
+            if (TouchedPlayer)
+            {
+                Player.Instance.TakeDamage(AttackPower, this);
+            }
+            Instantiate(BoomParticlePrefab, transform.position + Vector3.up * 0.2f, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -54,7 +65,8 @@ namespace Cgw.Gameplay
             if (Life <= 0.0f)
             {
                 // AudioManager.Instance.Play("Sounds/CHAMPI_DEGONFLER_06_1");
-                CoroutineRunner.StartCoroutine(Die());
+                TouchedPlayer = false;
+                StartDying();
             }
         }
 
@@ -62,6 +74,7 @@ namespace Cgw.Gameplay
         {
             m_Collider = GetComponent<Collider2D>();
             m_Rigidbody = GetComponent<Rigidbody2D>();
+            m_Animator = GetComponent<Animator>();
         }
 
         public void Update()
@@ -76,6 +89,11 @@ namespace Cgw.Gameplay
                 IsSpiderTouched = false;
             }
             MushroomIA();
+        }
+
+        public void LateUpdate()
+        {
+            m_Animator.SetBool("Dying", Dying);
         }
 
         public void Move(float direction, float speed)
@@ -132,10 +150,9 @@ namespace Cgw.Gameplay
         {
             if (!IsSpiderTouched && !Dying)
             {
-                NoMove = true;
-                Player.Instance.TakeDamage(AttackPower, this);
                 // AudioManager.Instance.Play("Sounds/CHAMPI_POP_B-12_1");
-                CoroutineRunner.StartCoroutine(Die());
+                TouchedPlayer = true;
+                StartDying();
             }
         }
 
@@ -154,7 +171,7 @@ namespace Cgw.Gameplay
         {
             if (!Dying)
             {
-                CoroutineRunner.StartCoroutine(Die());
+                StartDying();
             }
         }
     }
