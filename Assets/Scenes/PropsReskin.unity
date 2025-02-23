@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: T_GroundGrass_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3060557796583931495, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.9310426
+      objectReference: {fileID: 0}
     - target: {fileID: 3305513636971661819, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Size.x
       value: 2.466922
@@ -326,7 +330,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0}
+  m_BackGroundColor: {r: 0.07450981, g: 0.07450981, b: 0.07450981, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -592,6 +596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: T_GroundGrass_1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3060557796583931495, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.9175327
+      objectReference: {fileID: 0}
     - target: {fileID: 3305513636971661819, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Size.x
       value: 2.466922
@@ -779,6 +787,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1.3125844
       objectReference: {fileID: 0}
+    - target: {fileID: 1122404027722683830, guid: 82018f7db18b28d43870722ac273b902, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0384184
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122404027722683830, guid: 82018f7db18b28d43870722ac273b902, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1487261387356273444, guid: 82018f7db18b28d43870722ac273b902, type: 3}
       propertyPath: m_Name
       value: T_GroundGrass_0
@@ -957,6 +973,10 @@ PrefabInstance:
     - target: {fileID: 1258601903770744189, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Name
       value: T_GroundGrass_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060557796583931495, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.930635
       objectReference: {fileID: 0}
     - target: {fileID: 3305513636971661819, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Size.x
@@ -1262,6 +1282,14 @@ PrefabInstance:
     - target: {fileID: 1258601903770744189, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Name
       value: T_GroundGrass_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060557796583931495, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3722413
+      objectReference: {fileID: 0}
+    - target: {fileID: 3305513636971661819, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.7578288
       objectReference: {fileID: 0}
     - target: {fileID: 4894689999433921218, guid: d5993ed8ad37df848a94a328578f718f, type: 3}
       propertyPath: m_Size.x
