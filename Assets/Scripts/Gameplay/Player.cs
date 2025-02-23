@@ -98,10 +98,11 @@ namespace Cgw.Gameplay
             if (Mathf.Approximately(DamageTimer, 0.0f))
             {
                 NoControl = true;
-                Life = Life - power;
+                Life -= power;
                 DamageTimer = DamageCooldownTime;
-                var directionFromEnemy = (transform.position - enemy.transform.position).normalized;
-                m_Rigidbody.AddForce((Vector3.up + directionFromEnemy) * 3.0f);
+                var directionFromEnemy = transform.position.x - enemy.transform.position.x;
+                directionFromEnemy = directionFromEnemy < 0 ? -1.0f : 1.0f;
+                m_Rigidbody.AddForce((Vector3.up + Vector3.right * directionFromEnemy) * 2.0f, ForceMode2D.Impulse);
                 CoroutineRunner.StartCoroutine(TookDamage());
             }
         }
