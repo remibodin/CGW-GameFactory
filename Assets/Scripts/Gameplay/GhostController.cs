@@ -34,6 +34,7 @@ namespace Cgw.Gameplay
 
         private Rigidbody2D m_Rigidbody;
         private SpriteRenderer m_SpriteRenderer;
+        private Animator m_Animator;
         private bool NoMove = false;
         private bool Dying = false;
 
@@ -97,6 +98,7 @@ namespace Cgw.Gameplay
         {
             m_Rigidbody = GetComponent<Rigidbody2D>();
             m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            m_Animator = GetComponent<Animator>();
 
             Opacity = OpacityOverDistanceCurve.Evaluate(float.PositiveInfinity);
             //AudioManager.Instance.Play("Sounds/FANTOME_RODE_07_1");
@@ -120,6 +122,11 @@ namespace Cgw.Gameplay
 
             SpriteColor.a = Opacity;
             m_SpriteRenderer.color = SpriteColor;
+        }
+
+        public void LateUpdate()
+        {
+            m_Animator.SetBool("ChargeMode", ChargeMode);
         }
 
         public IEnumerator Die()
