@@ -130,6 +130,7 @@ MonoBehaviour:
   SpriteColor: {r: 1, g: 1, b: 1, a: 1}
   Opacity: 1
   SpiderTouchTimer: 0
+  BoomParticlePrefab: {fileID: 3494829984637113230, guid: 37c8327a97625354fa4c8f90a6d0ab3e, type: 3}
   FlyingDotsParticles: {fileID: 127433729330835553}
 --- !u!50 &-5395769817619533903
 Rigidbody2D:
@@ -5130,7 +5131,7 @@ GameObject:
   - component: {fileID: 958879402997268438}
   - component: {fileID: 7400547429902370799}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

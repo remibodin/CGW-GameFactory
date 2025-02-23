@@ -28,6 +28,7 @@ namespace Cgw.Gameplay
 
         public float SpiderTouchTimer = 0.0f;
 
+        public GameObject BoomParticlePrefab;
         public ParticleSystem FlyingDotsParticles;
 
         private Rigidbody2D m_Rigidbody;
@@ -91,6 +92,7 @@ namespace Cgw.Gameplay
             {
                 Player.Instance.TakeDamage(ExplosionDamage, this);
             }
+            Instantiate(BoomParticlePrefab, transform.position, Quaternion.identity);
         }
 
         public void Start()
