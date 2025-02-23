@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: 174ddbac63f24ab45befd8f5599fa887
+guid: 8478a063a753991489f2298626efadc6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1887795145090377717
-    second: Cape_0
+      213: -163136918683938726
+    second: G_Cuisse_0
   - first:
-      213: -2414361565861855294
-    second: Cape_1
+      213: 6047271784910109200
+    second: G_Cuisse_1
   - first:
-      213: -3789902401689728560
-    second: Cape_2
+      213: 2859963926754642882
+    second: G_Cuisse_2
   - first:
-      213: -4324352846293930041
-    second: Cape_3
+      213: -8959054205218935727
+    second: G_Cuisse_3
   - first:
-      213: -6237264695293520441
-    second: Cape_4
+      213: -5863756382350881862
+    second: G_Cuisse_4
   - first:
-      213: 3739227062987868348
-    second: Cape_5
+      213: -1299211855873402359
+    second: G_Cuisse_5
+  - first:
+      213: 246965603381641667
+    second: G_Cuisse_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +131,57 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cape_0
+      name: G_Cuisse_0
       rect:
         serializedVersion: 2
-        x: 849
-        y: 1600
+        x: 423
+        y: 540
+        width: 172
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a50971836db6cbdf0800000000000000
+      internalID: -163136918683938726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G_Cuisse_1
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 818
+        width: 19
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a3fc706a93ce350800000000000000
+      internalID: 6047271784910109200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G_Cuisse_2
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 804
         width: 6
-        height: 6
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f7a1d7beabc23a10800000000000000
-      internalID: 1887795145090377717
+      spriteID: 2cb44a4e902a0b720800000000000000
+      internalID: 2859963926754642882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cape_1
+      name: G_Cuisse_3
       rect:
         serializedVersion: 2
-        x: 253
-        y: 242
-        width: 481
-        height: 1098
+        x: 647
+        y: 795
+        width: 6
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +212,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2cfb27b92f67e7ed0800000000000000
-      internalID: -2414361565861855294
+      spriteID: 15ca47edaab0ba380800000000000000
+      internalID: -8959054205218935727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cape_2
+      name: G_Cuisse_4
       rect:
         serializedVersion: 2
-        x: 901
-        y: 1185
-        width: 11
-        height: 21
+        x: 647
+        y: 769
+        width: 7
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,58 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0d942ed68df876bc0800000000000000
-      internalID: -3789902401689728560
+      spriteID: abbcb8443a0cf9ea0800000000000000
+      internalID: -5863756382350881862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cape_3
-      rect:
-        serializedVersion: 2
-        x: 1105
-        y: 861
-        width: 45
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cf63396fffccf3c0800000000000000
-      internalID: -4324352846293930041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cape_4
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 765
-        width: 23
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c5d1fa5ec8c079a0800000000000000
-      internalID: -6237264695293520441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cape_5
+      name: G_Cuisse_5
       rect:
         serializedVersion: 2
         x: 911
@@ -253,8 +256,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb84be7d33764e330800000000000000
-      internalID: 3739227062987868348
+      spriteID: 90a90ba53b548fde0800000000000000
+      internalID: -1299211855873402359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G_Cuisse_6
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 534
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c18d4568e56d6300800000000000000
+      internalID: 246965603381641667
       vertices: []
       indices: 
       edges: []

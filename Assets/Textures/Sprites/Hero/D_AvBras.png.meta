@@ -1,25 +1,22 @@
 fileFormatVersion: 2
-guid: 174ddbac63f24ab45befd8f5599fa887
+guid: 605a719f3295cd3458d87fd6c6534d6c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1887795145090377717
-    second: Cape_0
+      213: 5219798780766001589
+    second: D_AvBras_0
   - first:
-      213: -2414361565861855294
-    second: Cape_1
+      213: 7041503807745360608
+    second: D_AvBras_1
   - first:
-      213: -3789902401689728560
-    second: Cape_2
+      213: -4457539410055304041
+    second: D_AvBras_2
   - first:
-      213: -4324352846293930041
-    second: Cape_3
+      213: -8287798205624904160
+    second: D_AvBras_3
   - first:
-      213: -6237264695293520441
-    second: Cape_4
-  - first:
-      213: 3739227062987868348
-    second: Cape_5
+      213: -8876575806272410985
+    second: D_AvBras_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cape_0
+      name: D_AvBras_0
       rect:
         serializedVersion: 2
-        x: 849
-        y: 1600
-        width: 6
-        height: 6
+        x: 610
+        y: 756
+        width: 256
+        height: 352
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,85 +140,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f7a1d7beabc23a10800000000000000
-      internalID: 1887795145090377717
+      spriteID: 5b9139ed553707840800000000000000
+      internalID: 5219798780766001589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cape_1
+      name: D_AvBras_1
       rect:
         serializedVersion: 2
-        x: 253
-        y: 242
-        width: 481
-        height: 1098
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2cfb27b92f67e7ed0800000000000000
-      internalID: -2414361565861855294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cape_2
-      rect:
-        serializedVersion: 2
-        x: 901
-        y: 1185
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d942ed68df876bc0800000000000000
-      internalID: -3789902401689728560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cape_3
-      rect:
-        serializedVersion: 2
-        x: 1105
-        y: 861
-        width: 45
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cf63396fffccf3c0800000000000000
-      internalID: -4324352846293930041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cape_4
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 765
-        width: 23
+        x: 1198
+        y: 984
+        width: 17
         height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -231,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7c5d1fa5ec8c079a0800000000000000
-      internalID: -6237264695293520441
+      spriteID: 0e20939d76278b160800000000000000
+      internalID: 7041503807745360608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cape_5
+      name: D_AvBras_2
       rect:
         serializedVersion: 2
-        x: 911
-        y: 620
-        width: 7
-        height: 6
+        x: 1128
+        y: 964
+        width: 9
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +184,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb84be7d33764e330800000000000000
-      internalID: 3739227062987868348
+      spriteID: 79c695b0683a322c0800000000000000
+      internalID: -4457539410055304041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D_AvBras_3
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 874
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0269b9f4173dbfc80800000000000000
+      internalID: -8287798205624904160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D_AvBras_4
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 706
+        width: 40
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a6e45955110d480800000000000000
+      internalID: -8876575806272410985
       vertices: []
       indices: 
       edges: []

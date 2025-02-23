@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: a86129d6b50a84000acc61f4f8ca1484
+guid: 585850b35a9653743b5927dc180c0857
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8815325943923419172
+    second: G_Bras_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: G_bras_0
+      name: G_Bras_0
       rect:
         serializedVersion: 2
-        x: 1148
-        y: 1731
-        width: 216
-        height: 600
-      alignment: 9
-      pivot: {x: 0.46512407, y: 0.85782266}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd29f1636583a45429779572d2c8d3b3
-      internalID: -726296819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: G_bras_1
-      rect:
-        serializedVersion: 2
-        x: 1426
-        y: 1521
-        width: 13
-        height: 13
+        x: 323
+        y: 1053
+        width: 198
+        height: 273
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8a5ad86496e9348a488cf034235f4176
-      internalID: 730082535
+      spriteID: cd7d82572cba9a580800000000000000
+      internalID: -8815325943923419172
       vertices: []
       indices: 
       edges: []
@@ -157,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -166,9 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      G_bras_0: -726296819
-      G_bras_1: 730082535
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
