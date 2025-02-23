@@ -13,6 +13,8 @@ namespace Cgw
         protected Vector3 m_lastFramePosition;
         protected Vector3 m_motion;
 
+        protected float m_FallTime = 0.0f;
+
         protected virtual Vector3 Motion => m_motion;
 
         protected virtual void Awake()
@@ -25,6 +27,17 @@ namespace Cgw
         {
             var currentPosition = transform.position;
             m_motion = (currentPosition - m_lastFramePosition) / Time.deltaTime;
+
+            if (currentPosition.y < m_lastFramePosition.y)
+            {
+                m_FallTime += Time.deltaTime;
+            }
+            else
+            {
+                m_FallTime = 0.0f;
+            }
+            m_animator.SetFloat("FallTime", m_FallTime);
+
             m_lastFramePosition = transform.position;
 
             var absXMotion = Mathf.Abs(Motion.x);
