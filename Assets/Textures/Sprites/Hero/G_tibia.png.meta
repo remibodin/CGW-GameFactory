@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 19a48782967774519af812ae4dd861ec
+guid: e8be36deab763004a9909c412ba3f8a0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6095702921170495789
+    second: G_Tibia_0
+  - first:
+      213: -431553688239443656
+    second: G_Tibia_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: G_tibia_0
+      name: G_Tibia_0
       rect:
         serializedVersion: 2
-        x: 1193
-        y: 415
-        width: 240
-        height: 633
-      alignment: 9
-      pivot: {x: 0.4999995, y: 0.8281882}
+        x: 312
+        y: 310
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6d1f56239de0a412a8afe337d30fe8e2
-      internalID: -559265888
+      spriteID: 3d652575d76b76ba0800000000000000
+      internalID: -6095702921170495789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G_Tibia_1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 219
+        width: 229
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8317afef430d20af0800000000000000
+      internalID: -431553688239443656
       vertices: []
       indices: 
       edges: []
@@ -135,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -144,8 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      G_tibia_0: -559265888
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
