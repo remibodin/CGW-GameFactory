@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cinematic.unity
     guid: dab80552adf7143c9b86943361c482b5
   - enabled: 1
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 55ee94a7faf5bb74d8d8616caba80e64
+  - enabled: 1
     path: Assets/Scenes/Levels/DarkForest.unity
     guid: d7f850774dc5e2f4287ba9b93fbd50ee
   m_configObjects:

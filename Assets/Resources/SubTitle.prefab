@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pouet pouet poney
+  m_text: 'Pouet pouet poney
+
+    Les loutres c''est la vie'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f80814e1e317de0409dea87042b84a26, type: 2}
   m_sharedMaterial: {fileID: 9089301707406729299, guid: f80814e1e317de0409dea87042b84a26, type: 2}
@@ -289,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30.03}
-  m_SizeDelta: {x: -200, y: 80}
+  m_AnchoredPosition: {x: 0, y: 13.9}
+  m_SizeDelta: {x: -63.6318, y: 59.6421}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7192292378240938149
 CanvasRenderer:
@@ -313,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0.4117647}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7176471}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
