@@ -24,10 +24,8 @@ namespace Cgw.Gameplay
         public bool IsSpiderTouched = false;
 
         public Color SpriteColor = Color.white;
-        public AnimationCurve OpacityOverDistanceCurve;
         public float Opacity = 1.0f;
 
-        public float ChargeTimer = 0.0f;
         public float SpiderTouchTimer = 0.0f;
 
         public ParticleSystem FlyingDotsParticles;
@@ -47,8 +45,6 @@ namespace Cgw.Gameplay
 
             Vector3 playerPosition = Player.Instance.transform.position + Vector3.up * 0.4f;
             float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
-
-            Opacity = OpacityOverDistanceCurve.Evaluate(distanceToPlayer);
 
             if (NoMove)
             {
@@ -75,7 +71,6 @@ namespace Cgw.Gameplay
                 else
                 {
                     ChargeMode = true;
-                    ChargeTimer = ChargeTime;
                 }
             }
 
@@ -84,13 +79,17 @@ namespace Cgw.Gameplay
                 if (distanceToPlayer > ChargeDistance)
                 {
                     ChargeMode = false;
-                    ChargeTimer = 0.0f;
                 }
-                else if (Mathf.Approximately(ChargeTimer, 0.0f))
-                {
-                    Player.Instance.TakeDamage(ExplosionDamage, this);
-                    CoroutineRunner.StartCoroutine(Die());
-                }
+            }
+        }
+
+        public void Explode()
+        {
+            Vector3 playerPosition = Player.Instance.transform.position + Vector3.up * 0.4f;
+            float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
+            if (distanceToPlayer < ChargeDistance)
+            {
+                Player.Instance.TakeDamage(ExplosionDamage, this);
             }
         }
 
@@ -100,15 +99,11 @@ namespace Cgw.Gameplay
             m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
             m_Animator = GetComponent<Animator>();
 
-            Opacity = OpacityOverDistanceCurve.Evaluate(float.PositiveInfinity);
             //AudioManager.Instance.Play("Sounds/FANTOME_RODE_07_1");
         }
 
         public void Update()
         {
-            ChargeTimer -= Time.deltaTime;
-            ChargeTimer = MathF.Max(ChargeTimer, 0.0f);
-
             SpiderTouchTimer -= Time.deltaTime;
             SpiderTouchTimer = Mathf.Max(SpiderTouchTimer, 0.0f);
 
@@ -126,14 +121,19 @@ namespace Cgw.Gameplay
 
         public void LateUpdate()
         {
+            Vector3 playerPosition = Player.Instance.transform.position + Vector3.up * 0.4f;
+            float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
+
+            m_Animator.SetFloat("DistanceToPlayer", Mathf.InverseLerp(ChargeDistance, ChaseDistance * 0.3f, distanceToPlayer));
+
+            m_Animator.SetBool("Dying", Dying);
             m_Animator.SetBool("ChargeMode", ChargeMode);
         }
 
-        public IEnumerator Die()
+        public void Die()
         {
             Dying = true;
-            yield return new WaitForSeconds(0.7f);
-            Destroy(gameObject);
+            ChargeMode = false;
         }
 
         public IEnumerator KnockBack(Vector2 directionFromPlayer)
@@ -142,6 +142,10 @@ namespace Cgw.Gameplay
             yield return new WaitForSeconds(0.32f);
             m_Rigidbody.AddForce(directionFromPlayer * 3.0f, ForceMode2D.Impulse);
             yield return new WaitForSeconds(1.0f);
+            if (Life <= 0.0f)
+            {
+                Die();
+            }
             NoMove = false;
         }
 
@@ -160,10 +164,6 @@ namespace Cgw.Gameplay
             Life -= power;
             Vector3 directionFromPlayer = (transform.position - Player.Instance.transform.position).normalized;
             CoroutineRunner.StartCoroutine(KnockBack(directionFromPlayer));
-            if (Life <= 0.0f)
-            {
-                CoroutineRunner.StartCoroutine(Die());
-            }
         }
 
         public override void OnCollisionWithPlayer()
@@ -183,6 +183,11 @@ namespace Cgw.Gameplay
 
         public override void OnCollisionWithDanger()
         {
+        }
+
+        public void OnEndDying()
+        {
+            Destroy(gameObject);
         }
     }
 }
