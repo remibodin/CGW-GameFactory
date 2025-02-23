@@ -1306,7 +1306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc28203fa31817468e2173c97ef2729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextSceneName: DarkForest
+  _nextSceneName: Level1
 --- !u!61 &656600144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4667,7 +4667,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3344581522822907222, guid: 23c68559868a06c40a143526951e0d2a, type: 3}
       propertyPath: m_Name
-      value: Moon (1)
+      value: Moon
       objectReference: {fileID: 0}
     - target: {fileID: 4295801303549786582, guid: 23c68559868a06c40a143526951e0d2a, type: 3}
       propertyPath: m_Color.b
@@ -5508,6 +5508,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 261812025}
+  - {fileID: 1829246868}
   - {fileID: 1517806586}
   - {fileID: 900922190}
   - {fileID: 763230024}
@@ -5524,4 +5525,3 @@ SceneRoots:
   - {fileID: 1794258915}
   - {fileID: 1805433018}
   - {fileID: 834203266}
-  - {fileID: 1829246868}
