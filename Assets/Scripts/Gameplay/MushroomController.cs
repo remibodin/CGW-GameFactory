@@ -18,6 +18,7 @@ namespace Cgw.Gameplay
         public bool Dying = false;
         public bool TouchedPlayer = false;
 
+        public GameObject BoomParticlePrefab;
         public ParticleSystem FlyingDotsParticles;
 
         public ContactFilter2D TerrainContactFilter;
@@ -40,6 +41,7 @@ namespace Cgw.Gameplay
             {
                 Player.Instance.TakeDamage(AttackPower, this);
             }
+            Instantiate(BoomParticlePrefab, transform.position + Vector3.up * 0.2f, Quaternion.identity);
             Destroy(gameObject);
         }
 
