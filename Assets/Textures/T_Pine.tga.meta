@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -338,7 +338,7 @@ TextureImporter:
         x: 795
         y: 1400
         width: 498
-        height: 304
+        height: 226
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,6 +375,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: T_Pine_11
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 1634
+        width: 446
+        height: 401
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c316de106011e364cacc838d76996e5f
+      internalID: 2031540273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -392,6 +414,7 @@ TextureImporter:
       T_Pine_0: 4461450470684628830
       T_Pine_1: -1385276351430733343
       T_Pine_10: 1468002185
+      T_Pine_11: 2031540273
       T_Pine_2: -8513255047326601054
       T_Pine_3: -4806437680726113983
       T_Pine_4: 2544026598870530927
