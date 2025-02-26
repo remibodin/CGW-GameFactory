@@ -4039,6 +4039,10 @@ PrefabInstance:
       propertyPath: _cinematicName
       value: Cinematics/Souvenir01
       objectReference: {fileID: 0}
+    - target: {fileID: 7732342849991263099, guid: d6f5e16ca1930d04e9d38850a427569d, type: 3}
+      propertyPath: _nextSceneName
+      value: StartMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
