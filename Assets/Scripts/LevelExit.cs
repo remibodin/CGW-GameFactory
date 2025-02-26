@@ -10,6 +10,7 @@ using Cgw.Gameplay;
 public class LevelExit : MonoBehaviour
 {
     [SerializeField] private string _nextSceneName;
+    [SerializeField] private string _cinematicName;
     [SerializeField] private float _delay;
 
     private LevelExitCondition[] _conditions;
@@ -46,6 +47,13 @@ public class LevelExit : MonoBehaviour
         {
             yield return new WaitForSeconds(_delay);
         }
-        SceneLoader.Custom(_nextSceneName);
+        if (string.IsNullOrEmpty(_cinematicName))
+        {
+            SceneLoader.Custom(_nextSceneName);
+        }
+        else
+        {
+            SceneLoader.PlayCinematicAndLoadScene(_cinematicName, _nextSceneName);
+        }
     }
 }
