@@ -5655,6 +5655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextSceneName: Level2
+  _cinematicName: 
+  _delay: 0
 --- !u!61 &1277116808
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7346,6 +7348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664558813}
   - component: {fileID: 1664558812}
+  - component: {fileID: 1664558814}
   m_Layer: 7
   m_Name: Global Volume
   m_TagString: Untagged
@@ -7369,7 +7372,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 3a8e524be5954444aafbd12932293006, type: 2}
+  sharedProfile: {fileID: 11400000, guid: a06f4034df4cd784ab73ec6d510c5a6b, type: 2}
 --- !u!4 &1664558813
 Transform:
   m_ObjectHideFlags: 0
@@ -7385,6 +7388,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664558814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664558811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfbc237be8a66349925d0972e3dead4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1683382363
 GameObject:
   m_ObjectHideFlags: 0
