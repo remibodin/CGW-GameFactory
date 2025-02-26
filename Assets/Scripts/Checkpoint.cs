@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         _activated = true;
-        PlayerSpawner.Instance.transform.position = transform.position;
+        PlayerSpawner.Instance.transform.position = transform.position + Vector3.up * 0.5f;
         OnActivated.Invoke();
     }
 }

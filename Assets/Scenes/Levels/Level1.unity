@@ -5654,7 +5654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc28203fa31817468e2173c97ef2729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextSceneName: DarkForest
+  _nextSceneName: Level2
 --- !u!61 &1277116808
 BoxCollider2D:
   m_ObjectHideFlags: 0
