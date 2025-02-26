@@ -19,6 +19,7 @@ namespace Cgw.Editor
             {
                 case BuildTarget.StandaloneWindows :
                 case BuildTarget.StandaloneWindows64 :
+                case BuildTarget.StandaloneLinux64 :
                 {
                     var buildPath = Path.GetFullPath(p_report.summary.outputPath);
                     var fileInfo = new FileInfo(buildPath);
