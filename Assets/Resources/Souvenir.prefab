@@ -48,7 +48,8 @@ GameObject:
   - component: {fileID: 1380249202401277444}
   - component: {fileID: 6510954422817448063}
   - component: {fileID: 6333798352933638076}
-  m_Layer: 0
+  - component: {fileID: 7732342849991263099}
+  m_Layer: 2
   m_Name: Souvenir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 1}
+  m_Size: {x: 0.41401845, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6333798352933638076
 MonoBehaviour:
@@ -152,6 +153,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 5583701356543866703}
+--- !u!114 &7732342849991263099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069525356179253043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc28203fa31817468e2173c97ef2729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextSceneName: DarkForest
+  _delay: 2
 --- !u!1 &2310301468465367077
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,10 +3,14 @@ using System.Linq;
 using UnityEngine;
 
 using Cgw.Assets;
+using System.Collections;
+using Cgw;
+using Cgw.Gameplay;
 
 public class LevelExit : MonoBehaviour
 {
     [SerializeField] private string _nextSceneName;
+    [SerializeField] private float _delay;
 
     private LevelExitCondition[] _conditions;
 
@@ -32,7 +36,16 @@ public class LevelExit : MonoBehaviour
             return;
         }
 
-        SceneLoader.Custom(_nextSceneName);
+        CoroutineRunner.StartCoroutine(CO_SceneLoader());
+    }
 
+    private IEnumerator CO_SceneLoader()
+    {
+        Player.Instance.enabled = false;
+        if (_delay > 0)
+        {
+            yield return new WaitForSeconds(_delay);
+        }
+        SceneLoader.Custom(_nextSceneName);
     }
 }
