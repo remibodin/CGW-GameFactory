@@ -41,7 +41,7 @@ namespace Cgw
             GameObject.DontDestroyOnLoad(GameObject.Instantiate(Resources.Load("Subtitle")));
 
             LocalizationManager.Instance.SetResourceIdentifier("Configurations/Localization");
-            LocalizationManager.Instance.SetLangage("Fr"); // Default langage
+            LocalizationManager.Instance.SetLangage("fr"); // Default langage
 
             CoroutineRunner.StartCoroutine(SyncResourcesManager());
 

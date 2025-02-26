@@ -31,24 +31,50 @@ namespace Cgw.Localization
 
         public void SetLangage(string p_langage)
         {
+            int langageId = GetLangageId(p_langage);
+            if (langageId == -1)
+            {
+                return;
+            }
+            SetLangageId(langageId);
+        }
+
+        public void SetLangageId(int p_id)
+        {
+            m_currentLangageId = p_id;
+            onLangageUpdated?.Invoke();
+        }
+
+        public int GetLangageId(string p_langage)
+        {
             var firstRow = m_csvAsset.Data[0];
             var cell_id = 0;
             foreach (var cell in firstRow)
             {
                 if (cell.ToLower() == p_langage.ToLower())
                 {
-                    SetLangageId(cell_id - 1);
-                    return;
+                    return cell_id;
                 }
                 cell_id++;
             }
             UnityEngine.Debug.LogWarning($"{p_langage} not found in localization file");
+            return -1;
         }
 
-        public void SetLangageId(int p_id)
+        public string GetLangage(int p_langageId)
         {
-            m_currentLangageId = p_id + 1;
-            onLangageUpdated?.Invoke();
+            var firstRow = m_csvAsset.Data[0];
+            return firstRow[p_langageId + 1].ToLower();
+        }
+
+        public int GetLangageId()
+        {
+            return m_currentLangageId;
+        }
+
+        public string GetLangage()
+        {
+            return GetLangage(GetLangageId());
         }
 
         public string Get(string p_key) 
