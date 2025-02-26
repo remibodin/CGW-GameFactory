@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        targetPlatform: ['StandaloneWindows64']
+        targetPlatform: ['StandaloneWindows64', 'StandaloneLinux64']
 
     steps:
 
@@ -27,7 +27,7 @@ jobs:
           restore-keys: |
             Library-
 
-      - name: Build StandaloneWindows64
+      - name: Build
         uses: game-ci/unity-builder@v4
         id: buildStep
         env:

@@ -30,5 +30,9 @@ namespace Cgw
         public string FadeColor = "#000000";
         [YamlMember(Alias = "fade_speed")]
         public float FadeSpeed = 3;
+
+        // Post process
+        [YamlMember(Alias = "exposure")]
+        public float Exposure = 0;
     }
 }

@@ -78,6 +78,11 @@ namespace Cgw.Gameplay
             InputActions.FindActionMap("Player").FindAction("AragnaAttack").performed += Player_OnAragnaAttack;
         }
 
+        private void OnDisable()
+        {
+            Motion = Vector2.zero;
+        }
+
         public void DieImmediately()
         {
             PlayerSpawner.Instance.Respawn();

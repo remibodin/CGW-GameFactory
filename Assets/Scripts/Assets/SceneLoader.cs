@@ -36,12 +36,12 @@ namespace Cgw.Assets
             Fade.In();
         }
 
-        private static void PlayCinematicAndLoadScene(string p_cinematicIdentifier, string p_sceneName)
+        public static void PlayCinematicAndLoadScene(string p_cinematicIdentifier, string p_sceneName)
         {
             CinematicManager.Play(p_cinematicIdentifier, () => LoadScene(p_sceneName));
         }
 
-        private static void PlayCinematicAndLoadScene(string p_cinematicIdentifier, int p_sceneIndex)
+        public static void PlayCinematicAndLoadScene(string p_cinematicIdentifier, int p_sceneIndex)
         {
             CinematicManager.Play(p_cinematicIdentifier, () => LoadScene(p_sceneIndex));
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Cgw
 {
@@ -36,7 +37,10 @@ namespace Cgw
             {
                 m_FallTime = 0.0f;
             }
-            m_animator.SetFloat("FallTime", m_FallTime);
+            if (m_animator.parameters.FirstOrDefault(x => x.name == "FallTime") != null)
+            {
+                m_animator.SetFloat("FallTime", m_FallTime);
+            }
 
             m_lastFramePosition = transform.position;
 

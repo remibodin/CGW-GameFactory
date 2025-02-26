@@ -1,4 +1,7 @@
 using FMODUnity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -6,8 +9,19 @@ namespace Cgw.Gameplay
 {
     public class CameraController : SingleBehaviourInScene<CameraController>
     {
+        [Serializable]
+        public class CameraRail
+        {
+            public float MaxCharacterY;
+            public float MinCharacterY;
+            public float CameraY;
+        }
+
+        public List<CameraRail> CameraRails;
+
         private Camera _camera;
         private UniversalAdditionalCameraData _cameraData;
+        private CameraRail m_ActiveCameraRail;
 
         protected override void Awake()
         {
@@ -18,18 +32,18 @@ namespace Cgw.Gameplay
             _camera.orthographicSize = 1.3f;
         }
 
-        private void OnEnable()
+        public void OnEnable()
         {
             RuntimeManager.StudioSystem.setNumListeners(1);
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
             // FMOD aime pas le set a 0
             // RuntimeManager.StudioSystem.setNumListeners(0); 
         }
 
-        private void Update()
+        public void Update()
         {
             GameObject targetEffect = gameObject;
 
@@ -40,9 +54,35 @@ namespace Cgw.Gameplay
 
             RuntimeManager.SetListenerLocation(targetEffect);
             _cameraData.volumeTrigger = targetEffect.transform;
+
+            if (CameraRails.Count == 0 )
+            {
+                m_ActiveCameraRail = null;
+            }
+            else
+            {
+                var actualCameraRail = CameraRails.FirstOrDefault(SelectCameraRail);
+                if (actualCameraRail != null)
+                {
+                    m_ActiveCameraRail = actualCameraRail;
+                }
+            }
         }
 
-        private void LateUpdate()
+        private bool SelectCameraRail(CameraRail rail)
+        {
+            if (Player.Instance != null)
+            {
+                Vector3 playerPos = Player.Instance.transform.position;
+                if (rail.MaxCharacterY >= playerPos.y && rail.MinCharacterY <= playerPos.y)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void LateUpdate()
         {
             float direction = 0.0f;
             Vector3 cameraPosition = PlayerSpawner.Instance.transform.position;
@@ -56,7 +96,16 @@ namespace Cgw.Gameplay
 
             cameraPosition.z = transform.position.z;
             cameraPosition.x = cameraPosition.x + 1.2f * direction;
-            cameraPosition.y = 0.0f;
+
+            if (m_ActiveCameraRail != null)
+            {
+                cameraPosition.y = m_ActiveCameraRail.CameraY;
+            }
+            else
+            {
+                cameraPosition.y = 0.0f;
+            }
+
             transform.position = Vector3.Lerp(transform.position, cameraPosition, Time.deltaTime * 2);
         }
     }

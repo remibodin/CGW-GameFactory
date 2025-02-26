@@ -12,3 +12,6 @@ menu_select_button_sfx: "Sounds/Menu/Pop"
 # fade
 fade_color: "#000000"
 fade_speed: 2
+
+# pp
+exposure: 0
