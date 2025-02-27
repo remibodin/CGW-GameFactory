@@ -48,6 +48,10 @@ namespace Cgw.UI
             m_startBtn.onClick.AddListener(StartBtn_OnClick);
 
             m_langDropDown.ClearOptions();
+            m_langDropDown.options.Add(new TMP_Dropdown.OptionData()
+            {
+                text = "Default - Français"
+            });
             for (int i = 1; i <= LocalizationManager.Instance.Count; i++)
             {
                 m_langDropDown.options.Add(new TMP_Dropdown.OptionData() 
@@ -161,7 +165,7 @@ namespace Cgw.UI
 
         private void LangDropDown_OnValueChange(int p_value)
         {
-            LocalizationManager.Instance.SetLangageId(p_value);
+            LocalizationManager.Instance.SetLangageId(p_value == 0 ? 2 : p_value);
         }
 
         private void ResolutionDropDown_OnValueChange(int p_value)
