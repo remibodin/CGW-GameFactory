@@ -14,6 +14,11 @@ namespace Cgw.Assets
             Fade.Out(() => PlayCinematicAndLoadScene("Cinematics/Intro", 1));
         }
 
+        public static void Credit()
+        {
+            Fade.Out(() => PlayCinematicAndLoadScene("Cinematics/Credits", 0));
+        }
+
         public static void StartMenu()
         {
             Fade.Out(() => LoadScene(0));

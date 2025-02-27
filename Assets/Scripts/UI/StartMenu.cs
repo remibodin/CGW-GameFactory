@@ -23,6 +23,7 @@ namespace Cgw.UI
 
         [Header("Buttons")]
         [SerializeField] private Button m_startBtn;
+        [SerializeField] private Button m_creditsBtn;
         [SerializeField] private Button m_optionsBtn;
         [SerializeField] private Button m_exitBtn;
         [SerializeField] private Button m_backBtn;
@@ -46,11 +47,12 @@ namespace Cgw.UI
             m_backBtn.onClick.AddListener(BackBtn_OnClick);
             m_exitBtn.onClick.AddListener(ExitBtn_OnClick);
             m_startBtn.onClick.AddListener(StartBtn_OnClick);
+            m_creditsBtn.onClick.AddListener(CreditsBtn_OnClick);
 
             m_langDropDown.ClearOptions();
             m_langDropDown.options.Add(new TMP_Dropdown.OptionData()
             {
-                text = "Default - Français"
+                text = "Default - Franï¿½ais"
             });
             for (int i = 1; i <= LocalizationManager.Instance.Count; i++)
             {
@@ -161,6 +163,11 @@ namespace Cgw.UI
         private void StartBtn_OnClick()
         {
             SceneLoader.Level1();
+        }
+
+        private void CreditsBtn_OnClick()
+        {
+            SceneLoader.Credit();
         }
 
         private void LangDropDown_OnValueChange(int p_value)
