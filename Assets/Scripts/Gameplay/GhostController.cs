@@ -7,6 +7,8 @@ using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
+using FMODUnity;
+
 namespace Cgw.Gameplay
 {
     public class GhostController : Enemy
@@ -30,6 +32,7 @@ namespace Cgw.Gameplay
 
         public GameObject BoomParticlePrefab;
         public ParticleSystem FlyingDotsParticles;
+        public StudioEventEmitter onHitFmodEvent;
 
         private Rigidbody2D m_Rigidbody;
         private SpriteRenderer m_SpriteRenderer;
@@ -141,6 +144,7 @@ namespace Cgw.Gameplay
         public IEnumerator KnockBack(Vector2 directionFromPlayer)
         {
             NoMove = true;
+            onHitFmodEvent.Play();
             yield return new WaitForSeconds(0.32f);
             m_Rigidbody.AddForce(directionFromPlayer * 3.0f, ForceMode2D.Impulse);
             yield return new WaitForSeconds(1.0f);

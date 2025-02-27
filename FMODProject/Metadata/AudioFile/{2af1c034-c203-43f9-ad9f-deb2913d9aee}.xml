@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{5af055c3-3a43-4ab6-b0fe-10b9b2893270}">
+	<object class="AudioFile" id="{2af1c034-c203-43f9-ad9f-deb2913d9aee}">
 		<property name="assetPath">
-			<value>Champignon/CHAMPI_POP_B-12_1.wav</value>
+			<value>Ghost/FANTOME_RECOIT_COUP_3_1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.66356009070294786</value>
+			<value>2.7832199546485259</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{162b2e50-4426-444a-85fa-4a6370cda07a}</destination>

@@ -3231,10 +3231,17 @@ PrefabInstance:
       propertyPath: ChaseDistance
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6734246225500387811, guid: 95e12c5ce34c76e4ea4a29b58d15eee8, type: 3}
+      propertyPath: onHitFmodEvent
+      value: 
+      objectReference: {fileID: 1080012648}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 395057107421839796, guid: 95e12c5ce34c76e4ea4a29b58d15eee8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1080012648}
   m_SourcePrefab: {fileID: 100100000, guid: 95e12c5ce34c76e4ea4a29b58d15eee8, type: 3}
 --- !u!1 &766826269
 GameObject:
@@ -3836,6 +3843,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1080012642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 395057107421839796, guid: 95e12c5ce34c76e4ea4a29b58d15eee8, type: 3}
+  m_PrefabInstance: {fileID: 748861930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1080012648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080012642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -145955958
+      Data2: 1170272341
+      Data3: -17874010
+      Data4: -192509316
+    Path: event:/Enemies/Ghost_Hit
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1086949608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6805,81 +6848,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8039728319467863778, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1844456019}
-    - targetCorrespondingSourceObject: {fileID: 8039728319467863778, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1844456020}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
---- !u!1 &1844456018 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8039728319467863778, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
+--- !u!114 &1844456019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5611001369172814873, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
   m_PrefabInstance: {fileID: 1844456017}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1844456019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844456018}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 2061598429
-      Data2: 1094637879
-      Data3: -77614422
-      Data4: 139780758
-    Path: event:/Enemies/Champignon_Death
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &1844456020
+--- !u!114 &1844456020 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6831022032531775006, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
+  m_PrefabInstance: {fileID: 1844456017}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844456018}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1954893881
-      Data2: 1160121138
-      Data3: 1370807194
-      Data4: 1984451160
-    Path: event:/Enemies/Champignon_Hit
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &1856606406
 GameObject:
   m_ObjectHideFlags: 0
