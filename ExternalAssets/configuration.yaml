@@ -1,8 +1,8 @@
 localization: "Configurations/Localization"
 
 # menu
-menu_logo: "Sprites/Jaquette_NoText"
-menu_logo_lighting: "Sprites/Jaquette_Lighting"
+menu_logo: "Sprites/Jaquette_noText"
+menu_logo_lighting: "Sprites/Jaquette_lighting"
 menu_title: "Sprites/Title"
 menu_halo_fx: "Sprites/Halo_Effect"
 menu_background_color: "#000018"
