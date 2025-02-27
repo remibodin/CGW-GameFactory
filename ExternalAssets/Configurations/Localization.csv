@@ -13,5 +13,5 @@ INTRO_03,"... never to return.","… pour ne plus jamais revenir.","E un so mai 
 PAUSE,Pause,Pause,Firmata
 RESUME,Resume,Reprendre,Ripiglià
 VILLAGE_EXIT, It's dangerous to go alone. You should go see if Aragna is still at your place. , C'est dangereux de partir seul. Tu devrais aller voir si Aragna est encore chez toi. , Hè periculosu di parte solu! Ti tuccarebbe à andà à vede s’ellu hè sempre in casa Aragna.
-TUTO_JUMP, , Pour sauter utilises la touche ESPACE ou A, 
-TUTO_BLADE, , "Ca à l'air dangereux par ici. N'oublie pas que tu as une épée (F ou X)",
+TUTO_JUMP, To jump use the SPACE key or A button, Pour sauter utilises la touche ESPACE ou A, 
+TUTO_BLADE, "It looks dangerous around here. Don't forget you have a sword (F key or X button)", "Ca à l'air dangereux par ici. N'oublie pas que tu as une épée (F ou X)",
