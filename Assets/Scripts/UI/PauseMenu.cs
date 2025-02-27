@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using Cgw.Assets;
+using UnityEngine.EventSystems;
 
 namespace Cgw.UI
 {
@@ -51,6 +52,7 @@ namespace Cgw.UI
             Time.timeScale = 0.0f;
             DisplayScreen(true);
             m_paused = true;
+            EventSystem.current.SetSelectedGameObject(m_resumeBtn.gameObject);
         }
 
         private void ResumeGame()
@@ -58,6 +60,7 @@ namespace Cgw.UI
             Time.timeScale = 1.0f;
             DisplayScreen(false);
             m_paused = false;
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
         private void ReturnToStartMenu()

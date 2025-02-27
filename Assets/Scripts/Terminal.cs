@@ -23,6 +23,7 @@ namespace Cgw
         private Dictionary<string, Action<string>> m_commands = new Dictionary<string, Action<string>>();
 
         public IEnumerable<string> CommandsName => m_commands.Keys;
+        private GameObject m_lastSelectedUIObject;
 
         protected override void Awake()
         {
@@ -129,7 +130,12 @@ namespace Cgw
             }
             if (m_canvas.enabled && EventSystem.current != null)
             {
+                m_lastSelectedUIObject = EventSystem.current.currentSelectedGameObject;
                 EventSystem.current.SetSelectedGameObject(m_input.gameObject);
+            }
+            if (!m_canvas.enabled && EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(m_lastSelectedUIObject);
             }
         }
 
