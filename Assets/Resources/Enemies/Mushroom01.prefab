@@ -5573,8 +5573,8 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   SpiderTouchTimer: 0
-  onDeathFmodEvent: {fileID: 0}
-  onHitFmodEvent: {fileID: 0}
+  onDeathFmodEvent: {fileID: 5611001369172814873}
+  onHitFmodEvent: {fileID: 6831022032531775006}
 --- !u!114 &5325763086584614355
 MonoBehaviour:
   m_ObjectHideFlags: 0

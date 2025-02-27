@@ -7019,14 +7019,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.91468346
       objectReference: {fileID: 0}
-    - target: {fileID: 2924349853169536694, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-      propertyPath: onHitFmodEvent
-      value: 
-      objectReference: {fileID: 1844456020}
-    - target: {fileID: 2924349853169536694, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-      propertyPath: onDeathFmodEvent
-      value: 
-      objectReference: {fileID: 1844456019}
     - target: {fileID: 5430333564280585048, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.847967
@@ -7116,28 +7108,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
---- !u!114 &1844456019 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5611001369172814873, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-  m_PrefabInstance: {fileID: 1844456017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1844456020 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6831022032531775006, guid: aebb90c2ecad268408a1ec6f5aa34ebf, type: 3}
-  m_PrefabInstance: {fileID: 1844456017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1856606406
 GameObject:
   m_ObjectHideFlags: 0
