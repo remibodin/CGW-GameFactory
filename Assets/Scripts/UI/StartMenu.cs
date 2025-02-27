@@ -7,6 +7,7 @@ using Cgw.Assets;
 using Cgw.Graphics;
 using Cgw.Localization;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace Cgw.UI
 {
@@ -143,12 +144,14 @@ namespace Cgw.UI
         {
             float delay = m_homePage.Hide();
             m_optionsPages.Show(delay);
+            EventSystem.current.SetSelectedGameObject(m_langDropDown.gameObject);
         }
 
         private void BackBtn_OnClick()
         {
             float delay = m_optionsPages.Hide();
             m_homePage.Show(delay);
+            EventSystem.current.SetSelectedGameObject(m_startBtn.gameObject);
         }
 
         private void StartBtn_OnClick()
