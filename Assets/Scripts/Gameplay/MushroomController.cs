@@ -1,6 +1,8 @@
-using System;
+ using System;
 using System.Collections;
 using UnityEngine;
+
+using FMODUnity;
 
 namespace Cgw.Gameplay
 {
@@ -24,6 +26,8 @@ namespace Cgw.Gameplay
         public ContactFilter2D TerrainContactFilter;
         public float SpiderTouchTimer = 0.0f;
 
+        public StudioEventEmitter onDeathFmodEvent;
+
         private Collider2D m_Collider;
         private Rigidbody2D m_Rigidbody;
         private Animator m_Animator;
@@ -43,6 +47,7 @@ namespace Cgw.Gameplay
             }
             Instantiate(BoomParticlePrefab, transform.position + Vector3.up * 0.2f, Quaternion.identity);
             Destroy(gameObject);
+            onDeathFmodEvent.Play();
         }
 
         public IEnumerator Knockback(Vector3 directionFromPlayer)
