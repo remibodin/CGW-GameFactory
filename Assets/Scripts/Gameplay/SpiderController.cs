@@ -28,6 +28,9 @@ namespace Cgw.Gameplay
 
         public float LaunchTimer = 0.0f;
 
+        public FMODUnity.StudioEventEmitter laucheSoundEvent;
+        public FMODUnity.StudioEventEmitter nopLaucheSoundEvent;
+
         private Collider2D m_Collider;
 
         public void Start()
@@ -83,6 +86,8 @@ namespace Cgw.Gameplay
                 var enemy = CheckLaunch(player.transform.position + Vector3.up * FollowHeight, player.Facing, LaunchRange);
                 if (enemy != null)
                 {
+                    // Sound
+                    laucheSoundEvent.Play();
                     if (m_Collider.IsTouching(enemy.GetComponent<Collider2D>()))
                     {
                         enemy.OnCollisionWithSpider();
@@ -100,6 +105,7 @@ namespace Cgw.Gameplay
                 }
                 else
                 {
+                    nopLaucheSoundEvent.Play();
                     HasTarget = false;
                     Target = null;
                     TargetPoint = player.transform.position + player.Facing * LaunchRange;
