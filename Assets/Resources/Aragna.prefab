@@ -14844,8 +14844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dccbd661d5798242b0b65ff35ed11cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 3
-  LifePerLaunch: 0.5
+  Life: 1000
+  LifePerLaunch: 0.1
   FollowSpeed: 2
   FollowDistance: 0.1
   FollowHeight: 0.6
