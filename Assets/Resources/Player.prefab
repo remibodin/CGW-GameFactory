@@ -434,7 +434,7 @@ MonoBehaviour:
   Life: 3
   Speed: 0.65
   AirSpeed: 1
-  JumpCooldownTime: 0.85
+  JumpCooldownTime: 0.72
   JumpForce: 3.5
   LaunchCooldownTime: 5
   AttackCooldownTime: 0.6
