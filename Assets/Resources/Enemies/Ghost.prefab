@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6734246225500387811}
   - component: {fileID: -5395769817619533903}
   - component: {fileID: 3829168981221706438}
+  - component: {fileID: 6621498950415486750}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Life: 3
-  ChaseDistance: 6
+  ChaseDistance: 4
   ChaseSpeed: 0.5
   ChaseMode: 0
   ChargeMode: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
   SpiderTouchTimer: 0
   BoomParticlePrefab: {fileID: 3494829984637113230, guid: 37c8327a97625354fa4c8f90a6d0ab3e, type: 3}
   FlyingDotsParticles: {fileID: 127433729330835553}
+  onHitFmodEvent: {fileID: 6621498950415486750}
 --- !u!50 &-5395769817619533903
 Rigidbody2D:
   serializedVersion: 5
@@ -181,6 +183,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6621498950415486750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395057107421839796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -145955958
+      Data2: 1170272341
+      Data3: -17874010
+      Data4: -192509316
+    Path: event:/Enemies/Ghost_Hit
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1451535690843220622
 GameObject:
   m_ObjectHideFlags: 0

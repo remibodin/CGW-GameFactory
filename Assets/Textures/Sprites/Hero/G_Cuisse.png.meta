@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      G_Cuisse_0: -163136918683938726
+      G_Cuisse_1: 6047271784910109200
+      G_Cuisse_2: 2859963926754642882
+      G_Cuisse_3: -8959054205218935727
+      G_Cuisse_4: -5863756382350881862
+      G_Cuisse_5: -1299211855873402359
+      G_Cuisse_6: 246965603381641667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

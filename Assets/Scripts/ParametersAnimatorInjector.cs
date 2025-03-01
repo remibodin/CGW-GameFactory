@@ -24,6 +24,20 @@ namespace Cgw
             m_renderer = GetComponent<SpriteRenderer>();
         }
 
+        public void ForceFlip(bool value)
+        {
+            if (m_renderer != null)
+            {
+                m_renderer.flipX = value;
+            }
+            else
+            {
+                var scale = transform.localScale;
+                scale.x = value ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+                transform.localScale = scale;
+            }
+        }
+
         protected virtual void LateUpdate()
         {
             var currentPosition = transform.position;
@@ -56,16 +70,7 @@ namespace Cgw
             if (Mathf.Abs(Motion.x) > 0.01f)
             {
                 var flip = Mathf.Sign(Motion.x) < 0;
-                if (m_renderer != null)
-                {
-                    m_renderer.flipX = flip;
-                }
-                else
-                {
-                    var scale = transform.localScale;
-                    scale.x = flip ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-                    transform.localScale = scale;
-                }
+                ForceFlip(flip);
             }
         }
     }

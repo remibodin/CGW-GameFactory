@@ -27,6 +27,7 @@ namespace Cgw.Gameplay
         public float SpiderTouchTimer = 0.0f;
 
         public StudioEventEmitter onDeathFmodEvent;
+        public StudioEventEmitter onHitFmodEvent;
 
         private Collider2D m_Collider;
         private Rigidbody2D m_Rigidbody;
@@ -53,6 +54,7 @@ namespace Cgw.Gameplay
         public IEnumerator Knockback(Vector3 directionFromPlayer)
         {
             yield return new WaitForSeconds(0.32f);
+            onHitFmodEvent.Play();
             m_Rigidbody.AddForce((Vector3.up + directionFromPlayer) * 3.0f, ForceMode2D.Impulse);
         }
 

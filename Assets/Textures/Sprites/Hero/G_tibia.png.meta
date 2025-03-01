@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      G_Tibia_0: -6095702921170495789
+      G_Tibia_1: -431553688239443656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

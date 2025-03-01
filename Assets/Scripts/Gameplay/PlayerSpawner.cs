@@ -10,6 +10,7 @@ public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
     public GameObject AragnaPrefab;
     public bool SpawnPlayerOnStart = true;
     public bool SpawnAragnaAragna = true;
+    public bool invertFacing = false;
 
     private bool m_SpawnRequested = false;
     private float m_SpawnDelay = 0.0f;
@@ -35,7 +36,12 @@ public class PlayerSpawner : Cgw.SingleBehaviourInScene<PlayerSpawner>
     {
         if (Player.Instance == null)
         {
-            Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
+            var playerObject = Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
+
+            var player = playerObject.GetComponent<Player>();
+            player.Facing = invertFacing ? Vector3.left : Vector3.right;
+            var playerAnimator = playerObject.GetComponent<PlayerAnimator>();
+            playerAnimator.ForceFlip(invertFacing);
         }
     }
 

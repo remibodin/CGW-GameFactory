@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{56b38c37-f0e8-42dd-8391-2e06973899dc}">
 		<property name="assetPath">
-			<value>CHAMPI_DEGONFLER_A_04_1.wav</value>
+			<value>Champignon/CHAMPI_DEGONFLER_A_04_1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

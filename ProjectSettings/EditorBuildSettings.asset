@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level3.unity
     guid: 259f60ef747c8de419881d34f97679ed
   - enabled: 1
+    path: Assets/Scenes/Levels/Level4.unity
+    guid: dfb4c0e9167cd8d4fb7129a6c2a2bc95
+  - enabled: 1
+    path: Assets/Scenes/Levels/VillageEnd.unity
+    guid: 7a6cfcbbab7a98a42835b48f46bbfc00
+  - enabled: 1
     path: Assets/Scenes/Levels/DarkForest.unity
     guid: d7f850774dc5e2f4287ba9b93fbd50ee
   m_configObjects:
