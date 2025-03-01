@@ -6,12 +6,14 @@ using Cgw.Assets;
 using System.Collections;
 using Cgw;
 using Cgw.Gameplay;
+using Cgw.Graphics;
 
 public class LevelExit : MonoBehaviour
 {
     [SerializeField] private string _nextSceneName;
     [SerializeField] private string _cinematicName;
     [SerializeField] private float _delay;
+    [SerializeField] private bool _fadeBeforeCinematic = false;
 
     private LevelExitCondition[] _conditions;
 
@@ -53,7 +55,14 @@ public class LevelExit : MonoBehaviour
         }
         else
         {
-            SceneLoader.PlayCinematicAndLoadScene(_cinematicName, _nextSceneName);
+            if (_fadeBeforeCinematic)
+            {
+                Fade.Out(() => SceneLoader.PlayCinematicAndLoadScene(_cinematicName, _nextSceneName));
+            }
+            else
+            {
+                SceneLoader.PlayCinematicAndLoadScene(_cinematicName, _nextSceneName);
+            }
         }
     }
 }
