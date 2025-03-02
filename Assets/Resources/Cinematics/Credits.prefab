@@ -146,17 +146,32 @@ MonoBehaviour:
     Fran\xE7ois\r\nZubillaga F\xE9lix \r\n\xC9lio Gilormini\r\nAlban Gilormini \r\nMisbare
     Gabriel \r\nAndreani Giorgia\r\nAdriana Homsy\r\nAndreani Jennifer\r\nRivez Jules\r\nVelasquez
     J\xE9sus \r\nRiahi Majdi \r\nAxel Martin\r\nMendes Mickael \r\nVincent-Camille
-    Olivieri \r\nPiel Preger-Lanzi\r\nPillard Quentin \r\nvasselin clement\r\ngabriel
+    Olivieri \r\nPiel Preger-Lanzi\r\nPillard Quentin \r\nVasselin clement\r\nGabriel
     Molino \r\nTheo leborgne\r\nRomane Vasselin \r\nMerlin Saule\r\n\r\n\r\n\r\n<b>Fantasi\xE0
-    / Gaming Factory : I Ricordi Di U Spidali </b>\r\n\r\nCheffe de projet:\r\nMarine
+    / Gaming Factory : I Ricordi Di U Spidali</b>\r\n\r\nCheffe de projet:\r\nMarine
     BODIN\r\n\r\nChef de prod:\r\nCharly PICCIOCCHI\r\n\r\nSc\xE9nariste: \r\nAmalia
     LUCIANI\r\n\r\nLead Dev: \r\nR\xE9mi BODIN\r\n\r\nDev: \r\nDamien \"Lukior\"
-    VEZANT\r\n\r\nGame designer:\r\nArmand GEMEUX\r\n\r\nSound Designer: \r\nPierre
-    ESTEVE\r\n\r\nProduction / Edition: \r\nPatricia RUSCITO \r\n\r\nIllustrateurs:
-    \r\nJean Ren\xE9 DE ROSAS \r\nGuillaume \"Poulpe\" MARECHAL\r\n\r\nVid\xE9o reportage:
-    \r\nSt\xE9phane BLANCHARDON \r\n\r\nMulti tools: \r\nAline COLLADO\r\nJean-Baptiste
+    VEZANT\r\nLaurent DEBIEN\r\n\r\nGame designer:\r\nArmand GEMEUX\r\n\r\nSound
+    Designer: \r\nPierre ESTEVE\r\n\r\nProduction / Edition: \r\nPatricia RUSCITO
+    \r\n\r\nIllustrateurs: \r\nJean Ren\xE9 DE ROSAS \r\nGuillaume \"Poulpe\" MARECHAL\r\n\r\nVid\xE9o
+    reportage: \r\nSt\xE9phane BLANCHARDON \r\n\r\nMulti tools: \r\nAline COLLADO\r\nJean-Baptiste
     \"Jybs\" BRUNO \r\nJean-Pascal PREGER-LANZI\r\n\r\nAnimateur enjailleur: \r\nNabil
-    KENDO\r\n\r\nConservateur du patrimoine: \r\nPhilippe DUBOIS"
+    KENDO\r\n\r\nConservateur du patrimoine: \r\nPhilippe DUBOIS\r\n\r\nVoix \"cr\xE9dits\"
+    Fran\xE7ais:\r\nJuliette LENCLOS\r\n\r\nVoce \"cr\xE9dits\" Corsu:\r\nAnna-Laura
+    CRISTOFARI\r\n\r\n<b>Fantasi\xE0 tient \xE0 remercier tout sp\xE9cialement :</b>\r\n<size=12>R\xE9mi,
+    Damien et Armand, qui ont oeuvr\xE9 sans rel\xE2che, avec discr\xE9tion et d\xE9termination\u2026
+    (Figatelli incoming\u2026)\r\nPatricia et Pierre, pour nous faire sortir des
+    cadres .\r\n\"Poulpe\", pour la g\xE9n\xE9rosit\xE9 avec laquelle tu as ajout\xE9
+    un si beau wagon au train en marche\u2026 (Figatelli incoming 2, le retour !)\r\nAnouk,
+    dont les g\xE2teaux et le capuccino ont ce don rare de redonner foi en l\u2019humanit\xE9.
+    \r\nMarco alias \"le guitariste fou\", car quiconque joue le th\xE8me de Tristram
+    ne peut \xEAtre qu\u2019une belle \xE2me !\r\nPhilippe Dubois, pour son savoir
+    inestimable et sa gentillesse sans limites. Nous serons toujours l\xE0 pour une
+    livraison de Alsa saveur pistache! \r\nKendo, et son art spectaculaire de bondir
+    du sol \xE0 la sc\xE8ne \xE0 pieds joints ! \r\nEt bien s\xFBr, aux enfants,
+    qui, peut-\xEAtre, deviendront un jour les \"cr\xE9ateurs de mondes\" de demain.\r\nMerci
+    \xE0 vous toutes et tous, pour tout ce que vous apportez. Cette aventure ne serait
+    pas la m\xEAme sans vous ! </size>\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

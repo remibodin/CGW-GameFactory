@@ -52,7 +52,7 @@ namespace Cgw.UI
             m_langDropDown.ClearOptions();
             m_langDropDown.options.Add(new TMP_Dropdown.OptionData()
             {
-                text = "Default - Fran�ais"
+                text = string.Empty
             });
             for (int i = 1; i <= LocalizationManager.Instance.Count; i++)
             {
@@ -172,7 +172,12 @@ namespace Cgw.UI
 
         private void LangDropDown_OnValueChange(int p_value)
         {
-            LocalizationManager.Instance.SetLangageId(p_value == 0 ? 2 : p_value);
+            // sucun changement si l'utilisateur selection l'option vide
+            if (p_value == 0)
+            {
+                return;
+            }
+            LocalizationManager.Instance.SetLangageId(p_value);
         }
 
         private void ResolutionDropDown_OnValueChange(int p_value)
