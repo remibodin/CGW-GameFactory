@@ -36,18 +36,15 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-          buildName: CGW
+          buildName: IRicordiDiUSpidali
           versioning: Semantic
-
-      - name: Archive
-        run: tar -cvf build.tar -C build/${{ matrix.targetPlatform }} .
 
       - uses: actions/upload-artifact@v4
         name: Upload
         id: upload
         with:
-          name: CGW-${{ matrix.targetPlatform }}-${{ steps.buildStep.outputs.buildVersion }}
-          path: build.tar
+          name: IRicordiDiUSpidali-${{ matrix.targetPlatform }}-${{ steps.buildStep.outputs.buildVersion }}
+          path: build/${{ matrix.targetPlatform }}
 
       - name: Discord notification
         uses: rjstone/discord-webhook-notify@v1
